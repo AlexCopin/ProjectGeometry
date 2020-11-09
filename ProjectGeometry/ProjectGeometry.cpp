@@ -1,6 +1,5 @@
-#include <iostream>
-#include <windows.h>
-#include <SFML/Graphics.hpp>
+
+#include "Header.h"
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
 //
@@ -11,12 +10,14 @@ std::string getAppPath()
     std::string sAppPath = cAppPath;
     char appNamePos = sAppPath.find_last_of("\\");
     return sAppPath.substr(0, appNamePos + 1);
+
+
 }
 std::string getAssetsPath()
 {
     return getAppPath() + "\\Assets\\";
 }
-main()
+int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
     sf::Clock(clock);
@@ -32,13 +33,14 @@ main()
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
     sprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    
     //
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
             {
                 window.close();
             }

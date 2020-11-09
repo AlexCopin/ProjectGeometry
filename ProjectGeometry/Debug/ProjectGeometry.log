@@ -1,2 +1,23 @@
 ﻿  ProjectGeometry.cpp
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(12,50): warning C4267: 'initialisation' : conversion de 'size_t' en 'char', perte possible de données
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(35,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(35,42): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(36,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(36,43): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
   ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
