@@ -1,4 +1,3 @@
-
 #include "Header.h"
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
@@ -10,8 +9,6 @@ std::string getAppPath()
     std::string sAppPath = cAppPath;
     char appNamePos = sAppPath.find_last_of("\\");
     return sAppPath.substr(0, appNamePos + 1);
-
-
 }
 std::string getAssetsPath()
 {
@@ -33,7 +30,6 @@ int main()
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
     sprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-    
     //
     while (window.isOpen())
     {
