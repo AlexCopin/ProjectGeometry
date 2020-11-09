@@ -1,0 +1,2 @@
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.pdb
