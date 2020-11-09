@@ -1,20 +1,55 @@
-// ProjectGeometry.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
-
-int main()
+#include <windows.h>
+#include <SFML/Graphics.hpp>
+// Julien: LOG MACRO
+#define LOG(X) std::cout << X << std::endl;
+//
+std::string getAppPath()
 {
-    std::cout << "Hello World!\n";
+    char cAppPath[MAX_PATH];
+    GetModuleFileNameA(0, cAppPath, MAX_PATH);
+    std::string sAppPath = cAppPath;
+    char appNamePos = sAppPath.find_last_of("\\");
+    return sAppPath.substr(0, appNamePos + 1);
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
+std::string getAssetsPath()
+{
+    return getAppPath() + "\\Assets\\";
+}
+main()
+{
+    sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
+    sf::Clock(clock);
+    // Start Function
+    sf::Font(font);
+    font.loadFromFile(getAssetsPath() + "arial.ttf");
+    sf::Text(text);
+    text.setFont(font);
+    text.setString("GG ALEX");
+    sf::Texture(texture);
+    texture.loadFromFile(getAssetsPath() + "brain.jpg");
+    sf::Sprite(sprite);
+    sprite.setTexture(texture);
+    sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
+    sprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    //
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+        }
+        float deltaTime = clock.getElapsedTime().asSeconds();
+        clock.restart();
+        window.clear();
+        // Update Function
+        window.draw(text);
+        window.draw(sprite);
+        //
+        window.display();
+    }
+}
