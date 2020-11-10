@@ -16,6 +16,4 @@ struct Bullet
 };
 
 
-Bullet* CreateBullet(int damage, int speed, TYPEBULLET typeShape)
-{
-}
+Bullet* CreateBullet(int damage, int speed, TYPEBULLET typeShape);

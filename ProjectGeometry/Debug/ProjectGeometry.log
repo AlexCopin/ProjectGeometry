@@ -1,38 +1,27 @@
-﻿  Bullet.cpp
-  Enemy.cpp
-  littleShip.cpp
-  Map.cpp
+﻿  Map.cpp
   Player.cpp
   ProjectGeometry.cpp
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(11,50): warning C4267: 'initializing': conversion from 'size_t' to 'char', possible loss of data
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(11,50): warning C4267: 'initialisation' : conversion de 'size_t' en 'char', perte possible de données
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
           with
           [
               T=unsigned int
           ]
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,42): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,42): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
           with
           [
               T=unsigned int
           ]
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
           with
           [
               T=unsigned int
           ]
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,43): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
           with
           [
               T=unsigned int
           ]
-  Generating Code...
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\littleShip.h(15): error C4716: 'CreateShip': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\littleShip.h(15): error C4716: 'CreateShip': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\littleShip.h(15): error C4716: 'CreateShip': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\littleShip.h(15): error C4716: 'CreateShip': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
-D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\Bullet.h(22): error C4716: 'CreateBullet': must return a value
+  littleShip.cpp
+  Génération de code en cours...
+  ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
