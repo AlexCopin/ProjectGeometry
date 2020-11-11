@@ -10,5 +10,5 @@ struct Player
 	int lifeP = 0;
 	int speedP = 0;
 	sf::CircleShape playerShape;
-	Ship** playerShips;
+	Ship **playerShips;
 };
