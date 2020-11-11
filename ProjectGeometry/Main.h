@@ -12,10 +12,12 @@ std::string getAssetsPath();
 struct Object
 {
     std::string id;
-    bool Active = 1;
+    bool isActive = 1;
     Object();
     ~Object();
     virtual void Start(sf::RenderWindow *window){};
     virtual void Update(sf::RenderWindow *window, float deltaTime){};
 };
 Object *FindObject(std::string id);
+bool SetActive(void *object, bool isActive);
+bool DestroyObject(void *object);

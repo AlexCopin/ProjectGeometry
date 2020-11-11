@@ -1,14 +1,13 @@
 #include "Bullet.h"
-
-
-Bullet* CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
+Bullet *Bullet::CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
 {
-	Bullet* bullet = new Bullet;
-	std::size_t count = 0;	
-	if(typeShape == TYPEBULLET::STICK)
+	Bullet *bullet = new Bullet;
+	std::size_t count = 0;
+	if (typeShape == TYPEBULLET::STICK)
 	{
 		count = 2;
-	}else if(typeShape == TYPEBULLET::TRIANGLE)
+	}
+	else if (typeShape == TYPEBULLET::TRIANGLE)
 	{
 		count = 3;
 	}
@@ -32,12 +31,11 @@ Bullet* CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
 	bullet->shapeB.setPosition(posX, posY);
 	return bullet;
 }
-
-void MoveBullet(int speed, sf::Mouse mouse, Bullet& bullet, sf::Window window)
+void Bullet::MoveBullet(int speed, sf::Mouse mouse, Bullet &bullet, sf::Window window)
 {
 	sf::Vector2i posMouse = mouse.getPosition(window);
 	sf::Vector2i originPosBullet(bullet.originPosX, bullet.originPosY);
 	sf::Vector2i trajectoireBullet(posMouse - originPosBullet);
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
-	bullet.shapeB.setPosition(trajectoireBullet.x * (timeInSeconds * speed), trajectoireBullet.y *(timeInSeconds * speed));
+	bullet.shapeB.setPosition(trajectoireBullet.x * (timeInSeconds * speed), trajectoireBullet.y * (timeInSeconds * speed));
 }

@@ -29,13 +29,33 @@ Object *FindObject(std::string id)
             return i;
     return 0;
 }
+bool SetActive(void *object, bool isActive)
+{
+    if (object)
+    {
+        ((Object *)object)->isActive = isActive;
+        return 1;
+    }
+    else
+        return 0;
+}
+bool DestroyObject(void *object)
+{
+    if (object)
+    {
+        ((Object *)object)->~Object();
+        return 1;
+    }
+    else
+        return 0;
+}
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
     sf::Clock(clock);
     // Julien: Start Function
     for (auto i : Objects)
-        if (i->Active)
+        if (i->isActive)
             i->Start(&window);
     while (window.isOpen())
     {
@@ -50,7 +70,7 @@ int main()
         window.clear();
         // Julien: Update Function
         for (auto i : Objects)
-            if (i->Active)
+            if (i->isActive)
                 i->Update(&window, deltaTime);
         window.display();
     }
