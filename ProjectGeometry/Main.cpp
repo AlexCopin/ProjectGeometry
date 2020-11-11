@@ -1,5 +1,4 @@
-#include "ProjectGeometry.h"
-
+#include "Main.h"
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
 //
