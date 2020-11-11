@@ -2,6 +2,8 @@
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
 //
+// Julien: Engine
+//
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -18,7 +20,8 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
     sf::Clock(clock);
-    // Start Function
+    // Julien: Start Function
+    // Julien: Example
     sf::Font(font);
     font.loadFromFile(getAssetsPath() + "arial.ttf");
     sf::Text(text);
@@ -30,6 +33,7 @@ int main()
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
     sprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    //
     //
     while (window.isOpen())
     {
@@ -44,9 +48,11 @@ int main()
         float deltaTime = clock.getElapsedTime().asSeconds();
         clock.restart();
         window.clear();
-        // Update Function
+        // Julien: Update Function
+        // Julien: Example
         window.draw(text);
         window.draw(sprite);
+        //
         //
         window.display();
     }
