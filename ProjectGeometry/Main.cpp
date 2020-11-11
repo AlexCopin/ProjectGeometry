@@ -51,7 +51,7 @@ int main()
         // Julien: Update Function
         for (auto i : Objects)
             if (i->Active)
-                i->Update(&window);
+                i->Update(&window, deltaTime);
         window.display();
     }
 }

@@ -16,6 +16,6 @@ struct Object
     Object();
     ~Object();
     virtual void Start(sf::RenderWindow *window){};
-    virtual void Update(sf::RenderWindow *window){};
+    virtual void Update(sf::RenderWindow *window, float deltaTime){};
 };
 Object *FindObject(std::string id);

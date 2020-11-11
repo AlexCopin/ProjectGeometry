@@ -16,7 +16,7 @@ class Example : Object
         sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
         sprite.setPosition(window->getSize().x / 2, window->getSize().y / 2);
     }
-    void Update(sf::RenderWindow *window)
+    void Update(sf::RenderWindow *window, float deltaTime)
     {
         window->draw(text);
         window->draw(sprite);
