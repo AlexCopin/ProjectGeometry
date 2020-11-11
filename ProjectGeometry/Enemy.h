@@ -1,16 +1,14 @@
 #pragma once
+#include "Main.h"
 #include "Bullet.h"
-#include <SFML/Graphics.hpp>
-
-struct Enemy
+class Enemy : Object
 {
+public:
 	int lifeE = 0;
 	int speedE = 0;
 	//sf::Shape enemyShape;
-	TYPEBULLET enemyType;
-
+	Bullet::TYPEBULLET enemyType;
 	int posX = 0;
 	int posY = 0;
+	Enemy *CreateEnemy(int life, int speed, int posX, int posY);
 };
-
-Enemy *CreateEnemy(int life, int speed, int posX, int posY);

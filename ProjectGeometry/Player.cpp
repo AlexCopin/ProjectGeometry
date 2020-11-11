@@ -1,6 +1,5 @@
 #include "Player.h"
-
-Player *CreatePlayer(int life, int speed, int posX, int posY)
+Player *Player::CreatePlayer(int life, int speed, int posX, int posY)
 {
 	Player *player = new Player();
 	player->lifeP = life;
@@ -11,13 +10,10 @@ Player *CreatePlayer(int life, int speed, int posX, int posY)
 	player->playerShape.setPosition(PosPlayer);
 	player->playerShape.setRadius(2.0f);
 	player->playerShape.setFillColor(sf::Color::White);
-
 	return player;
 }
-
-void MovePlayer(Player *player, bool up, bool right, bool down, bool left)
+void Player::MovePlayer(Player *player, bool up, bool right, bool down, bool left)
 {
-
 	if (up)
 	{
 		player->posY++;
@@ -36,22 +32,20 @@ void MovePlayer(Player *player, bool up, bool right, bool down, bool left)
 	}
 	return;
 }
-void RotatePlayer(Player *player, sf::RenderWindow *window)
+void Player::RotatePlayer(Player *player, sf::RenderWindow *window)
 {
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
 	//sf::Vector2f worldCursor = window.convertCoords(cursor.x, cursor.y);
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - player->playerShape.getPosition();
 	// player->playerShape.setRotation(std::atan2(direction.y, direction.x));
 }
-
-float GetTime()
+float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
 	return timeInSeconds;
 }
-
 //Preciser float time = GetTime() en debut de jeu
-bool canFire(float &time, float cadence)
+bool Player::canFire(float &time, float cadence)
 {
 	if (GetTime() < time + cadence)
 	{
@@ -63,21 +57,18 @@ bool canFire(float &time, float cadence)
 		return true;
 	}
 }
-
-void Fire(Player *player, bool canFire, int damages, int posX, int posY)
+void Player::Fire(Player *player, bool canFire, int damages, int posX, int posY)
 {
 	if (canFire)
 	{
 		//CreateBullet(damages, player->weapon, posX, posY);
 	}
 }
-
-void TakeDamage(Player *player, int damages)
+void Player::TakeDamage(Player *player, int damages)
 {
 	player->lifeP -= damages;
 }
-
-void PlayerDeath(Player *player)
+void Player::PlayerDeath(Player *player)
 {
 	if (player->lifeP <= 0)
 	{
