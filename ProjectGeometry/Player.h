@@ -19,6 +19,7 @@ struct Player
 Player* CreatePlayer(int life, int speed, int posX, int posY);
 
 void MovePlayer(Player* player, bool up, bool right, bool down, bool left);
+void RotatePlayer(Player* player, sf::RenderWindow* window);
 float GetTime();
 bool canFire(float& time, float cadence);
 void Fire(Player* player, bool canFire, int damages, int posX, int posY);

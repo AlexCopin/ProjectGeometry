@@ -1,5 +1,7 @@
 #include"Player.h"
 
+
+
 Player* CreatePlayer(int life, int speed, int posX, int posY) {
 	Player* player = new Player();
 	player->lifeP = life;
@@ -30,6 +32,12 @@ void MovePlayer(Player* player, bool up, bool right, bool down, bool left) {
 	}
 	return;
 
+}
+void RotatePlayer(Player* player, sf::RenderWindow* window){
+	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
+	//sf::Vector2f worldCursor = window.convertCoords(cursor.x, cursor.y);
+	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - player->playerShape.getPosition();
+	player->playerShape.setRotation(std::atan2(direction.y, direction.x));
 }
 
 float GetTime() {
