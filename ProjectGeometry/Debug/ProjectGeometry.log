@@ -1,4 +1,5 @@
-﻿  Map.cpp
+﻿  Bullet.cpp
+  Map.cpp
   Player.cpp
   ProjectGeometry.cpp
 C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(11,50): warning C4267: 'initialisation' : conversion de 'size_t' en 'char', perte possible de données
