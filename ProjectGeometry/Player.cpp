@@ -1,9 +1,8 @@
-#include"Player.h"
+#include "Player.h"
 
-
-
-Player* CreatePlayer(int life, int speed, int posX, int posY) {
-	Player* player = new Player();
+Player *CreatePlayer(int life, int speed, int posX, int posY)
+{
+	Player *player = new Player();
 	player->lifeP = life;
 	player->speedP = speed;
 	player->posX = posX;
@@ -16,60 +15,72 @@ Player* CreatePlayer(int life, int speed, int posX, int posY) {
 	return player;
 }
 
-void MovePlayer(Player* player, bool up, bool right, bool down, bool left) {
+void MovePlayer(Player *player, bool up, bool right, bool down, bool left)
+{
 
-	if (up) {
+	if (up)
+	{
 		player->posY++;
 	}
-	else if (right) {
+	else if (right)
+	{
 		player->posX++;
 	}
-	else if (down) {
+	else if (down)
+	{
 		player->posY--;
 	}
-	else if (left) {
+	else if (left)
+	{
 		player->posX--;
 	}
 	return;
-
 }
-void RotatePlayer(Player* player, sf::RenderWindow* window){
+void RotatePlayer(Player *player, sf::RenderWindow *window)
+{
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
 	//sf::Vector2f worldCursor = window.convertCoords(cursor.x, cursor.y);
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - player->playerShape.getPosition();
-	player->playerShape.setRotation(std::atan2(direction.y, direction.x));
+	// player->playerShape.setRotation(std::atan2(direction.y, direction.x));
 }
 
-float GetTime() {
+float GetTime()
+{
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
 	return timeInSeconds;
 }
 
-//Preciser float time = GetTime() en debut de jeu 
-bool canFire(float& time, float cadence) {
-	if (GetTime() < time + cadence) {
+//Preciser float time = GetTime() en debut de jeu
+bool canFire(float &time, float cadence)
+{
+	if (GetTime() < time + cadence)
+	{
 		return false;
 	}
-	else {
+	else
+	{
 		time = GetTime();
 		return true;
 	}
 }
 
-void Fire(Player* player, bool canFire, int damages, int posX, int posY) {
-	if (canFire) {
-		//CreateBullet(damages, player->weapon, posX, posY); 
+void Fire(Player *player, bool canFire, int damages, int posX, int posY)
+{
+	if (canFire)
+	{
+		//CreateBullet(damages, player->weapon, posX, posY);
 	}
-
 }
 
-void TakeDamage(Player* player, int damages) {
+void TakeDamage(Player *player, int damages)
+{
 	player->lifeP -= damages;
 }
 
-
-void PlayerDeath(Player* player) {
-	if (player->lifeP <= 0) {
+void PlayerDeath(Player *player)
+{
+	if (player->lifeP <= 0)
+	{
 		delete player;
 	}
 }

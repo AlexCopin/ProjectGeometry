@@ -1,9 +1,5 @@
 #include "Main.h"
-// Julien: LOG MACRO
-#define LOG(X) std::cout << X << std::endl;
-//
-// Julien: Engine
-//
+// Julien: Utils
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -16,44 +12,46 @@ std::string getAssetsPath()
 {
     return getAppPath() + "\\Assets\\";
 }
+// Julien: API
+std::vector<Object *> Objects;
+Object::Object()
+{
+    Objects.push_back(this);
+}
+Object::~Object()
+{
+    Objects.erase(std::find(Objects.begin(), Objects.end(), this));
+}
+Object *FindObject(std::string id)
+{
+    for (auto i : Objects)
+        if (i->id == id)
+            return i;
+    return 0;
+}
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
     sf::Clock(clock);
     // Julien: Start Function
-    // Julien: Example
-    sf::Font(font);
-    font.loadFromFile(getAssetsPath() + "arial.ttf");
-    sf::Text(text);
-    text.setFont(font);
-    text.setString("GG ALEX");
-    sf::Texture(texture);
-    texture.loadFromFile(getAssetsPath() + "brain.jpg");
-    sf::Sprite(sprite);
-    sprite.setTexture(texture);
-    sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
-    sprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-    //
-    //
+    for (auto i : Objects)
+        if (i->Active)
+            i->Start(&window);
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-            {
                 window.close();
-            }
         }
         float deltaTime = clock.getElapsedTime().asSeconds();
         clock.restart();
         window.clear();
         // Julien: Update Function
-        // Julien: Example
-        window.draw(text);
-        window.draw(sprite);
-        //
-        //
+        for (auto i : Objects)
+            if (i->Active)
+                i->Update(&window);
         window.display();
     }
 }

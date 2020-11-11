@@ -2,15 +2,6 @@
 #include "Bullet.h"
 #include <SFML/Graphics.hpp>
 
-enum class TYPEBULLET
-{
-	STICK,
-	TRIANGLE,
-	SQUARE,
-	PENTAGONE,
-	HEXAGONE
-};
-
 struct Enemy
 {
 	int lifeE = 0;
@@ -22,4 +13,4 @@ struct Enemy
 	int posY = 0;
 };
 
-Enemy* CreateEnemy(int life, int speed, int posX, int posY);
+Enemy *CreateEnemy(int life, int speed, int posX, int posY);
