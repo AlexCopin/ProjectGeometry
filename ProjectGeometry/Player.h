@@ -4,7 +4,6 @@
 class Player : Object
 {
 public:
-	std::string id = "Player";
 	int lifeP = 0;
 	float speedP = 0.0f;
 	sf::CircleShape playerShape;

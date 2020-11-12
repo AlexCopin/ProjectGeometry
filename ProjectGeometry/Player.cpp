@@ -1,8 +1,8 @@
 #include "Player.h"
 
-Player* player = new Player;
+Player *player = new Player;
 
-void Player::Start(sf::RenderWindow* window)
+void Player::Start(sf::RenderWindow *window)
 {
 	this->id = "Player";
 	player = player->CreatePlayer(5, 0.2f, 50, 50);
@@ -56,7 +56,7 @@ void Player::MovePlayer(std::string direction)
 	}
 	else if (direction == "right")
 	{
-		playerShape.setPosition(playerShape.getPosition().x + speedP , playerShape.getPosition().y);
+		playerShape.setPosition(playerShape.getPosition().x + speedP, playerShape.getPosition().y);
 	}
 	else if (direction == "down")
 	{

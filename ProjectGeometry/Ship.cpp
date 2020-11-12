@@ -1,9 +1,8 @@
 #include "Ship.h"
-#include "MathUtils.h"
 Ship *Ship::CreateShip(float x, float y, std::string id)
 {
 	Ship *ship = new Ship;
-	ship -> id = id;
+	ship->id = id;
 	shipShape.setPointCount(count);
 	ship->posX = x;
 	ship->posY = y;
@@ -11,16 +10,18 @@ Ship *Ship::CreateShip(float x, float y, std::string id)
 	return ship;
 }
 
-void Ship::Start(sf::RenderWindow* window){
-
+void Ship::Start(sf::RenderWindow *window)
+{
 }
 
-void Ship::Update(sf::RenderWindow* window, float deltaTime) {
+void Ship::Update(sf::RenderWindow *window, float deltaTime)
+{
 
 	RotateShip(window);
 }
 
-void Ship::RotateShip(sf::RenderWindow* window) {
+void Ship::RotateShip(sf::RenderWindow *window)
+{
 	sf::Vector2i mousePositionInt = sf::Mouse::getPosition((*window));
 	//std::cout << mousePositionInt.x << ", " << mousePositionInt.y << std::endl;
 	sf::Vector2f mousePosition(mousePositionInt);

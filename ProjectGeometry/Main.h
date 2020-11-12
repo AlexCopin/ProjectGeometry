@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <windows.h>
+#include <math.h>
+#include "MathUtils.h"
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
 // Julien: Utils
