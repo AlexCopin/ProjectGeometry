@@ -1,11 +1,15 @@
 #pragma once
 #include "Main.h"
 #include "Ship.h"
+#include "Bullet.h"
 class Player : Object
 {
 public:
 	int lifeP = 0;
 	float speedP = 0.0f;
+	bool isFiring = false;
+	float nextBulletTime = 0.0f;
+	float cadenceFire = 1.0f;
 	sf::CircleShape playerShape;
 	Ship **playerShips;
 	int posX = 0;
@@ -14,7 +18,10 @@ public:
 	void MovePlayer(std::string direction);
 	void RotatePlayer(sf::RenderWindow *window);
 	float GetTime();
-	bool canFire(float &time, float cadence);
+	//bool canFire(float &time, float cadence);
+	Bullet* CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY);
+	void StartFire();
+	void StopFire();
 	void Fire(bool canFire, int damages, int posX, int posY);
 	void TakeDamage(int damages);
 	void PlayerDeath();

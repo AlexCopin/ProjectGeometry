@@ -65,6 +65,14 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
+            {
+                LOG("Start fire");
+            }
+            if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left)
+            {
+                LOG("Stop fire");
+            }
         }
         float deltaTime = clock.getElapsedTime().asSeconds();
         clock.restart();
