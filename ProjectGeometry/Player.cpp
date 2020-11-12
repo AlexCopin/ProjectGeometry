@@ -3,12 +3,13 @@
 Player *player = new Player;
 
 
+std::list<Ship*> ships;
 void Player::Start(sf::RenderWindow *window)
 {
 	this->id = "Player";
 	player = player->CreatePlayer(5, 0.2f, 50, 50);
 	typeWeapon = TYPEBULLET::TRIANGLE;
-	auto shipTest = new Ship(sf::Vector2f(window->getSize().x/2.0f, window ->getSize().y/2.0f), "ship1");
+	auto shipTest = new Ship(sf::Vector2f(window->getSize().x/1.5f, window ->getSize().y/2.0f), "ship1");
 }
 
 
@@ -172,3 +173,4 @@ void Player::PlayerDeath()
 		DestroyObject(this);
 	}
 }
+

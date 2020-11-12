@@ -23,7 +23,7 @@ public:
 	sf::Mouse mouse;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
-	std::list<Ship*> ships;
+	
 	sf::CircleShape shipsShape;
 	Player *CreatePlayer(int life, float speed, int posX, int posY);
 	void MovePlayer(std::string direction);
@@ -39,4 +39,6 @@ public:
 	void Start(sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
     void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
+
 };
+

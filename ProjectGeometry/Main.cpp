@@ -1,6 +1,8 @@
 #include "Main.h"
 //#include "Player.h"
 // Julien: Utils
+
+
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -15,6 +17,7 @@ std::string getAssetsPath()
 }
 // Julien: API
 std::vector<Object *> Objects;
+
 Object::Object()
 {
     Objects.push_back(this);
