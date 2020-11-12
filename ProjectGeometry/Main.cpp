@@ -50,37 +50,62 @@ bool DestroyObject(void *object)
     else
         return 0;
 }
+
+bool MouseButtonDown(bool boule)
+{
+    return boule;
+}
+bool MouseButtonUp(bool boule)
+{
+    return boule;
+}
+
 int main()
 {
+    // MouseCursor
+
+    sf::CircleShape aimShape;
+    float aimRadius = 10.0f;
+    aimShape.setRadius(aimRadius);
+    aimShape.setOrigin(aimRadius, aimRadius);
+    aimShape.setFillColor(sf::Color::Transparent);
+    aimShape.setOutlineColor(sf::Color::Red);
+    aimShape.setOutlineThickness(2.0f);
+
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
-    sf::Clock clock;
+
+    window.setMouseCursorVisible(false);
+    sf::Clock(clock);
     // Julien: Start Function
     for (auto i : Objects)
         if (i->isActive)
             i->Start(&window);
     while (window.isOpen())
     {
+        float deltaTime = clock.getElapsedTime().asSeconds();
+        clock.restart();
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
-            {
-                LOG("Start fire");
-            }
-            if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left)
-            {
-                LOG("Stop fire");
-            }
+            
+            for (auto i : Objects)
+                if (i->isActive)
+                    i->OnEvent(&window, event, deltaTime);
         }
-        float deltaTime = clock.getElapsedTime().asSeconds();
-        clock.restart();
+        
         window.clear();
+        //MouseCursor
+        sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
+        sf::Vector2f mousePosition(mousePositionInt);
+        aimShape.setPosition(mousePosition);
         // Julien: Update Function
         for (auto i : Objects)
             if (i->isActive)
                 i->Update(&window, deltaTime);
+
+        window.draw(aimShape);
         window.display();
     }
 }

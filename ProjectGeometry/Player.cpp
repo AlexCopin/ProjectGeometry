@@ -6,39 +6,32 @@ void Player::Start(sf::RenderWindow *window)
 {
 	this->id = "Player";
 	player = player->CreatePlayer(5, 0.2f, 50, 50);
+	typeWeapon = TYPEBULLET::TRIANGLE;
+}
+
+
+void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime) 
+{
+	sf::Mouse mouse;
+	sf::Vector2i mousePosInt = mouse.getPosition(*window);
+	sf::Vector2f mousePos( mousePosInt);
+	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
+	{
+		if (nextBulletTime <= 0)
+		{
+			Bullet* bullet = new Bullet(2, mousePos);
+			LOG("Start fire");
+		}else
+		{
+			nextBulletTime -= deltaTime;
+			nextBulletTime = cadenceFire;
+			LOG("Stop fire");
+		}
+	}
 }
 
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
-	/*sf::Mouse mouse;
-	//BULLET
-
-	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
-	float cadence = 2.0f;
-	float intervalle = 2.0f;
-	Bullet* boule = 0;
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		boule = CreateBullet(2, TYPEBULLET::TRIANGLE, posX, posY);
-		intervalle = cadence;
-		LOG("Fire Bullet");
-	}else if(intervalle >= 0.0f)
-	{
-		LOG("Fire Bullet");
-		intervalle -= timeInSeconds;
-		timeInSeconds = 0.0f;
-	}*/
-
-	if (isFiring)
-	{
-		nextBulletTime -= deltaTime;
-		if (nextBulletTime <= 0)
-		{
-			nextBulletTime = cadenceFire;
-			Fire(true, 5, posX, posY);
-		}
-	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		// left key is pressed: move our character
@@ -59,8 +52,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		// left key is pressed: move our character
 		MovePlayer("down");
 	}
-	posX = playerShape.getPosition().x;
-	posY = playerShape.getPosition().y;
+	posPlayer = playerShape.getPosition();
 	window->draw(playerShape);
 }
 
@@ -70,10 +62,10 @@ Player *Player::CreatePlayer(int life, float speed, int posX, int posY)
 	speedP = speed;
 	posX = posX;
 	posY = posY;
-	sf::Vector2f PosPlayer(posX, posY);
+	posPlayer = sf::Vector2f(posX, posY);
 	//std::size_t count = 5;
 	//playerShape.setPointCount(count);
-	playerShape.setPosition(PosPlayer);
+	playerShape.setPosition(posPlayer);
 	playerShape.setRadius(50.0f);
 	playerShape.setFillColor(sf::Color::White);
 	return player;
@@ -111,52 +103,6 @@ float Player::GetTime()
 	return timeInSeconds;
 }
 
-Bullet *Player::CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
-{
-	Bullet *bullet = new Bullet;
-	std::size_t count = 0;
-	if (typeShape == TYPEBULLET::STICK)
-	{
-		count = 2;
-	}
-	else if (typeShape == TYPEBULLET::TRIANGLE)
-	{
-		count = 3;
-	}
-	else if (typeShape == TYPEBULLET::SQUARE)
-	{
-		count = 4;
-	}
-	else if (typeShape == TYPEBULLET::PENTAGONE)
-	{
-		count = 5;
-	}
-	else if (typeShape == TYPEBULLET::HEXAGONE)
-	{
-		count = 6;
-	}
-	bullet->originPosX = posX;
-	bullet->originPosY = posY;
-	bullet->damageB = damage;
-	bullet->shapeB.setPointCount(count);
-	bullet->shapeB.setPosition(posX, posY);
-	bullet->shapeB.setFillColor(sf::Color::Red);
-	bullet->shapeB.setRadius(20.0f);
-	return bullet;
-}
-//Preciser float time = GetTime() en debut de jeu
-/*bool Player::canFire(float &time, float cadence)
-{
-	if (GetTime() < time + cadence)
-	{
-		return false;
-	}
-	else
-	{
-		time = GetTime();
-		return true;
-	}
-}*/
 
 void Player::StartFire()
 {
@@ -167,13 +113,11 @@ void Player::StopFire()
 {
 	isFiring = false;
 	nextBulletTime = cadenceFire;
+	LOG("Stop fire");
 }
 void Player::Fire(bool canFire, int damages, int posX, int posY)
 {
-	if (canFire)
-	{
-		CreateBullet(damages, typeWeapon, posX, posY);
-	}
+	
 }
 void Player::TakeDamage(int damages)
 {
