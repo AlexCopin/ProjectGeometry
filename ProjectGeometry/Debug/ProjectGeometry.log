@@ -1,4 +1,55 @@
 ﻿  Bullet.cpp
 C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,35): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(15): error C4703: variable de pointeur locale potentiellement non initialisée 'boule' utilisée
+  Enemy.cpp
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Enemy.cpp(9,30): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Enemy.cpp(9,24): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+  Player.cpp
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(34,34): warning C4244: '=' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(35,34): warning C4244: '=' : conversion de 'const T' en 'int', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(45,31): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(45,25): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(75,56): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(75,46): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Génération de code en cours...
+  ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
