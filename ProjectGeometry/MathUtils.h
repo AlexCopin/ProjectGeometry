@@ -8,4 +8,3 @@ float GetMax(float a, float b);
 float GetMin(float a, float b);
 int GetMax(int a, int b);
 int GetMin(int a, int b);
-

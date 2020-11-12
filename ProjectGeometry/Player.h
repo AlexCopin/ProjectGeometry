@@ -5,6 +5,14 @@
 class Player : Object
 {
 public:
+	enum class TYPEBULLET
+	{
+		STICK,
+		TRIANGLE,
+		SQUARE,
+		PENTAGONE,
+		HEXAGONE
+	} typeWeapon;
 	int lifeP = 0;
 	float speedP = 0.0f;
 	bool isFiring = false;
@@ -19,12 +27,12 @@ public:
 	void RotatePlayer(sf::RenderWindow *window);
 	float GetTime();
 	//bool canFire(float &time, float cadence);
-	Bullet* CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY);
+	Bullet *CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY);
 	void StartFire();
 	void StopFire();
 	void Fire(bool canFire, int damages, int posX, int posY);
 	void TakeDamage(int damages);
 	void PlayerDeath();
-	void Start(sf::RenderWindow* window);
-	void Update(sf::RenderWindow* window, float deltaTime);
+	void Start(sf::RenderWindow *window);
+	void Update(sf::RenderWindow *window, float deltaTime);
 };
