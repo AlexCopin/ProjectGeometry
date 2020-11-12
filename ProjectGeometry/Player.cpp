@@ -2,11 +2,13 @@
 
 Player *player = new Player;
 
+
 void Player::Start(sf::RenderWindow *window)
 {
 	this->id = "Player";
 	player = player->CreatePlayer(5, 0.2f, 50, 50);
 	typeWeapon = TYPEBULLET::TRIANGLE;
+	auto shipTest = new Ship(sf::Vector2f(window->getSize().x/2.0f, window ->getSize().y/2.0f), "ship1");
 }
 
 
@@ -53,7 +55,15 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		MovePlayer("down");
 	}
 	posPlayer = playerShape.getPosition();
+	MovementShipsShape();
+	posX = playerShape.getPosition().x;
+	posY = playerShape.getPosition().y;
 	window->draw(playerShape);
+	window->draw(shipsShape);
+	/*std::list<Ship*>::iterator it = ships.begin();
+	while (it != ships.end()) {
+		window->draw((*it)->shipShape);
+	}*/
 }
 
 Player *Player::CreatePlayer(int life, float speed, int posX, int posY)
@@ -68,6 +78,12 @@ Player *Player::CreatePlayer(int life, float speed, int posX, int posY)
 	playerShape.setPosition(posPlayer);
 	playerShape.setRadius(50.0f);
 	playerShape.setFillColor(sf::Color::White);
+	shipsShape.setRadius(75.0f);
+	shipsShape.setPointCount(0);
+	shipsShape.setFillColor(sf::Color::Transparent);
+	shipsShape.setOutlineColor(sf::Color::Red);
+	shipsShape.setOrigin(sf::Vector2f(25, 25));
+	shipsShape.setOutlineThickness(3);
 	return player;
 }
 void Player::MovePlayer(std::string direction)
@@ -119,9 +135,37 @@ void Player::Fire(bool canFire, int damages, int posX, int posY)
 {
 	
 }
+
+
+void Player::MovementShipsShape() {
+	shipsShape.setPosition(playerShape.getPosition());
+	sf::Transform matrix = shipsShape.getTransform();
+	std::list<Ship*>::iterator it = ships.begin();
+	int i = 0;
+	while (it!=ships.end())
+	{
+		(*it)->posShip = matrix.transformPoint(shipsShape.getPoint(i));
+		it++;
+		i++;
+	}
+}
+
+void Player::GetShip(Ship* ship) {
+	sf::Transform matrix = shipsShape.getTransform();
+	shipsShape.setPointCount(shipsShape.getPointCount() + 1);
+	ship->posShip = matrix.transformPoint(shipsShape.getPoint(shipsShape.getPointCount() - 1));
+	ships.push_back(ship);
+}
+
+
 void Player::TakeDamage(int damages)
 {
 	lifeP -= damages;
+	
+	for (int i = 0; i < damages; i++) {
+		delete ships.back();
+		ships.pop_back();
+	}
 }
 void Player::PlayerDeath()
 {

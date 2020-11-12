@@ -1,23 +1,21 @@
 #include "Ship.h"
-Ship *Ship::CreateShip(float x, float y, std::string id)
-{
-	Ship *ship = new Ship;
-	ship->id = id;
-	shipShape.setPointCount(count);
-	ship->posX = x;
-	ship->posY = y;
 
-	return ship;
+
+Ship::Ship(sf::Vector2f position, std::string id) {
+	this->id = id;
+	shipShape.setPointCount(3);
+	shipShape.setFillColor(sf::Color::Cyan);
+	shipShape.setRadius(10);
+	shipShape.setPosition(position);
+	shipShape.setOrigin(sf::Vector2f(10, 10));
 }
 
-void Ship::Start(sf::RenderWindow *window)
-{
-}
+
 
 void Ship::Update(sf::RenderWindow *window, float deltaTime)
 {
-
 	RotateShip(window);
+	window->draw(shipShape);
 }
 
 void Ship::RotateShip(sf::RenderWindow *window)
