@@ -29,18 +29,15 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		timeInSeconds = 0.0f;
 	}*/
 
-
-	if(isFiring)
+	if (isFiring)
 	{
 		nextBulletTime -= deltaTime;
-		if(nextBulletTime <= 0)
+		if (nextBulletTime <= 0)
 		{
 			nextBulletTime = cadenceFire;
 			Fire(true, 5, posX, posY);
 		}
 	}
-
-
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
@@ -65,9 +62,6 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	posX = playerShape.getPosition().x;
 	posY = playerShape.getPosition().y;
 	window->draw(playerShape);
-
-
-	
 }
 
 Player *Player::CreatePlayer(int life, float speed, int posX, int posY)
@@ -117,9 +111,9 @@ float Player::GetTime()
 	return timeInSeconds;
 }
 
-Bullet* Player::CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
+Bullet *Player::CreateBullet(int damage, TYPEBULLET typeShape, int posX, int posY)
 {
-	Bullet* bullet = new Bullet;
+	Bullet *bullet = new Bullet;
 	std::size_t count = 0;
 	if (typeShape == TYPEBULLET::STICK)
 	{

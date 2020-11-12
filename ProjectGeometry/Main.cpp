@@ -53,7 +53,7 @@ bool DestroyObject(void *object)
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
-    sf::Clock(clock);
+    sf::Clock clock;
     // Julien: Start Function
     for (auto i : Objects)
         if (i->isActive)
@@ -65,7 +65,7 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
             {
                 LOG("Start fire");
             }
