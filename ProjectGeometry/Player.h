@@ -37,4 +37,5 @@ public:
 	void MovementShipsShape();
 	void Start(sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
+    void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
 };

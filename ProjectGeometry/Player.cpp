@@ -56,8 +56,6 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	}
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape();
-	posX = playerShape.getPosition().x;
-	posY = playerShape.getPosition().y;
 	window->draw(playerShape);
 	window->draw(shipsShape);
 	/*std::list<Ship*>::iterator it = ships.begin();
