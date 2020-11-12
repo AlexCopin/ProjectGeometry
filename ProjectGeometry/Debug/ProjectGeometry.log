@@ -1,4 +1,82 @@
 ﻿  Bullet.cpp
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,35): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(15): error C4703: variable de pointeur locale potentiellement non initialisée 'boule' utilisée
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Enemy.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Enemy.cpp(9,30): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Enemy.cpp(9,24): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Example1.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Example1.cpp(10,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Example1.cpp(10,42): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Example1.cpp(11,69): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Example1.cpp(11,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  Example2.cpp
+  Main.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Main.cpp(9,50): warning C4267: 'initializing': conversion from 'size_t' to 'char', possible loss of data
+  Map.cpp
+  Player.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(35,50): warning C4244: '=': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(36,50): warning C4244: '=': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(53,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(53,25): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(83,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Player.cpp(83,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Ship.cpp
+  Generating Code...
+  LINK : D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe not found or not built by the last incremental link; performing full link
+  ProjectGeometry.vcxproj -> D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe

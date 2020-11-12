@@ -55,9 +55,11 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
     sf::Clock(clock);
     // Julien: Start Function
-    for (auto i : Objects)
-        if (i->isActive)
+    for (auto i : Objects) {
+        if (i->isActive) {
             i->Start(&window);
+        }
+    }
 
     
     
