@@ -14,19 +14,19 @@ void Player::Start(sf::RenderWindow *window)
 
 void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime) 
 {
-	sf::Mouse mouse;
+
 	sf::Vector2i mousePosInt = mouse.getPosition(*window);
-	sf::Vector2f mousePos( mousePosInt);
+	sf::Vector2f mousePos(mousePosInt);
 	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
 	{
 		if (nextBulletTime <= 0)
 		{
 			Bullet* bullet = new Bullet(2, mousePos);
 			LOG("Start fire");
+			nextBulletTime = cadenceFire;
 		}else
 		{
 			nextBulletTime -= deltaTime;
-			nextBulletTime = cadenceFire;
 			LOG("Stop fire");
 		}
 	}

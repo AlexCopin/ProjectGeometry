@@ -1,1 +1,30 @@
-﻿  ProjectGeometry.vcxproj -> D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
+﻿  Player.cpp
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(73,33): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(73,27): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(111,56): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Player.cpp(111,46): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe

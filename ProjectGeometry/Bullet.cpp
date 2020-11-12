@@ -39,9 +39,9 @@ Bullet::Bullet(int damage,  sf::Vector2f mousePos)
 void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {
 	sf::Vector2f trajectoireBullet = targetPos - originPos;
-	sf::Clock clockG;
 	timeInSeconds -= deltaTime;
 	shapeB.setPosition(trajectoireBullet.x + (deltaTime * speedB), trajectoireBullet.y + (deltaTime * speedB));
+
 	//LOG(timeInSeconds);
 	if (timeInSeconds <= 0.0f) 
 	{

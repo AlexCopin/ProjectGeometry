@@ -91,8 +91,9 @@ int main()
                 window.close();
             
             for (auto i : Objects)
-                if (i->isActive)
-                    i->OnEvent(&window, event, deltaTime);
+                if(i)
+                    if (i->isActive)
+                        i->OnEvent(&window, event, deltaTime);
         }
         
         window.clear();
@@ -102,8 +103,9 @@ int main()
         aimShape.setPosition(mousePosition);
         // Julien: Update Function
         for (auto i : Objects)
-            if (i->isActive)
-                i->Update(&window, deltaTime);
+            if(i)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
 
         window.draw(aimShape);
         window.display();

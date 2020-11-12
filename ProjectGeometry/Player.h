@@ -20,6 +20,7 @@ public:
 	bool isFiring = false;
 	float nextBulletTime = 0.0f;
 	float cadenceFire = 1.0f;
+	sf::Mouse mouse;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
 	std::list<Ship*> ships;
