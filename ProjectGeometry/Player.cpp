@@ -1,5 +1,49 @@
 #include "Player.h"
-Player *Player::CreatePlayer(int life, int speed, int posX, int posY)
+
+Player* player = new Player;
+
+void Player::Start(sf::RenderWindow* window)
+{
+	this->id = "Player";
+	player = player->CreatePlayer(5, 0.2f, 50, 50);
+}
+
+
+void Player::Update(sf::RenderWindow *window, float deltaTime)
+{
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		// left key is pressed: move our character
+		MovePlayer(*player, "left");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		// left key is pressed: move our character
+		MovePlayer(*player, "right");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		// left key is pressed: move our character
+		MovePlayer(*player, "up");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		// left key is pressed: move our character
+		MovePlayer(*player, "down");
+	}
+	player->posX = player->playerShape.getPosition().x;
+	player->posY = player->playerShape.getPosition().y;
+	window->draw(player->playerShape);
+}
+
+
+
+
+
+
+
+Player *Player::CreatePlayer(int life, float speed, int posX, int posY)
 {
 	Player *player = new Player();
 	player->lifeP = life;
@@ -8,27 +52,27 @@ Player *Player::CreatePlayer(int life, int speed, int posX, int posY)
 	player->posY = posY;
 	sf::Vector2f PosPlayer(posX, posY);
 	player->playerShape.setPosition(PosPlayer);
-	player->playerShape.setRadius(2.0f);
+	player->playerShape.setRadius(50.0f);
 	player->playerShape.setFillColor(sf::Color::White);
 	return player;
 }
-void Player::MovePlayer(Player *player, bool up, bool right, bool down, bool left)
+void Player::MovePlayer(Player& player, std::string direction)
 {
-	if (up)
+	if (direction == "up")
 	{
-		player->posY++;
+		player.playerShape.setPosition(player.playerShape.getPosition().x, player.playerShape.getPosition().y - player.speedP);
 	}
-	else if (right)
+	else if (direction == "right")
 	{
-		player->posX++;
+		player.playerShape.setPosition(player.playerShape.getPosition().x + player.speedP , player.playerShape.getPosition().y);
 	}
-	else if (down)
+	else if (direction == "down")
 	{
-		player->posY--;
+		player.playerShape.setPosition(player.playerShape.getPosition().x, player.playerShape.getPosition().y + player.speedP);
 	}
-	else if (left)
+	else if (direction == "left")
 	{
-		player->posX--;
+		player.playerShape.setPosition(player.playerShape.getPosition().x - player.speedP, player.playerShape.getPosition().y);
 	}
 	return;
 }

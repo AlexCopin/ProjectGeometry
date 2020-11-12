@@ -1,4 +1,5 @@
 #include "Main.h"
+//#include "Player.h"
 // Julien: Utils
 std::string getAppPath()
 {
@@ -57,6 +58,11 @@ int main()
     for (auto i : Objects)
         if (i->isActive)
             i->Start(&window);
+
+    
+    
+
+
     while (window.isOpen())
     {
         sf::Event event;

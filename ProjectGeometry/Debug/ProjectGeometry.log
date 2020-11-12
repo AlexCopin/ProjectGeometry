@@ -1,33 +1,4 @@
 ﻿  Bullet.cpp
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(32,35): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(32,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(41,10): warning C4101: 'clock' : variable locale non référencée
-  Enemy.cpp
-  Map.cpp
-  Player.cpp
-  ProjectGeometry.cpp
-C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(11,50): warning C4267: 'initialisation' : conversion de 'size_t' en 'char', perte possible de données
-C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
-          with
-          [
-              T=unsigned int
-          ]
-C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(32,42): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
-          with
-          [
-              T=unsigned int
-          ]
-C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,67): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
-          with
-          [
-              T=unsigned int
-          ]
-C:\GamesJams\ProjectGeometry\ProjectGeometry\ProjectGeometry.cpp(33,43): warning C4244: 'argument' : conversion de 'T' en 'float', perte possible de données
-          with
-          [
-              T=unsigned int
-          ]
-  littleShip.cpp
-  Génération de code en cours...
-  LINK : C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
-  ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,35): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(48,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+C:\GamesJams\ProjectGeometry\ProjectGeometry\Bullet.cpp(15): error C4703: variable de pointeur locale potentiellement non initialisée 'boule' utilisée
