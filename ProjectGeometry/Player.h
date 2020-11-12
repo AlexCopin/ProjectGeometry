@@ -2,6 +2,7 @@
 #include "Main.h"
 #include "Ship.h"
 #include "Bullet.h"
+#include <list>
 class Player : Object
 {
 public:
@@ -19,7 +20,8 @@ public:
 	float nextBulletTime = 0.0f;
 	float cadenceFire = 1.0f;
 	sf::CircleShape playerShape;
-	Ship **playerShips;
+	sf::CircleShape shipsShape;
+	std::list<Ship*> ships;
 	int posX = 0;
 	int posY = 0;
 	Player *CreatePlayer(int life, float speed, int posX, int posY);
@@ -33,6 +35,8 @@ public:
 	void Fire(bool canFire, int damages, int posX, int posY);
 	void TakeDamage(int damages);
 	void PlayerDeath();
+	void GetShip(Ship* ship);
+	void MovementShipsShape();
 	void Start(sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
 };
