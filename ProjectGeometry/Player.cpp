@@ -1,6 +1,9 @@
 #include "Player.h"
 
 std::list<Ship *> ships;
+std::list<Bullet*> bullets;
+
+Player* Player::player = nullptr;
 Player::Player(std::string id, int life, float speed, int posX, int posY)
 {
 	this->id = "Player";
@@ -23,28 +26,9 @@ Player::Player(std::string id, int life, float speed, int posX, int posY)
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 	typeWeapon = TYPEBULLET::TRIANGLE;
+	player = this;
 }
 
-void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
-{
-
-	sf::Vector2i mousePosInt = mouse.getPosition(*window);
-	sf::Vector2f mousePos(mousePosInt);
-	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
-	{
-		if (nextBulletTime <= 0)
-		{
-			Bullet *bullet = new Bullet(2, mousePos);
-			LOG("Start fire");
-			nextBulletTime = cadenceFire;
-		}
-		else
-		{
-			nextBulletTime -= deltaTime;
-			LOG("Stop fire");
-		}
-	}
-}
 
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
@@ -68,6 +52,32 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		// left key is pressed: move our character
 		MovePlayer("down");
 	}
+	//BULLET ALEX
+	sf::Vector2i mousePosInt = mouse.getPosition(*window);
+	sf::Vector2f mousePos(mousePosInt);
+	sf::Vector2f trajectoireBullet = (mousePos - playerShape.getPosition());
+	float distance = sqrt(powf(trajectoireBullet.x, 2) + powf(trajectoireBullet.y, 2));
+	sf::Vector2f trajNormalized = trajectoireBullet / distance;
+	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius(), posPlayer.y + playerShape.getRadius());
+	LOG(shootTimer);
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (shootTimer >= shootTimerValue) //Shoot
+		{
+			LOG("Bullet fired");
+			Bullet* bullet = new Bullet(damageP, trajNormalized, speedBulletP);
+			bullet->shapeB.setPosition(playerCenter);
+			bullets.push_back(bullet);
+			shootTimer = 0;
+		}
+	}
+	if (shootTimer < shootTimerValue)
+	{
+		shootTimer += deltaTime;
+	}
+
+
+
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape();
 	window->draw(playerShape);
@@ -76,6 +86,19 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	while (it != ships.end()) {
 		window->draw((*it)->shipShape);
 	}*/
+	std::list<Bullet*>::iterator ite = bullets.begin();
+	while(ite != bullets.end())
+	{
+		if ((*ite)->shapeB.getPosition().y < 0)
+		{
+			delete *ite;
+			ite = bullets.erase(ite);
+		}
+		else 
+		{
+			ite++;
+		}
+	}
 }
 
 void Player::MovePlayer(std::string direction)
@@ -109,21 +132,6 @@ float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
 	return timeInSeconds;
-}
-
-void Player::StartFire()
-{
-	isFiring = true;
-	nextBulletTime = 0.0f;
-}
-void Player::StopFire()
-{
-	isFiring = false;
-	nextBulletTime = cadenceFire;
-	LOG("Stop fire");
-}
-void Player::Fire(bool canFire, int damages, int posX, int posY)
-{
 }
 
 void Player::MovementShipsShape()

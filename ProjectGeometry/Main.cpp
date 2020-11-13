@@ -79,10 +79,6 @@ int main()
 
     auto map = new Map("map", &window);
 
-    // Julien: Start Function
-    //for (auto i : Objects)
-    //    if (i->isActive)
-    //        i->Start(&window);
     while (window.isOpen())
     {
         float deltaTime = clock.getElapsedTime().asSeconds();
@@ -96,6 +92,7 @@ int main()
                 if (i)
                     if (i->isActive)
                         i->OnEvent(&window, event, deltaTime);
+
         }
         window.clear();
         //MouseCursor
@@ -107,6 +104,7 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
+
         window.draw(aimShape);
         window.display();
     }
