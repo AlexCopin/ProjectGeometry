@@ -42,6 +42,15 @@ void Map::Update(sf::RenderWindow* window, float deltaTime) {
 
 void Map::CollisionPlayer() {
 	if (limitUP.getGlobalBounds().intersects(player->playerShape.getGlobalBounds())) {
-		player->posPlayer + sf::Vector2f(0, -0.01f);
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, -1));
+	} else if (limitDOWN.getGlobalBounds().intersects(player->playerShape.getGlobalBounds())) {
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, 1));
+	}
+
+	if (limitRIGHT.getGlobalBounds().intersects(player->playerShape.getGlobalBounds())) {
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(-1, 0));
+	}
+	else if (limitLEFT.getGlobalBounds().intersects(player->playerShape.getGlobalBounds())) {
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(1, 0));
 	}
 }
