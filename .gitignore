@@ -291,3 +291,8 @@ MigrationBackup/
 .ionide/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+ProjectGeometry/Debug/ProjectGeometry.exe
+
+ProjectGeometry/Debug/ProjectGeometry.exe.recipe
+
+ProjectGeometry/Debug/vc142.idb
