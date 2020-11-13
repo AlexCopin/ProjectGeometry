@@ -32,8 +32,7 @@ Player::Player(std::string id, int life, float speed, int posX, int posY)
 	//auto shipTest4 = new Ship(sf::Vector2f(window->getSize().x / 1.8f, window->getSize().y / 2.5f), "ship2");
 }
 
-
-void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime) 
+void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 {
 
 	sf::Vector2i mousePosInt = mouse.getPosition(*window);
@@ -42,10 +41,11 @@ void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime)
 	{
 		if (nextBulletTime <= 0)
 		{
-			Bullet* bullet = new Bullet(2, mousePos);
+			Bullet *bullet = new Bullet(2, mousePos);
 			LOG("Start fire");
 			nextBulletTime = cadenceFire;
-		}else
+		}
+		else
 		{
 			nextBulletTime -= deltaTime;
 			LOG("Stop fire");
@@ -118,7 +118,6 @@ float Player::GetTime()
 	return timeInSeconds;
 }
 
-
 void Player::StartFire()
 {
 	isFiring = true;
@@ -132,16 +131,15 @@ void Player::StopFire()
 }
 void Player::Fire(bool canFire, int damages, int posX, int posY)
 {
-	
 }
 
-
-void Player::MovementShipsShape() {
+void Player::MovementShipsShape()
+{
 	shipsShape.setPosition(playerShape.getPosition());
 	sf::Transform matrix = shipsShape.getTransform();
-	std::list<Ship*>::iterator it = ships.begin();
+	std::list<Ship *>::iterator it = ships.begin();
 	int i = 0;
-	while (it!=ships.end())
+	while (it != ships.end())
 	{
 		(*it)->posShip = matrix.transformPoint(shipsShape.getPoint(i));
 		it++;
@@ -149,7 +147,8 @@ void Player::MovementShipsShape() {
 	}
 }
 
-void Player::GetShip(Ship* ship) {
+void Player::GetShip(Ship *ship)
+{
 	//int shipPositions = ships.size() > 3 ? ships.size() : 3;
 	sf::Transform matrix = shipsShape.getTransform();
 	shipsShape.setPointCount(shipsShape.getPointCount() + 1);
@@ -157,12 +156,12 @@ void Player::GetShip(Ship* ship) {
 	ships.push_back(ship);
 }
 
-
 void Player::TakeDamage(int damages)
 {
 	lifeP -= damages;
-	
-	for (int i = 0; i < damages; i++) {
+
+	for (int i = 0; i < damages; i++)
+	{
 		delete ships.back();
 		ships.pop_back();
 	}
@@ -174,4 +173,3 @@ void Player::PlayerDeath()
 		DestroyObject(this);
 	}
 }
-

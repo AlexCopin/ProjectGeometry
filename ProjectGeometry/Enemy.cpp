@@ -36,3 +36,5 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 {
 	window->draw(shape);
 }
+// Julien: testEnemy
+// auto testEnemy = new Enemy("testEnemy", sf::Vector2f(), Enemy::Type::Triangle);
