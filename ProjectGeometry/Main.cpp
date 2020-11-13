@@ -18,7 +18,6 @@ std::string getAssetsPath()
 }
 // Julien: API
 std::vector<Object *> Objects;
-
 Object::Object()
 {
     Objects.push_back(this);
@@ -54,7 +53,6 @@ bool DestroyObject(void *object)
     else
         return 0;
 }
-
 bool MouseButtonDown(bool boule)
 {
     return boule;
@@ -63,7 +61,6 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
-
 int main()
 {
     // MouseCursor
@@ -76,9 +73,9 @@ int main()
     aimShape.setFillColor(sf::Color::Transparent);
     aimShape.setOutlineColor(sf::Color::Red);
     aimShape.setOutlineThickness(2.0f);
-
-    sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry");
-
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 4;
+    sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
     // Julien: Start Function
@@ -94,13 +91,11 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-            
             for (auto i : Objects)
-                if(i)
+                if (i)
                     if (i->isActive)
                         i->OnEvent(&window, event, deltaTime);
         }
-        
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
@@ -108,10 +103,9 @@ int main()
         aimShape.setPosition(mousePosition);
         // Julien: Update Function
         for (auto i : Objects)
-            if(i)
+            if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-
         window.draw(aimShape);
         window.display();
     }
