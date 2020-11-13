@@ -17,6 +17,5 @@ public:
 
 	Map(std::string id, sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
-	void GetPlayerM();
 	void CollisionPlayer();
 };

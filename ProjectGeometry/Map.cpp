@@ -7,20 +7,20 @@ Map::Map(std::string id, sf::RenderWindow *window)
 
 	this->id = "Map";
 	limitUP.setFillColor(sf::Color::Yellow);
-	limitUP.setSize(sf::Vector2f(1000, 100));
+	limitUP.setSize(sf::Vector2f(window->getSize().x, 100));
 	limitUP.setPosition(sf::Vector2f(0, -90));
 
 	limitDOWN.setFillColor(sf::Color::Yellow);
-	limitDOWN.setSize(sf::Vector2f(1000, 100));
-	limitDOWN.setPosition(sf::Vector2f(0, 590));
+	limitDOWN.setSize(sf::Vector2f(window->getSize().x, 100));
+	limitDOWN.setPosition(sf::Vector2f(0, window->getSize().y-10));
 
 	limitRIGHT.setFillColor(sf::Color::Yellow);
-	limitRIGHT.setSize(sf::Vector2f(100, 600));
+	limitRIGHT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitRIGHT.setPosition(sf::Vector2f(-90, 0));
 
 	limitLEFT.setFillColor(sf::Color::Yellow);
-	limitLEFT.setSize(sf::Vector2f(100, 600));
-	limitLEFT.setPosition(sf::Vector2f(990, 0));
+	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
+	limitLEFT.setPosition(sf::Vector2f(window->getSize().x-10, 0));
 
 	player = new Player("Player", 1, 0.2f, 50, 50);
 

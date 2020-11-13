@@ -73,7 +73,7 @@ int main()
     aimShape.setOutlineThickness(2.0f);
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
-    sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
 
