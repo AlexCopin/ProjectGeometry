@@ -1,14 +1,38 @@
 #include "Enemy.h"
-Enemy *Enemy::CreateEnemy(int life, int speed, int posX, int posY)
+#include "Player.h"
+Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
-	Enemy *enemy = new Enemy();
-	enemy->lifeE = life;
-	enemy->speedE = speed;
-	enemy->posX = posX;
-	enemy->posY = posY;
-	sf::Vector2f PosEnemy(posX, posY);
-	//enemy->playerShape.setPosition(PosPlayer);
-	//enemy->playerShape.setRadius(2.0f);
-	//enemy->playerShape.setFillColor(sf::Color::White);
-	return enemy;
+	this->id = id;
+	this->position = position;
+	switch (type)
+	{
+	case Type::Triangle:
+		shape.setPointCount(3);
+		shape.setRadius(50);
+		health = 100;
+		speed = 50;
+		break;
+	case Type::Square:
+		shape.setPointCount(4);
+		shape.setRadius(50);
+		health = 200;
+		speed = 30;
+		break;
+	case Type::Octagon:
+		shape.setPointCount(8);
+		shape.setRadius(50);
+		health = 400;
+		speed = 20;
+		break;
+	case Type::Circle:
+		shape.setRadius(100);
+		health = 1000;
+		speed = 10;
+		break;
+	}
+	player = (Player *)FindObject("Player");
+}
+void Enemy::Update(sf::RenderWindow *window, float deltaTime)
+{
+	window->draw(shape);
 }

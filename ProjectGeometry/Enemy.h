@@ -1,13 +1,19 @@
-#pragma once
 #include "Main.h"
+class Player;
 class Enemy : Object
 {
 public:
-	int lifeE = 0;
-	int speedE = 0;
-	//sf::Shape enemyShape;
-	//TYPEBULLET enemyType;
-	int posX = 0;
-	int posY = 0;
-	Enemy *CreateEnemy(int life, int speed, int posX, int posY);
+	enum Type
+	{
+		Triangle,
+		Square,
+		Octagon,
+		Circle
+	} type;
+	sf::CircleShape shape;
+	sf::Vector2f position;
+	uint16_t health, speed;
+	Player *player;
+	Enemy(std::string id, sf::Vector2f position, Type type);
+	void Update(sf::RenderWindow *window, float deltaTime);
 };

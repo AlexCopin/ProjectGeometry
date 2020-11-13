@@ -1,6 +1,6 @@
 #pragma once
 #include "Main.h"
-#include"Ship.h"
+#include "Ship.h"
 #include "Bullet.h"
 #include <list>
 class Player : Object
@@ -23,7 +23,7 @@ public:
 	sf::Mouse mouse;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
-	
+
 	sf::CircleShape shipsShape;
 	Player *CreatePlayer(int life, float speed, int posX, int posY);
 	void MovePlayer(std::string direction);
@@ -34,11 +34,9 @@ public:
 	void Fire(bool canFire, int damages, int posX, int posY);
 	void TakeDamage(int damages);
 	void PlayerDeath();
-	void GetShip(Ship* ship);
+	void GetShip(Ship *ship);
 	void MovementShipsShape();
 	void Start(sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
-    void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
-
+	void OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime);
 };
-
