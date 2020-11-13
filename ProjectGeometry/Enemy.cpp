@@ -34,7 +34,8 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 }
 void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 {
-	window->draw(shape);
+	// sf::Vector2f target = targetPos - originPos;
+	// timeInSeconds -= deltaTime;
+	// shapeB.setPosition(trajectoireBullet.x + (deltaTime * speedB), trajectoireBullet.y + (deltaTime * speedB));
+	// window->draw(shape);
 }
-// Julien: testEnemy
-// auto testEnemy = new Enemy("testEnemy", sf::Vector2f(), Enemy::Type::Triangle);

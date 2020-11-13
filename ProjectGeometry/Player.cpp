@@ -1,7 +1,6 @@
 #include "Player.h"
 
-
-std::list<Ship*> ships; 
+std::list<Ship *> ships;
 Player::Player(std::string id, int life, float speed, int posX, int posY)
 {
 	this->id = "Player";
@@ -17,7 +16,6 @@ Player::Player(std::string id, int life, float speed, int posX, int posY)
 	playerShape.setFillColor(sf::Color::White);
 	playerShape.setOrigin(50, 50);
 
-
 	shipsShape.setRadius(70.0f);
 	shipsShape.setPointCount(0);
 	shipsShape.setFillColor(sf::Color::Transparent);
@@ -25,11 +23,6 @@ Player::Player(std::string id, int life, float speed, int posX, int posY)
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 	typeWeapon = TYPEBULLET::TRIANGLE;
-	//auto shipTest = new Ship(sf::Vector2f(window->getSize().x/1.5f, window ->getSize().y/2.0f), "ship1");
-	//auto shipTest1 = new Ship(sf::Vector2f(window->getSize().x / 2.0f, window->getSize().y / 2.0f), "ship2");
-	//auto shipTest2 = new Ship(sf::Vector2f(window->getSize().x / 2.5f, window->getSize().y / 2.5f), "ship2");
-	//auto shipTest3 = new Ship(sf::Vector2f(window->getSize().x / 1.5f, window->getSize().y / 1.5f), "ship2");
-	//auto shipTest4 = new Ship(sf::Vector2f(window->getSize().x / 1.8f, window->getSize().y / 2.5f), "ship2");
 }
 
 void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)

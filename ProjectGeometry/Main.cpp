@@ -3,7 +3,6 @@
 // Julien: Utils
 #include "Map.h";
 
-
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -64,7 +63,6 @@ bool MouseButtonUp(bool boule)
 int main()
 {
     // MouseCursor
-    auto map = new Map("map");
 
     sf::CircleShape aimShape;
     float aimRadius = 10.0f;
@@ -78,6 +76,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 600), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
+
+    auto map = new Map("map", &window);
+
     // Julien: Start Function
     //for (auto i : Objects)
     //    if (i->isActive)
