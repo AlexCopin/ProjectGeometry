@@ -36,7 +36,7 @@ public:
 	void PlayerDeath();
 	void GetShip(Ship* ship);
 	void MovementShipsShape();
-	void Start(sf::RenderWindow *window);
+	Player(std::string id, int life, float speed, int posX, int posY);
 	void Update(sf::RenderWindow *window, float deltaTime);
     void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
 

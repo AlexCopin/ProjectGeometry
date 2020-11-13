@@ -39,7 +39,6 @@ void Ship::RotateShip(sf::RenderWindow *window)
 
 void Ship::GetPlayer() {
 	player = (Player*)FindObject("Player");
-	LOG(player->lifeP);
 }
 
 void Ship::GetDistanceWithPlayer() {

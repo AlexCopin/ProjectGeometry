@@ -1,6 +1,7 @@
 #include "Main.h"
 //#include "Player.h"
 // Julien: Utils
+#include "Map.h";
 
 
 std::string getAppPath()
@@ -66,6 +67,7 @@ bool MouseButtonUp(bool boule)
 int main()
 {
     // MouseCursor
+    auto map = new Map("map");
 
     sf::CircleShape aimShape;
     float aimRadius = 10.0f;
@@ -80,9 +82,9 @@ int main()
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
     // Julien: Start Function
-    for (auto i : Objects)
-        if (i->isActive)
-            i->Start(&window);
+    //for (auto i : Objects)
+    //    if (i->isActive)
+    //        i->Start(&window);
     while (window.isOpen())
     {
         float deltaTime = clock.getElapsedTime().asSeconds();

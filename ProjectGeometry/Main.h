@@ -10,6 +10,9 @@
 std::string getAppPath();
 std::string getAssetsPath();
 // Julien: API
+
+class Map;
+
 struct Object
 {
     std::string id;
