@@ -1,6 +1,0 @@
-D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
-D:\IIM\A2\Prog\ProjetGeoProg\ProjetGeometry2\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.pdb
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
-C:\GamesJams\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.pdb
-C:\Users\Julien QUENTIN\Documents\IIM\A2\CC\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.exe
-C:\Users\Julien QUENTIN\Documents\IIM\A2\CC\ProjectGeometry\ProjectGeometry\Debug\ProjectGeometry.pdb
