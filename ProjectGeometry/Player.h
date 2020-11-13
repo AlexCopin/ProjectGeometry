@@ -1,6 +1,6 @@
 #pragma once
 #include "Main.h"
-#include "Ship.h"
+#include"Ship.h"
 #include "Bullet.h"
 #include <list>
 class Player : Object
