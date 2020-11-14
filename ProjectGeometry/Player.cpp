@@ -34,22 +34,22 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		// left key is pressed: move our character
-		MovePlayer("left");
+		MovePlayer("left", speedP * deltaTime);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		// left key is pressed: move our character
-		MovePlayer("right");
+		MovePlayer("right", speedP * deltaTime);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		// left key is pressed: move our character
-		MovePlayer("up");
+		MovePlayer("up", speedP * deltaTime);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		// left key is pressed: move our character
-		MovePlayer("down");
+		MovePlayer("down", speedP * deltaTime);
 	}
 	
 
@@ -74,7 +74,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 	{
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
-			Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), speedBulletP);
+			Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter));
 			bullet->shapeB.setPosition(playerCenter);
 			bullets.push_back(bullet);
 			shootTimer = 0;
@@ -91,48 +91,40 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 {
 	//BULLET ALEX
 
-	std::list<sf::Vector2f> trajectoriesBShipNormalized;
-	std::list<Ship*>::iterator ite = ships.begin();
-	while (ite != ships.end())
-	{
-		trajectoriesBShipNormalized.push_back(GetTraj(window, (*ite)->shipShape.getPosition()));
-		ite++;
-	}
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
-			std::list<sf::Vector2f>::iterator iter = trajectoriesBShipNormalized.begin();
-			while (iter != trajectoriesBShipNormalized.end())
+			std::list<Ship*>::iterator ite = ships.begin();
+			while (ite != ships.end())
 			{
-				Bullet* bullet = new Bullet(damageP, (*iter), speedBulletP);
+				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
+				Bullet* bullet = new Bullet(damageP, trajectoireBullet);
 				bullets.push_back(bullet);
-				std::list<Ship*>::iterator it = ships.begin();
-				bullet->shapeB.setPosition((*it)->shipShape.getPosition());
-				it++;
-				iter++;
-			}
-			
+				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+				ite++;
+			}			
 		}
 	}
 }
-void Player::MovePlayer(std::string direction)
+void Player::MovePlayer(std::string direction, float speed)
 {
 	if (direction == "up")
 	{
-		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y - speedP);
+		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y - speed);
 	}
 	else if (direction == "right")
 	{
-		playerShape.setPosition(playerShape.getPosition().x + speedP, playerShape.getPosition().y);
+		playerShape.setPosition(playerShape.getPosition().x + speed, playerShape.getPosition().y);
 	}
 	else if (direction == "down")
 	{
-		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y + speedP);
+		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y + speed);
 	}
 	else if (direction == "left")
 	{
-		playerShape.setPosition(playerShape.getPosition().x - speedP, playerShape.getPosition().y);
+		playerShape.setPosition(playerShape.getPosition().x - speed, playerShape.getPosition().y);
 	}
 	return;
 }

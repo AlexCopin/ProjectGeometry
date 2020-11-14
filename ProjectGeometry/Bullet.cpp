@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(int damage, sf::Vector2f direction, float speed)
+Bullet::Bullet(int damage, sf::Vector2f direction)
 {
 	std::size_t count = 0;
 	if (Player::player->typeWeapon == Player::TYPEBULLET::TRIANGLE)
@@ -20,7 +20,6 @@ Bullet::Bullet(int damage, sf::Vector2f direction, float speed)
 		count = 6;
 	}
 	damageB = damage;
-	speedB = speed;
 	trajectoire = direction;
 	shapeB.setPointCount(count);
 	shapeB.setFillColor(sf::Color::Red);
@@ -31,11 +30,12 @@ Bullet::Bullet(int damage, sf::Vector2f direction, float speed)
 }
 void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {
-	MoveBullet();
+	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);
 }
 
-void Bullet::MoveBullet()
+void Bullet::MoveBullet(float speed)
 {
-	shapeB.setPosition(shapeB.getPosition() + trajectoire * 5.0f);
+	shapeB.setPosition(shapeB.getPosition() + trajectoire * speed);
+	LOG(speed);
 }

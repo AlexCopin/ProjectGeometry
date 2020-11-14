@@ -15,20 +15,19 @@ public:
 	} typeB;
 	TYPEBULLET typeWeapon = TYPEBULLET::TRIANGLE;
 	int lifeP = 0;
-	float speedP = 2.0f;
+	float speedP = 400;
 	sf::Mouse mouse;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
 	//ALEXBULLET
 	int damageP = 2;
-	float speedBulletP = 30.0f;
 	std::list<sf::Vector2f> trajectoriesBullets;
 	float shootTimer = 0.5f;
 	float shootTimerValue = 0.2f;
 	static Player* player;
 	void ShootBullet(sf::RenderWindow* window, float deltaTime);
 	sf::CircleShape shipsShape;
-	void MovePlayer(std::string direction);
+	void MovePlayer(std::string direction, float speed);
 	void RotatePlayer(sf::RenderWindow *window);
 	float GetTime();
 	void TakeDamage(int damages);
