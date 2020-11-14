@@ -24,7 +24,10 @@ Bullet::Bullet(int damage, sf::Vector2f direction, float speed)
 	trajectoire = direction;
 	shapeB.setPointCount(count);
 	shapeB.setFillColor(sf::Color::Red);
-	shapeB.setRadius(20.0f);
+	shapeB.setRadius(radiusB);
+	shapeB.setScale(scaleB, 1.0f);
+	float aimingAngle = atan2f(direction.y, direction.x);
+	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 }
 void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {

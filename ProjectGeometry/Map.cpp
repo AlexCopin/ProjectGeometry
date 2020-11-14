@@ -22,7 +22,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitLEFT.setPosition(sf::Vector2f(window->getSize().x-10, 0));
 
-	player = new Player("Player", 1, 0.2f, 50, 50);
+	player = new Player("Player", 1, 50, 50);
 
 	auto shipTest = new Ship(sf::Vector2f(window->getSize().x / 1.5f, window->getSize().y / 2.0f), "ship1");
 	auto shipTest1 = new Ship(sf::Vector2f(window->getSize().x / 2.0f, window->getSize().y / 2.0f), "ship2");
