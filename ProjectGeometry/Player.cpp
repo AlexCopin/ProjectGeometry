@@ -91,7 +91,7 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 {
 	//BULLET ALEX
 
-
+	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimer >= shootTimerValue) //Shoot
@@ -100,7 +100,9 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 			while (ite != ships.end())
 			{
 				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
+				//sf::Vector2f trajectoireBullet = GetTraj(window, playerCenter);
 				Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+				bullet->shapeB.setFillColor(sf::Color::Cyan);
 				bullets.push_back(bullet);
 				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 				ite++;
@@ -186,8 +188,9 @@ void Player::DestroyBullet()
 	std::list<Bullet*>::iterator ite = bullets.begin();
 	while (ite != bullets.end())
 	{
-		if ((*ite)->shapeB.getPosition().y < 0)
+		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
+			LOG("DestroyBullet");
 			delete* ite;
 			ite = bullets.erase(ite);
 		}

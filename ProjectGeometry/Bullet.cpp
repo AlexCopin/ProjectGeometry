@@ -37,5 +37,4 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 void Bullet::MoveBullet(float speed)
 {
 	shapeB.setPosition(shapeB.getPosition() + trajectoire * speed);
-	LOG(speed);
 }
