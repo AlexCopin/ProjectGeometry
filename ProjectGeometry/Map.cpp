@@ -12,7 +12,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 
 	limitDOWN.setFillColor(sf::Color::Yellow);
 	limitDOWN.setSize(sf::Vector2f(window->getSize().x, 100));
-	limitDOWN.setPosition(sf::Vector2f(0, window->getSize().y-10));
+	limitDOWN.setPosition(sf::Vector2f(0, window->getSize().y - 10));
 
 	limitRIGHT.setFillColor(sf::Color::Yellow);
 	limitRIGHT.setSize(sf::Vector2f(100, window->getSize().y));
@@ -20,7 +20,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 
 	limitLEFT.setFillColor(sf::Color::Yellow);
 	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
-	limitLEFT.setPosition(sf::Vector2f(window->getSize().x-10, 0));
+	limitLEFT.setPosition(sf::Vector2f(window->getSize().x - 10, 0));
 
 	player = new Player("Player", 1, 50, 50);
 
@@ -31,7 +31,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	auto shipTest4 = new Ship(sf::Vector2f(window->getSize().x / 1.8f, window->getSize().y / 2.5f), "ship2");
 
 	// Julien: testEnemy
-	auto testEnemy = new Enemy("testEnemy", sf::Vector2f(), Enemy::Type::Triangle);
+	auto testEnemy = new Enemy("testEnemy", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);
 }
 
 void Map::Update(sf::RenderWindow *window, float deltaTime)
