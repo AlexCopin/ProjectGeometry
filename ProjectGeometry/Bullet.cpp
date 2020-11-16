@@ -28,7 +28,7 @@ Bullet::Bullet(int damage, sf::Vector2f direction)
 	float aimingAngle = atan2f(direction.y, direction.x);
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 }
-void Bullet::Update(sf::RenderWindow* window, float deltaTime)
+void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 {
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);

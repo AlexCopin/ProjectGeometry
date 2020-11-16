@@ -18,10 +18,11 @@ Player::Player(std::string id, int life, int posX, int posY)
 	playerShape.setOrigin(50, 50);
 	playerShape.setPointCount(10);
 
+	shipsShape.setPosition(playerShape.getPosition());
 	shipsShape.setRadius(70.0f);
 	shipsShape.setPointCount(0);
 	shipsShape.setFillColor(sf::Color::Transparent);
-	shipsShape.setOutlineColor(sf::Color::Red);
+	shipsShape.setOutlineColor(sf::Color::Transparent);
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 
@@ -32,30 +33,52 @@ Player::Player(std::string id, int life, int posX, int posY)
 
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		// left key is pressed: move our character
-		MovePlayer("left", speedP * deltaTime);
+		MovePlayer(-1,0, speedP, deltaTime);
+		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		// left key is pressed: move our character
-		MovePlayer("right", speedP * deltaTime);
+		MovePlayer(1,0, speedP, deltaTime);
+		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		// left key is pressed: move our character
-		MovePlayer("up", speedP * deltaTime);
+		MovePlayer(0,-1, speedP, deltaTime);
+		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		// left key is pressed: move our character
-		MovePlayer("down", speedP * deltaTime);
+		MovePlayer(0,1, speedP, deltaTime);
+		isOneKeyPressed = true;
 	}
 	
+	if (!isOneKeyPressed) {
+
+		float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2)) ;
+		if (magnitude > 0) {
+
+			float magnitude2 = magnitude - 600 * deltaTime;
+			if (magnitude2 < 0) {
+				magnitude2 = 0;
+			}
+			
+			Movement = Movement / magnitude * magnitude2;
+			
+		}
+		
+	}
+	playerShape.setPosition(playerShape.getPosition() + Movement * deltaTime);
+
 	DestroyBullet();
 	posPlayer = playerShape.getPosition();
-	MovementShipsShape();
+	MovementShipsShape(deltaTime);
 	window->draw(playerShape);
 	window->draw(shipsShape);
 	/*std::list<Ship*>::iterator it = ships.begin();
@@ -117,23 +140,15 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 		shootTimerShip += deltaTime;
 	}
 }
-void Player::MovePlayer(std::string direction, float speed)
+void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 {
-	if (direction == "up")
-	{
-		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y - speed);
-	}
-	else if (direction == "right")
-	{
-		playerShape.setPosition(playerShape.getPosition().x + speed, playerShape.getPosition().y);
-	}
-	else if (direction == "down")
-	{
-		playerShape.setPosition(playerShape.getPosition().x, playerShape.getPosition().y + speed);
-	}
-	else if (direction == "left")
-	{
-		playerShape.setPosition(playerShape.getPosition().x - speed, playerShape.getPosition().y);
+	actualSpeed = speed;
+	sf::Vector2f direction{ x,y };
+	Movement += direction * (float)1000 * deltaTime;
+
+	float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2));
+	if (magnitude > speed) {
+		Movement = Movement / magnitude * speed;
 	}
 	return;
 }
@@ -148,21 +163,25 @@ float Player::GetTime()
 	return timeInSeconds;	
 }
 
-void Player::MovementShipsShape()
+void Player::MovementShipsShape(float deltaTime)
 {
-	sf::Vector2f direction = playerShape.getPosition() - shipsShape.getPosition();
-	float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
-	direction = direction / distance;
 
-	shipsShape.setPosition(shipsShape.getPosition() + direction * 0.2f);
-
+	shipsShape.setPosition(playerShape.getPosition());
+	shipsShapeAngle += 10.0f * deltaTime;
+	shipsShape.setRotation(shipsShapeAngle);
 
 	sf::Transform matrix = shipsShape.getTransform();
 	std::list<Ship *>::iterator it = ships.begin();
 	int i = 0;
 	while (it != ships.end())
 	{
-		(*it)->posShip = matrix.transformPoint(shipsShape.getPoint(i));
+		
+		sf::Vector2f direction2 = matrix.transformPoint(shipsShape.getPoint(i)) - (*it)->posShip;
+		float distance = sqrt(powf(direction2.x, 2) + powf(direction2.y, 2));
+		if (distance > 0.1f) {
+			direction2 = direction2 / distance;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i+2) *distance * deltaTime;
+		}
 		it++;
 		i++;
 	}

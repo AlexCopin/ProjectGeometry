@@ -11,6 +11,6 @@ public:
 	sf::CircleShape shapeB;
 	sf::Vector2f trajectoire;
 	Bullet(int damage, sf::Vector2f direction);
-	void Update(sf::RenderWindow* window, float deltaTime);
+	void Update(sf::RenderWindow *window, float deltaTime);
 	void MoveBullet(float speed);
 };
