@@ -52,9 +52,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		MovePlayer("down", speedP * deltaTime);
 	}
 	
-
-
-
+	DestroyBullet();
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape();
 	window->draw(playerShape);
@@ -133,14 +131,12 @@ void Player::MovePlayer(std::string direction, float speed)
 void Player::RotatePlayer(sf::RenderWindow *window)
 {
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
-	//sf::Vector2f worldCursor = window.convertCoords(cursor.x, cursor.y);
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - playerShape.getPosition();
-	// player->playerShape.setRotation(std::atan2(direction.y, direction.x));
 }
 float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
-	return timeInSeconds;
+	return timeInSeconds;	
 }
 
 void Player::MovementShipsShape()
@@ -190,8 +186,7 @@ void Player::DestroyBullet()
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
-			LOG("DestroyBullet");
-			delete* ite;
+				DestroyObject(*ite);
 			ite = bullets.erase(ite);
 		}
 		else
