@@ -105,9 +105,8 @@ int main()
                 if (i->isActive)
                     i->Update(&window, deltaTime);
 
-        Player::player->ShootBullet(&window, deltaTime);
-        Player::player->ShipShootBullet(&window, deltaTime);
-        Player::player->DestroyBullet();
+       Player::player->ShootBullet(&window, deltaTime);
+       Player::player->ShipShootBullet(&window, deltaTime);
         window.draw(aimShape);
         window.display();
     }

@@ -11,19 +11,20 @@ Player::Player(std::string id, int life, int posX, int posY)
 	posX = posX;
 	posY = posY;
 	posPlayer = sf::Vector2f(posX, posY);
-	//std::size_t count = 5;
-	//playerShape.setPointCount(count);
+
 	playerShape.setPosition(posPlayer);
 	playerShape.setRadius(50.0f);
 	playerShape.setFillColor(sf::Color::White);
 	playerShape.setOrigin(50, 50);
 	playerShape.setPointCount(10);
+
 	shipsShape.setRadius(70.0f);
 	shipsShape.setPointCount(0);
 	shipsShape.setFillColor(sf::Color::Transparent);
 	shipsShape.setOutlineColor(sf::Color::Red);
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
+
 	typeWeapon = TYPEBULLET::TRIANGLE;
 	player = this;
 }
@@ -52,9 +53,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		MovePlayer("down", speedP * deltaTime);
 	}
 	
-
-
-
+	DestroyBullet();
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape();
 	window->draw(playerShape);
@@ -133,19 +132,23 @@ void Player::MovePlayer(std::string direction, float speed)
 void Player::RotatePlayer(sf::RenderWindow *window)
 {
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
-	//sf::Vector2f worldCursor = window.convertCoords(cursor.x, cursor.y);
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - playerShape.getPosition();
-	// player->playerShape.setRotation(std::atan2(direction.y, direction.x));
 }
 float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
-	return timeInSeconds;
+	return timeInSeconds;	
 }
 
 void Player::MovementShipsShape()
 {
-	shipsShape.setPosition(playerShape.getPosition());
+	sf::Vector2f direction = playerShape.getPosition() - shipsShape.getPosition();
+	float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
+	direction = direction / distance;
+
+	shipsShape.setPosition(shipsShape.getPosition() + direction * 0.2f);
+
+
 	sf::Transform matrix = shipsShape.getTransform();
 	std::list<Ship *>::iterator it = ships.begin();
 	int i = 0;
@@ -190,8 +193,7 @@ void Player::DestroyBullet()
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
-			LOG("DestroyBullet");
-			delete* ite;
+				DestroyObject(*ite);
 			ite = bullets.erase(ite);
 		}
 		else
