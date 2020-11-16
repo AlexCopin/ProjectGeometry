@@ -31,7 +31,9 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	auto shipTest4 = new Ship(sf::Vector2f(window->getSize().x / 1.8f, window->getSize().y / 2.5f), "ship2");
 
 	// Julien: testEnemy
-	auto testEnemy = new Enemy("testEnemy", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);
+	auto testEnemy0 = new Enemy("testEnemy0", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Triangle);
+	auto testEnemy1 = new Enemy("testEnemy1", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);
+	auto testEnemy2 = new Enemy("testEnemy2", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Circle);
 }
 
 void Map::Update(sf::RenderWindow *window, float deltaTime)

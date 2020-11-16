@@ -1,9 +1,12 @@
 #include <time.h>
+#include <math.h>
 #include "MathUtils.h"
+#include "Map.h"
 #include "Enemy.h"
 #include "Player.h"
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
+	map = (Map *)FindObject("Map");
 	this->id = id;
 	this->type = type;
 	this->position = position;
@@ -29,15 +32,14 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		srand(time(0));
 		patrolTime = 1 + (rand() % 9);
 		break;
-	case Type::Octagon:
-		health = 400;
-		speed = 50;
-		// Appearance
-		shape.setPointCount(8);
-		color = sf::Color::Yellow;
-		radius = 50;
-		break;
 	case Type::Circle:
+		health = 400;
+		speed = 60;
+		// Appearance
+		color = sf::Color::Yellow;
+		radius = 30;
+		break;
+	case Type::Octagon:
 		health = 1000;
 		speed = 20;
 		// Appearance
@@ -89,6 +91,14 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		shape.setPosition(shape.getPosition() + dirNorm * isOnTarget * speed * deltaTime);
 		// Rotation
 		shape.setRotation(45);
+	}
+	break;
+	case Type::Circle:
+	{
+		// Position
+		sf::Time elapsed = clock.getElapsedTime();
+		sf::Vector2f direction(speed * deltaTime, sin(elapsed.asSeconds()) * amplitude);
+		shape.setPosition(shape.getPosition() + direction);
 	}
 	break;
 	}
