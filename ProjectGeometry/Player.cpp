@@ -11,19 +11,20 @@ Player::Player(std::string id, int life, int posX, int posY)
 	posX = posX;
 	posY = posY;
 	posPlayer = sf::Vector2f(posX, posY);
-	//std::size_t count = 5;
-	//playerShape.setPointCount(count);
+
 	playerShape.setPosition(posPlayer);
 	playerShape.setRadius(50.0f);
 	playerShape.setFillColor(sf::Color::White);
 	playerShape.setOrigin(50, 50);
 	playerShape.setPointCount(10);
+
 	shipsShape.setRadius(70.0f);
 	shipsShape.setPointCount(0);
 	shipsShape.setFillColor(sf::Color::Transparent);
 	shipsShape.setOutlineColor(sf::Color::Red);
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
+
 	typeWeapon = TYPEBULLET::TRIANGLE;
 	player = this;
 }
@@ -141,7 +142,13 @@ float Player::GetTime()
 
 void Player::MovementShipsShape()
 {
-	shipsShape.setPosition(playerShape.getPosition());
+	sf::Vector2f direction = playerShape.getPosition() - shipsShape.getPosition();
+	float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
+	direction = direction / distance;
+
+	shipsShape.setPosition(shipsShape.getPosition() + direction * 0.2f);
+
+
 	sf::Transform matrix = shipsShape.getTransform();
 	std::list<Ship *>::iterator it = ships.begin();
 	int i = 0;
