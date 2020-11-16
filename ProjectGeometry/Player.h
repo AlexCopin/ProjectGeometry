@@ -24,6 +24,8 @@ public:
 	std::list<sf::Vector2f> trajectoriesBullets;
 	float shootTimer = 0.5f;
 	float shootTimerValue = 0.2f;
+	float shootTimerShip = 0.4f;
+	float shootTimerShipValue = 0.1f;
 	static Player* player;
 	void ShootBullet(sf::RenderWindow* window, float deltaTime);
 	sf::CircleShape shipsShape;

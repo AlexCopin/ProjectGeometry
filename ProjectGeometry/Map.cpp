@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Ship.h"
 
+
 Map::Map(std::string id, sf::RenderWindow *window)
 {
 
@@ -29,6 +30,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	auto shipTest2 = new Ship(sf::Vector2f(window->getSize().x / 2.5f, window->getSize().y / 2.5f), "ship2");
 	auto shipTest3 = new Ship(sf::Vector2f(window->getSize().x / 1.5f, window->getSize().y / 1.5f), "ship2");
 	auto shipTest4 = new Ship(sf::Vector2f(window->getSize().x / 1.8f, window->getSize().y / 2.5f), "ship2");
+
 
 	// Julien: testEnemy
 	auto testEnemy = new Enemy("testEnemy", sf::Vector2f(), Enemy::Type::Triangle);
@@ -65,3 +67,6 @@ void Map::CollisionPlayer()
 		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(1, 0));
 	}
 }
+
+
+

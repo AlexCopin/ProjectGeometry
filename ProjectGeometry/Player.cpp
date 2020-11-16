@@ -69,6 +69,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 {
 	//BULLET ALEX
 	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4 , posPlayer.y + playerShape.getRadius() /4);
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimer >= shootTimerValue) //Shoot
@@ -81,6 +82,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 	}
 	if (shootTimer < shootTimerValue)
 	{
+		LOG(shootTimerShip);
 		shootTimer += deltaTime;
 	}
 }
@@ -91,9 +93,10 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 	//BULLET ALEX
 
 	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		if (shootTimer >= shootTimerValue) //Shoot
+		if (shootTimerShip >= shootTimerShipValue) //Shoot
 		{
 			std::list<Ship*>::iterator ite = ships.begin();
 			while (ite != ships.end())
@@ -105,8 +108,13 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 				bullets.push_back(bullet);
 				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 				ite++;
-			}			
+			}
+			shootTimerShip = 0;
 		}
+	}
+	if (shootTimerShip < shootTimerShipValue)
+	{
+		shootTimerShip += deltaTime;
 	}
 }
 void Player::MovePlayer(std::string direction, float speed)

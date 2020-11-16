@@ -3,7 +3,6 @@
 #include "Player.h"
 //#include "Player.h"
 //#include "Enemy.h"
-
 class Map : Object
 {
 public:

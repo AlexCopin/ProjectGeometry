@@ -1,7 +1,9 @@
 #include "Main.h"
-//#include "Player.h"
-// Julien: Utils
 #include "Map.h";
+#include "Background.h"
+
+const float ENTITY_SPAWN_PERIOD = 0.3f;
+const int NUMBER_STARS = 500;
 
 std::string getAppPath()
 {
@@ -78,6 +80,27 @@ int main()
     sf::Clock(clock);
 
     auto map = new Map("map", &window);
+    auto background = new Background("background", &window);
+
+    //TEST ENTITIES
+    float entitySpawnTimer = 0.0f;
+    std::list<Entity*> entities;
+    std::list<Entity*>::iterator entityIt = entities.begin();
+    //STARS
+    std::list<Star*> stars;
+    std::list<Star*>::iterator starsIt = stars.begin();
+    for (int i = 0; i < NUMBER_STARS; i++)
+    {
+        float randomX = rand() * window.getSize().x / (float)RAND_MAX;
+        LOG("Star created");
+        float randomY = rand() * window.getSize().y / (float)RAND_MAX;
+        float colorAlpha = 1 + (rand() % 256);
+        sf::Color color(255, 255, 255, colorAlpha);
+        float sizeStar = 1 + (rand() % 3);
+        Star* star = new Star(randomX, randomY, color, sizeStar);
+        stars.push_back(star);
+    }
+
 
     while (window.isOpen())
     {
@@ -94,6 +117,32 @@ int main()
                         i->OnEvent(&window, event, deltaTime);
 
         }
+
+        // HOW TO MANAGE LIFE OF GAME ENTITIES
+        entitySpawnTimer += deltaTime;
+        if (entitySpawnTimer > ENTITY_SPAWN_PERIOD) {
+            entitySpawnTimer = 0.0f;
+            float randomX = rand() * window.getSize().x / (float)RAND_MAX;
+            float randomY = rand() * window.getSize().y / (float)RAND_MAX;
+            float randomAngle = rand() * 360.0f / (float)RAND_MAX;
+            Entity* pNewEntity = background->CreateEntity(randomX, randomY, randomAngle);
+            entities.push_back(pNewEntity);
+        }
+        entityIt = entities.begin();
+        while (entityIt != entities.end()) {
+            background->UpdateB(*entityIt, deltaTime);
+            if (!background->IsAlive(*entityIt)) {
+                background->Destroy(*entityIt);
+                entityIt = entities.erase(entityIt);
+            }
+            else {
+                entityIt++;
+            }
+        }
+
+        //STARS
+        
+
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
@@ -104,10 +153,27 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-
+        
+	
        Player::player->ShootBullet(&window, deltaTime);
        Player::player->ShipShootBullet(&window, deltaTime);
         window.draw(aimShape);
+        entityIt = entities.begin();
+        while (entityIt != entities.end()) {
+            background->DrawEntity(*entityIt, window);
+            entityIt++;
+        }
+        starsIt = stars.begin();
+        while(starsIt != stars.end())
+        {
+            (*starsIt)->DrawStars(&window);
+            starsIt++;
+        }
         window.display();
+    }
+    entityIt = entities.begin();
+    while (entityIt != entities.end()) {
+        background->Destroy(*entityIt);
+        entityIt++;
     }
 }
