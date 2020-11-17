@@ -139,7 +139,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 				Bullet* bullet3 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle3), GetTraj(window, playerCenter)));
 				bullet3->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet3);*/
-				shootTimer = 0;
+				//shootTimer = 0;
 			}else if(typeB == TYPEBULLET::BONUS)
 			{
 				float angle = 1 + (rand() % 360);

@@ -1,8 +1,8 @@
 #include "Background.h"
 #include "MathUtils.h"
 // ENTITY
-const float INITIAL_SPEED = 30.0f; // Initial speed of entity. Value in pixel per second.
-const float FRICTION = 0.5f; // Friction that will reduce speed during lifetime.
+const float INITIAL_SPEED = 500.0f; // Initial speed of entity. Value in pixel per second.
+const float FRICTION = -0.5f; // Friction that will reduce speed during lifetime.
 const float ROTATION_SPEED = 5.0f; // Entity will spin on self. Value in degree per second.
 const float LIFE_TIME = 5.0f; // Entity will live during this duration. After what, it will be ready to be destroyed.
 const float FADE_DURATION = 1.0f; // Duration at end of entity life where entity will "fade" (color alpha from 0 to 1)
@@ -18,7 +18,7 @@ Entity* Background::CreateEntity(float x, float y, float dirAngle)
 	Entity* pEntity = new Entity;
 	pEntity->shape.setSize({ SIZE, SIZE });
 	pEntity->shape.setOrigin(SIZE / 2.0f, SIZE / 2.0f);
-	pEntity->shape.setFillColor(sf::Color::Magenta);
+	pEntity->shape.setFillColor(sf::Color::White);
 	pEntity->shape.setPosition(x, y);
 	pEntity->timeToLive = LIFE_TIME;
 	pEntity->speed = INITIAL_SPEED;

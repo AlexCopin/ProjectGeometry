@@ -2,8 +2,8 @@
 #include "Map.h";
 #include "Background.h"
 
-const float ENTITY_SPAWN_PERIOD = 0.3f;
-const int NUMBER_STARS = 1000;
+const float ENTITY_SPAWN_PERIOD = 1.0f;
+const int NUMBER_STARS = 500;
 
 std::string getAppPath()
 {
