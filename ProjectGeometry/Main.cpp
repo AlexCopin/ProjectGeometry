@@ -92,7 +92,6 @@ int main()
     for (int i = 0; i < NUMBER_STARS; i++)
     {
         float randomX = rand() * window.getSize().x / (float)RAND_MAX;
-        LOG("Star created");
         float randomY = rand() * window.getSize().y / (float)RAND_MAX;
         float colorAlpha = 1 + (rand() % 256);
         sf::Color color(255, 255, 255, colorAlpha);
@@ -158,6 +157,7 @@ int main()
 	
        Player::player->ShootBullet(&window, deltaTime);
        Player::player->ShipShootBullet(&window, deltaTime);
+
         window.draw(aimShape);
         entityIt = entities.begin();
         while (entityIt != entities.end()) {
