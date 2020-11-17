@@ -11,9 +11,9 @@ public:
 		TRIANGLE,
 		SQUARE,
 		PENTAGONE,
-		HEXAGONE
+		HEXAGONE,
+		SIZE
 	} typeB;
-	TYPEBULLET typeWeapon = TYPEBULLET::TRIANGLE;
 	int lifeP = 0;
 	float Movx = 0;
 	float Movy = 0;
@@ -40,10 +40,12 @@ public:
 	void TakeDamage(int damages);
 	void PlayerDeath();
 	void DestroyBullet();
+	void ChangeWeapon();
 	void GetShip(Ship *ship);
 	void ShipShootBullet(sf::RenderWindow* window, float deltaTime);
 	void MovementShipsShape(float deltaTime);
 	Player(std::string id, int life, int posX, int posY);
 	sf::Vector2f GetTraj(sf::RenderWindow* window, sf::Vector2f pos);
 	void Update(sf::RenderWindow *window, float deltaTime);
+	void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
 };

@@ -3,7 +3,7 @@
 #include "Background.h"
 
 const float ENTITY_SPAWN_PERIOD = 0.3f;
-const int NUMBER_STARS = 500;
+const int NUMBER_STARS = 1000;
 
 std::string getAppPath()
 {
@@ -111,6 +111,7 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
+
             for (auto i : Objects)
                 if (i)
                     if (i->isActive)

@@ -34,7 +34,7 @@ Star::Star(float x, float y, sf::Color color, float size)
 }
 void Star::DrawStars(sf::RenderWindow* window)
 {
-	window->draw(this->star);
+	window->draw(star);
 }
 
 void Background::UpdateB(Entity* pEntity, float deltaTime)

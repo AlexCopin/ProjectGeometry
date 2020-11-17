@@ -3,19 +3,19 @@
 Bullet::Bullet(int damage, sf::Vector2f direction)
 {
 	std::size_t count = 0;
-	if (Player::player->typeWeapon == Player::TYPEBULLET::TRIANGLE)
+	if (Player::player->typeB == Player::TYPEBULLET::TRIANGLE)
 	{
 		count = 3;
 	}
-	else if (Player::player->typeWeapon == Player::TYPEBULLET::SQUARE)
+	else if (Player::player->typeB == Player::TYPEBULLET::SQUARE)
 	{
 		count = 4;
 	}
-	else if (Player::player->typeWeapon == Player::TYPEBULLET::PENTAGONE)
+	else if (Player::player->typeB == Player::TYPEBULLET::PENTAGONE)
 	{
 		count = 5;
 	}
-	else if (Player::player->typeWeapon == Player::TYPEBULLET::HEXAGONE)
+	else if (Player::player->typeB == Player::TYPEBULLET::HEXAGONE)
 	{
 		count = 6;
 	}

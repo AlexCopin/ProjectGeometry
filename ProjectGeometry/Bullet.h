@@ -4,8 +4,12 @@
 class Bullet : Object
 {
 public:
+	enum TypeBullet
+	{
+
+	};
 	int damageB = 2;
-	float scaleB = 0.5f;
+	float scaleB = 0.8f;
 	float radiusB = 10.0f;
 	float speedB = 1000;
 	sf::CircleShape shapeB;

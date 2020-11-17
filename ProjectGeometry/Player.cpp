@@ -25,8 +25,7 @@ Player::Player(std::string id, int life, int posX, int posY)
 	shipsShape.setOutlineColor(sf::Color::Transparent);
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
-
-	typeWeapon = TYPEBULLET::TRIANGLE;
+	typeB = TYPEBULLET::TRIANGLE;
 	player = this;
 }
 
@@ -60,7 +59,6 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	}
 	
 	if (!isOneKeyPressed) {
-
 		float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2)) ;
 		if (magnitude > 0) {
 
@@ -79,6 +77,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	DestroyBullet();
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape(deltaTime);
+	//ChangeWeapon();
 	window->draw(playerShape);
 	window->draw(shipsShape);
 	/*std::list<Ship*>::iterator it = ships.begin();
@@ -86,6 +85,15 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 		window->draw((*it)->shipShape);
 	}*/
 	
+}
+
+void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime)
+{
+
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A)
+	{
+		ChangeWeapon();
+	}
 }
 
 void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
@@ -101,11 +109,11 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 			bullet->shapeB.setPosition(playerCenter);
 			bullets.push_back(bullet);
 			shootTimer = 0;
+			LOG((int)typeB);
 		}
 	}
 	if (shootTimer < shootTimerValue)
 	{
-		LOG(shootTimerShip);
 		shootTimer += deltaTime;
 	}
 }
@@ -238,4 +246,16 @@ sf::Vector2f Player::GetTraj(sf::RenderWindow* window, sf::Vector2f pos)
 	float distance = sqrt(powf(trajectoireBullet.x, 2) + powf(trajectoireBullet.y, 2));
 	sf::Vector2f trajNormalized = trajectoireBullet / distance;
 	return trajNormalized;
+}
+
+
+void Player::ChangeWeapon()
+{
+	LOG("Change weapon");
+	int newType = (int)typeB + 1;
+	if(newType == (int)TYPEBULLET::SIZE)
+	{
+		newType = 0;
+	}
+	typeB = (TYPEBULLET)newType;
 }
