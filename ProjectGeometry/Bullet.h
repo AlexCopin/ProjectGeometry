@@ -1,12 +1,11 @@
 #pragma once
 #include "Main.h"
 #include "Player.h"
-class Bullet : Object
+class Bullet : Object2
 {
 public:
 	enum TypeBullet
 	{
-
 	};
 	int damageB = 2;
 	float scaleB = 0.6f;

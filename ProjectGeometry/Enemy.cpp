@@ -136,6 +136,9 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		float rot = shape.getRotation();
 		rot++;
 		shape.setRotation(rot);
+		// Bullet
+		ShootBul();
+		DestroyBul();
 	}
 	break;
 	}
@@ -147,7 +150,6 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 }
 void Enemy::ShootBul()
 {
-	// Bullet
 	timerBul--;
 	if (timerBul <= 0)
 	{
@@ -169,8 +171,8 @@ void Enemy::DestroyBul()
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
-			DestroyObject(*ite);
 			ite = enemyBullets.erase(ite);
+			DestroyObject2(*ite);
 		}
 		else
 		{

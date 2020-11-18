@@ -2,10 +2,8 @@
 #include "Map.h";
 #include "Background.h"
 #include "Enemy.h"
-
 const float ENTITY_SPAWN_PERIOD = 1.0f;
 const int NUMBER_STARS = 500;
-
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -35,6 +33,15 @@ Object *FindObject(std::string id)
             return i;
     return 0;
 }
+std::vector<Object2 *> Objects2;
+Object2::Object2()
+{
+    Objects2.push_back(this);
+}
+Object2::~Object2()
+{
+    Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
+}
 bool SetActive(void *object, bool isActive)
 {
     if (object)
@@ -55,6 +62,16 @@ bool DestroyObject(void *object)
     else
         return 0;
 }
+bool DestroyObject2(void *object2)
+{
+    if (object2)
+    {
+        ((Object2 *)object2)->~Object2();
+        return 1;
+    }
+    else
+        return 0;
+}
 bool MouseButtonDown(bool boule)
 {
     return boule;
@@ -66,7 +83,6 @@ bool MouseButtonUp(bool boule)
 int main()
 {
     // MouseCursor
-
     sf::CircleShape aimShape;
     float aimRadius = 10.0f;
     aimShape.setRadius(aimRadius);
@@ -79,10 +95,8 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
-
     auto map = new Map("map", &window);
     auto background = new Background("background", &window);
-
     //TEST ENTITIES
     float entitySpawnTimer = 0.0f;
     std::list<Entity *> entities;
@@ -100,7 +114,6 @@ int main()
         Star *star = new Star(randomX, randomY, color, sizeStar);
         stars.push_back(star);
     }
-
     while (window.isOpen())
     {
         float deltaTime = clock.getElapsedTime().asSeconds();
@@ -110,13 +123,11 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-
             for (auto i : Objects)
                 if (i)
                     if (i->isActive)
                         i->OnEvent(&window, event, deltaTime);
         }
-
         // HOW TO MANAGE LIFE OF GAME ENTITIES
         entitySpawnTimer += deltaTime;
         if (entitySpawnTimer > ENTITY_SPAWN_PERIOD)
@@ -142,9 +153,7 @@ int main()
                 entityIt++;
             }
         }
-
         //STARS
-
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
@@ -155,7 +164,10 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-
+        for (auto i : Objects2)
+            if (i)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
         Player::player->ShootBullet(&window, deltaTime);
         Player::player->ShipShootBullet(&window, deltaTime);
         window.draw(aimShape);
