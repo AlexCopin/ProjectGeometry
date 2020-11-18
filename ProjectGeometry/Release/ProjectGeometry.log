@@ -1,6 +1,239 @@
-﻿  ProjectGeometry.cpp
-  Génération de code en cours
-  Previous IPDB not found, fall back to full compilation.
-  All 10 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Fin de la génération du code
-  ProjectGeometry.vcxproj -> C:\GamesJams\ProjectGeometry\ProjectGeometry\Release\ProjectGeometry.exe
+﻿  Background.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Background.cpp(52,14): warning C4244: '=': conversion from 'float' to 'sf::Uint8', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Background.cpp(55,40): warning C4244: '=': conversion from 'float' to 'sf::Uint8', possible loss of data
+  Bullet.cpp
+  Enemy.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(23,23): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(37,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(38,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(40,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(42,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(54,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Enemy.cpp(55,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Example1.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Example1.cpp(10,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Example1.cpp(10,42): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Example1.cpp(11,69): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Example1.cpp(11,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  Example2.cpp
+  Main.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Main.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Main.cpp(12,50): warning C4267: 'initializing': conversion from 'size_t' to 'char', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Main.cpp(111,26): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Main.cpp(112,40): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Main.cpp(113,24): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Map.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(10,48): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(14,50): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(15,60): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(18,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(22,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(23,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(34,102): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(34,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(35,102): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(35,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(36,102): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Map.cpp(36,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  MathUtils.cpp
+  Player.cpp
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(12,33): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(12,27): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(139,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(143,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(150,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(204,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(207,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(220,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(278,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Player.cpp(278,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  Ship.cpp
+Bullet.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Bullet.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Bullet.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+Enemy.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Enemy.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Enemy.obj : error LNK2005: "class std::list<class Bullet *,class std::allocator<class Bullet *> > enemyBullets" (?enemyBullets@@3V?$list@PAVBullet@@V?$allocator@PAVBullet@@@std@@@std@@A) already defined in Enemy.obj
+Example1.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Example1.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Example1.obj : error LNK2005: "class Example1 * Example1InstantiateAtStart" (?Example1InstantiateAtStart@@3PAVExample1@@A) already defined in Example1.obj
+Example2.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Example2.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Example2.obj : error LNK2005: "class Example2 * Example2InstantiateAtStart" (?Example2InstantiateAtStart@@3PAVExample2@@A) already defined in Example2.obj
+Main.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Main.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Main.obj : error LNK2005: "class std::vector<struct Object *,class std::allocator<struct Object *> > Objects" (?Objects@@3V?$vector@PAUObject@@V?$allocator@PAUObject@@@std@@@std@@A) already defined in Main.obj
+Main.obj : error LNK2005: "class std::vector<struct Object2 *,class std::allocator<struct Object2 *> > Objects2" (?Objects2@@3V?$vector@PAUObject2@@V?$allocator@PAUObject2@@@std@@@std@@A) already defined in Main.obj
+Map.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Map.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+MathUtils.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+MathUtils.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+MathUtils.obj : error LNK2005: "float const IIM_PI" (?IIM_PI@@3MB) already defined in MathUtils.obj
+Player.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Player.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+Player.obj : error LNK2005: "public: static class Player * Player::player" (?player@Player@@2PAV1@A) already defined in Player.obj
+Player.obj : error LNK2005: "class std::list<class Ship *,class std::allocator<class Ship *> > ships" (?ships@@3V?$list@PAVShip@@V?$allocator@PAVShip@@@std@@@std@@A) already defined in Player.obj
+Player.obj : error LNK2005: "class std::list<class Bullet *,class std::allocator<class Bullet *> > bullets" (?bullets@@3V?$list@PAVBullet@@V?$allocator@PAVBullet@@@std@@@std@@A) already defined in Player.obj
+Ship.obj : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Background.obj
+Ship.obj : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Background.obj
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+Ship.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Main.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Map.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+MathUtils.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Player.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Bullet.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Enemy.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Example1.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Example2.obj : error LNK2001: unresolved external symbol __imp___calloc_dbg
+Map.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Player.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Ship.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Enemy.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Example1.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Example2.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Main.obj : error LNK2001: unresolved external symbol __imp___invalid_parameter
+Map.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Player.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Ship.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Enemy.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Example1.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Example2.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+Main.obj : error LNK2001: unresolved external symbol __imp___CrtDbgReport
+D:\IIM\A2\Prog\ProjetGeoProg\ProjectGeometry\ProjectGeometry\ProjectGeometry\Release\ProjectGeometry.exe : fatal error LNK1120: 3 unresolved externals
