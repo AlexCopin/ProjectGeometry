@@ -5,9 +5,9 @@ class Enemy : Object
 {
 public:
 	// Map
-	Map *map;
+	Map* map;
 	// Player
-	Player *player;
+	Player* player;
 	// Variables
 	enum class Type
 	{
@@ -39,5 +39,5 @@ public:
 	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	~Enemy();
-	void Update(sf::RenderWindow *window, float deltaTime);
+	void Update(sf::RenderWindow* window, float deltaTime);
 };

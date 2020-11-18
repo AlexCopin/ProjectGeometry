@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Enemy.h"
-std::vector<Enemy *> enemiesB;
+std::vector<Enemy*> enemiesB;
 Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 {
 	enemiesB = getEnemies();
@@ -48,7 +48,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 	player = Player::player;
 }
-void Bullet::Update(sf::RenderWindow *window, float deltaTime)
+void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);

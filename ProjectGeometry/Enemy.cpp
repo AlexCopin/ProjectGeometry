@@ -5,12 +5,12 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Bullet.h"
-std::vector<Enemy *> enemies;
+std::vector<Enemy*> enemies;
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
 	enemies = getEnemies();
 	enemies.push_back(this);
-	map = (Map *)FindObject("Map");
+	map = (Map*)FindObject("Map");
 	this->id = id;
 	this->type = type;
 	this->position = position;
@@ -80,13 +80,13 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	shape.setRadius(radius);
 	shape.setOrigin(radius, radius);
 	// Player
-	player = (Player *)FindObject("Player");
+	player = (Player*)FindObject("Player");
 }
 Enemy::~Enemy()
 {
 	enemies.erase(std::find(enemies.begin(), enemies.end(), this));
 }
-void Enemy::Update(sf::RenderWindow *window, float deltaTime)
+void Enemy::Update(sf::RenderWindow* window, float deltaTime)
 {
 	switch (type)
 	{
@@ -141,7 +141,7 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		sf::Time elapsed = clock.getElapsedTime();
 		// Position
 		shape.setPosition(shape.getPosition().x + dirNorm.x * isOnTarget * speed * deltaTime,
-						  shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
+			shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
 		// Rotation
 		float rot = shape.getRotation();
 		rot++;
@@ -162,8 +162,6 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 	if (magPlay < radius + player->playerShape.getRadius())
 	{
-		Map::mape->compteurEnemy--;
-		LOG(Map::mape->compteurEnemy);
 		player->lifeP -= damage * 2;
 		health = 0;
 	}
@@ -179,12 +177,6 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		auto bul = new Bullet(damage, dir, Bullet::Type::Enemy);
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
-		enemyBullets.push_back(bul);
-		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)
-		{
-			enemyBullets.erase(std::find(enemyBullets.begin(), enemyBullets.end(), bul));
-			DestroyObject2(bul);
-		}
 		timerBul = cadence;
 	}
 }

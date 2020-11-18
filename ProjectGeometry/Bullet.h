@@ -5,7 +5,7 @@ class Bullet : Object2
 {
 public:
 	// Player
-	Player *player;
+	Player* player;
 	enum class Type
 	{
 		Player,
@@ -18,6 +18,6 @@ public:
 	sf::CircleShape shapeB;
 	sf::Vector2f trajectoire;
 	Bullet(float damage, sf::Vector2f direction, Type type);
-	void Update(sf::RenderWindow *window, float deltaTime);
+	void Update(sf::RenderWindow* window, float deltaTime);
 	void MoveBullet(float speed);
 };

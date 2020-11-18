@@ -3,7 +3,7 @@
 #include "Background.h"
 #include "Enemy.h"
 const float ENTITY_SPAWN_PERIOD = 1.0f;
-const int NUMBER_STARS = 1000;
+const int NUMBER_STARS = 750;
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -17,7 +17,7 @@ std::string getAssetsPath()
     return getAppPath() + "\\Assets\\";
 }
 // Julien: API
-std::vector<Object *> Objects;
+std::vector<Object*> Objects;
 Object::Object()
 {
     Objects.push_back(this);
@@ -26,14 +26,14 @@ Object::~Object()
 {
     Objects.erase(std::find(Objects.begin(), Objects.end(), this));
 }
-Object *FindObject(std::string id)
+Object* FindObject(std::string id)
 {
     for (auto i : Objects)
         if (i->id == id)
             return i;
     return 0;
 }
-std::vector<Object2 *> Objects2;
+std::vector<Object2*> Objects2;
 Object2::Object2()
 {
     Objects2.push_back(this);
@@ -42,31 +42,31 @@ Object2::~Object2()
 {
     Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
 }
-bool SetActive(void *object, bool isActive)
+bool SetActive(void* object, bool isActive)
 {
     if (object)
     {
-        ((Object *)object)->isActive = isActive;
+        ((Object*)object)->isActive = isActive;
         return 1;
     }
     else
         return 0;
 }
-bool DestroyObject(void *object)
+bool DestroyObject(void* object)
 {
     if (object)
     {
-        ((Object *)object)->~Object();
+        ((Object*)object)->~Object();
         return 1;
     }
     else
         return 0;
 }
-bool DestroyObject2(void *object2)
+bool DestroyObject2(void* object2)
 {
     if (object2)
     {
-        ((Object2 *)object2)->~Object2();
+        ((Object2*)object2)->~Object2();
         return 1;
     }
     else
@@ -80,8 +80,8 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
-std::vector<Enemy *> enemiesM;
-std::vector<Enemy *> &getEnemies() { return enemiesM; }
+std::vector<Enemy*> enemiesM;
+std::vector<Enemy*>& getEnemies() { return enemiesM; }
 int main()
 {
     // MouseCursor
@@ -97,16 +97,15 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
-    auto map = new Map("Map", &window);
-    Map::mape = map;
+    auto map = new Map("map", &window);
     auto background = new Background("background", &window);
     //TEST ENTITIES
     float entitySpawnTimer = 0.0f;
-    std::list<Entity *> entities;
-    std::list<Entity *>::iterator entityIt = entities.begin();
+    std::list<Entity*> entities;
+    std::list<Entity*>::iterator entityIt = entities.begin();
     //STARS
-    std::list<Star *> stars;
-    std::list<Star *>::iterator starsIt = stars.begin();
+    std::list<Star*> stars;
+    std::list<Star*>::iterator starsIt = stars.begin();
     for (int i = 0; i < NUMBER_STARS; i++)
     {
         float randomX = rand() * window.getSize().x / (float)RAND_MAX;
@@ -114,7 +113,7 @@ int main()
         float colorAlpha = 1 + (rand() % 256);
         sf::Color color(255, 255, 255, colorAlpha);
         float sizeStar = 1 + (rand() % 3);
-        Star *star = new Star(randomX, randomY, color, sizeStar);
+        Star* star = new Star(randomX, randomY, color, sizeStar);
         stars.push_back(star);
     }
     while (window.isOpen())
@@ -139,7 +138,7 @@ int main()
             float randomX = rand() * window.getSize().x / (float)RAND_MAX;
             float randomY = rand() * window.getSize().y / (float)RAND_MAX;
             float randomAngle = rand() * 360.0f / (float)RAND_MAX;
-            Entity *pNewEntity = background->CreateEntity(randomX, randomY, randomAngle);
+            Entity* pNewEntity = background->CreateEntity(randomX, randomY, randomAngle);
             entities.push_back(pNewEntity);
         }
         entityIt = entities.begin();
@@ -171,10 +170,6 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-
-        map->SpawnEnemies(&window, deltaTime);
-
-
         window.draw(aimShape);
         entityIt = entities.begin();
         while (entityIt != entities.end())

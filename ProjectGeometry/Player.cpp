@@ -1,8 +1,8 @@
 #include "Player.h"
 
-Player *Player::player = nullptr;
-std::list<Ship *> ships;
-std::list<Bullet *> bullets;
+Player* Player::player = nullptr;
+std::list<Ship*> ships;
+std::list<Bullet*> bullets;
 Player::Player(std::string id, int life, int posX, int posY)
 {
 	this->id = "Player";
@@ -25,19 +25,10 @@ Player::Player(std::string id, int life, int posX, int posY)
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 	typeB = TYPEBULLET::BASE;
-
-	buffer_gun.loadFromFile(getAssetsPath() + "Sounds\\gun1.ogg");
-	buffer_shotgun.loadFromFile(getAssetsPath() + "Sounds\\pompe2.ogg");
-	buffer_rifle1.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette1.ogg");
-	buffer_rifle2.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette2.ogg");
-	buffer_rifle3.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette3.ogg");
-	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillete4.ogg");
-	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
-	
 	player = this;
 }
 
-void Player::Update(sf::RenderWindow *window, float deltaTime)
+void Player::Update(sf::RenderWindow* window, float deltaTime)
 {
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -92,7 +83,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	window->draw(shipsShape);
 }
 
-void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
+void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime)
 {
 
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A)
@@ -101,7 +92,7 @@ void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 	}
 }
 
-void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
+void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 {
 	//BULLET ALEX
 	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
@@ -113,18 +104,16 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 
 			if (typeB == TYPEBULLET::SHOTGUN)
 			{
-				sound.setBuffer(buffer_shotgun);
-				sound.play();
 
-				Bullet *bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
+				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
-				Bullet *bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(20), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(20), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet2->shapeB.setPosition(playerCenter);
-				Bullet *bullet3 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-20), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet3 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-20), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet3->shapeB.setPosition(playerCenter);
-				Bullet *bullet4 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(160), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet4 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(160), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet4->shapeB.setPosition(playerCenter);
-				Bullet *bullet5 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-160), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet5 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-160), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet5->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
 				bullets.push_back(bullet2);
@@ -135,23 +124,6 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 			else if (typeB == TYPEBULLET::MITRAILLETTE)
 			{
-				int i = rand() % 4 + 1;
-				if (i == 1) {
-					sound.setBuffer(buffer_rifle1);
-					sound.play();
-				}
-				else if (i == 2) {
-					sound.setBuffer(buffer_rifle2);
-					sound.play();
-				}
-				else if (i == 3) {
-					sound.setBuffer(buffer_rifle3);
-					sound.play();
-				}
-				else if (i == 4) {
-					sound.setBuffer(buffer_rifle4);
-					sound.play();
-				}
 				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
@@ -160,11 +132,11 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			else if (typeB == TYPEBULLET::CRAZY)
 			{
 				float angle = 1 + (rand() % 360);
-				Bullet *bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
 				float angle2 = 1 + (rand() % 360);
-				Bullet *bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle2), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle2), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet2->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet2);
 				shootTimer = 0;
@@ -172,13 +144,13 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			else if (typeB == TYPEBULLET::BONUS)
 			{
 				float angle = 1 + (rand() % 360);
-				Bullet *bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)), Bullet::Type::Player);
+				Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
 			}
 			else
 			{
-				Bullet *bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
+				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
 				shootTimer = 0;
@@ -191,25 +163,25 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 	}
 }
 
-void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
+void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 {
 	//BULLET ALEX
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimerShip >= shootTimerShipValue) //Shoot
 		{
-			std::list<Ship *>::iterator ite = ships.begin();
+			std::list<Ship*>::iterator ite = ships.begin();
 			while (ite != ships.end())
 			{
 				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
 				if (typeB == TYPEBULLET::SHOTGUN)
 				{
 
-					Bullet *bullet = new Bullet(damageShip, trajectoireBullet, Bullet::Type::Player);
+					Bullet* bullet = new Bullet(damageShip, trajectoireBullet, Bullet::Type::Player);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
-					Bullet *bullet4 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(160), trajectoireBullet), Bullet::Type::Player);
+					Bullet* bullet4 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(160), trajectoireBullet), Bullet::Type::Player);
 					bullet4->shapeB.setPosition((*ite)->shipShape.getPosition());
-					Bullet *bullet5 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(-160), trajectoireBullet), Bullet::Type::Player);
+					Bullet* bullet5 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(-160), trajectoireBullet), Bullet::Type::Player);
 					bullet5->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet4->shapeB.setRadius(bullet4->shapeB.getRadius() / 2);
@@ -225,17 +197,23 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 				else if (typeB == TYPEBULLET::CRAZY)
 				{
 					float angle = 1 + (rand() % 360);
-					Bullet *bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet), Bullet::Type::Player);
+					Bullet* bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet), Bullet::Type::Player);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+					float angle2 = 1 + (rand() % 360);
+					Bullet* bullet2 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle2), trajectoireBullet), Bullet::Type::Player);
+					bullet2->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullet2->shapeB.setRadius(bullet2->shapeB.getRadius() / 2);
 					bullet->shapeB.setFillColor(sf::Color::Cyan);
+					bullet2->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
+					bullets.push_back(bullet2);
 					shootTimerShip = 0;
 				}
 				else if (typeB == TYPEBULLET::BONUS)
 				{
 					float angle = 1 + (rand() % 360);
-					Bullet *bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet), Bullet::Type::Player);
+					Bullet* bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet), Bullet::Type::Player);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet->shapeB.setFillColor(sf::Color::Cyan);
@@ -243,7 +221,7 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 				}
 				else
 				{
-					Bullet *bullet = new Bullet(damageShip, trajectoireBullet, Bullet::Type::Player);
+					Bullet* bullet = new Bullet(damageShip, trajectoireBullet, Bullet::Type::Player);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet->shapeB.setFillColor(sf::Color::Cyan);
@@ -270,7 +248,7 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 {
 	actualSpeed = speed;
-	sf::Vector2f direction{x, y};
+	sf::Vector2f direction{ x, y };
 	Movement += direction * (float)1000 * deltaTime;
 
 	float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2));
@@ -281,7 +259,7 @@ void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 	return;
 }
 
-void Player::RotatePlayer(sf::RenderWindow *window)
+void Player::RotatePlayer(sf::RenderWindow* window)
 {
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - playerShape.getPosition();
@@ -301,7 +279,7 @@ void Player::MovementShipsShape(float deltaTime)
 	shipsShape.setRotation(shipsShapeAngle);
 
 	sf::Transform matrix = shipsShape.getTransform();
-	std::list<Ship *>::iterator it = ships.begin();
+	std::list<Ship*>::iterator it = ships.begin();
 	int i = 0;
 	while (it != ships.end())
 	{
@@ -311,14 +289,14 @@ void Player::MovementShipsShape(float deltaTime)
 		if (distance > 0.1f)
 		{
 			direction2 = direction2 / distance;
-			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 3) * distance * deltaTime;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 2) * distance * deltaTime;
 		}
 		it++;
 		i++;
 	}
 }
 
-void Player::GetShip(Ship *ship)
+void Player::GetShip(Ship* ship)
 {
 	lifeP++;
 	//int shipPositions = ships.size() > 3 ? ships.size() : 3;
@@ -354,7 +332,7 @@ void Player::PlayerDeath()
 
 void Player::DestroyBullet()
 {
-	std::list<Bullet *>::iterator ite = bullets.begin();
+	std::list<Bullet*>::iterator ite = bullets.begin();
 	while (ite != bullets.end())
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
@@ -369,7 +347,7 @@ void Player::DestroyBullet()
 	}
 }
 
-sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
+sf::Vector2f Player::GetTraj(sf::RenderWindow* window, sf::Vector2f pos)
 {
 	sf::Vector2i mousePosInt = mouse.getPosition(*window);
 	sf::Vector2f mousePos(mousePosInt);
@@ -389,10 +367,10 @@ void Player::ChangeWeapon()
 	typeB = (TYPEBULLET)newType;
 }
 
-void Player::GameOver(sf::RenderWindow *window)
+void Player::GameOver(sf::RenderWindow* window)
 {
 }
 
-void Player::Health(sf::RenderWindow *window)
+void Player::Health(sf::RenderWindow* window)
 {
 }
