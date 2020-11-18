@@ -155,9 +155,6 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
-
-	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 2, posPlayer.y + playerShape.getRadius() / 2);
-
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimerShip >= shootTimerShipValue) //Shoot
@@ -166,14 +163,70 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 			while (ite != ships.end())
 			{
 				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
-				//sf::Vector2f trajectoireBullet = GetTraj(window, playerCenter);
+				if (typeB == TYPEBULLET::SQUARE)
+				{
+
+					Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+					Bullet* bullet4 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(160), trajectoireBullet));
+					bullet4->shapeB.setPosition((*ite)->shipShape.getPosition());
+					Bullet* bullet5 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-160), trajectoireBullet));
+					bullet5->shapeB.setPosition((*ite)->shipShape.getPosition());
+					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullet4->shapeB.setRadius(bullet4->shapeB.getRadius() / 2);
+					bullet5->shapeB.setRadius(bullet5->shapeB.getRadius() / 2);
+					bullets.push_back(bullet);
+					bullets.push_back(bullet4);
+					bullets.push_back(bullet5);
+					shootTimerShip = 0;
+				}
+				else if (typeB == TYPEBULLET::HEXAGONE)
+				{
+					float angle = 1 + (rand() % 360);
+					Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
+					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+					float angle2 = 1 + (rand() % 360);
+					Bullet* bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle2), trajectoireBullet));
+					bullet2->shapeB.setPosition((*ite)->shipShape.getPosition());
+					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullet2->shapeB.setRadius(bullet2->shapeB.getRadius() / 2);
+					bullets.push_back(bullet);
+					bullets.push_back(bullet2);
+					shootTimerShip = 0;
+				}
+				else if (typeB == TYPEBULLET::BONUS)
+				{
+					float angle = 1 + (rand() % 360);
+					Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
+					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullets.push_back(bullet);
+				}
+				else
+				{
+					Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
+					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullets.push_back(bullet);
+					shootTimerShip = 0;
+				}
+
+				ite++;
+
+
+				/*
 				Bullet *bullet = new Bullet(damageP, trajectoireBullet);
 				bullet->shapeB.setFillColor(sf::Color::Cyan);
 				bullets.push_back(bullet);
-				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
-				ite++;
+				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());*/
 			}
-			shootTimerShip = 0;
+
+
+			
+
+
+
+
 		}
 	}
 	if (shootTimerShip < shootTimerShipValue)
