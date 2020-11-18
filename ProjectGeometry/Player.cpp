@@ -1,9 +1,8 @@
 #include "Player.h"
 
-
-Player* Player::player = nullptr;
-std::list<Ship*> ships;
-std::list<Bullet*> bullets;
+Player *Player::player = nullptr;
+std::list<Ship *> ships;
+std::list<Bullet *> bullets;
 Player::Player(std::string id, int life, int posX, int posY)
 {
 	this->id = "Player";
@@ -29,48 +28,48 @@ Player::Player(std::string id, int life, int posX, int posY)
 	player = this;
 }
 
-
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		// left key is pressed: move our character
-		MovePlayer(-1,0, speedP, deltaTime);
+		MovePlayer(-1, 0, speedP, deltaTime);
 		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		// left key is pressed: move our character
-		MovePlayer(1,0, speedP, deltaTime);
+		MovePlayer(1, 0, speedP, deltaTime);
 		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		// left key is pressed: move our character
-		MovePlayer(0,-1, speedP, deltaTime);
+		MovePlayer(0, -1, speedP, deltaTime);
 		isOneKeyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		// left key is pressed: move our character
-		MovePlayer(0,1, speedP, deltaTime);
+		MovePlayer(0, 1, speedP, deltaTime);
 		isOneKeyPressed = true;
 	}
-	
-	if (!isOneKeyPressed) {
-		float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2)) ;
-		if (magnitude > 0) {
+
+	if (!isOneKeyPressed)
+	{
+		float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2));
+		if (magnitude > 0)
+		{
 
 			float magnitude2 = magnitude - 600 * deltaTime;
-			if (magnitude2 < 0) {
+			if (magnitude2 < 0)
+			{
 				magnitude2 = 0;
 			}
-			
+
 			Movement = Movement / magnitude * magnitude2;
-			
 		}
-		
 	}
 	playerShape.setPosition(playerShape.getPosition() + Movement * deltaTime);
 
@@ -84,10 +83,9 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	while (it != ships.end()) {
 		window->draw((*it)->shipShape);
 	}*/
-	
 }
 
-void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime)
+void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 {
 
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A)
@@ -96,16 +94,16 @@ void Player::OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime)
 	}
 }
 
-void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
+void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
-	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4 , posPlayer.y + playerShape.getRadius() /4);
+	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
-			Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter));
+			Bullet *bullet = new Bullet(damageP, GetTraj(window, playerCenter));
 			bullet->shapeB.setPosition(playerCenter);
 			bullets.push_back(bullet);
 			shootTimer = 0;
@@ -118,8 +116,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 	}
 }
 
-
-void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
+void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
 
@@ -129,12 +126,12 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 	{
 		if (shootTimerShip >= shootTimerShipValue) //Shoot
 		{
-			std::list<Ship*>::iterator ite = ships.begin();
+			std::list<Ship *>::iterator ite = ships.begin();
 			while (ite != ships.end())
 			{
 				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
 				//sf::Vector2f trajectoireBullet = GetTraj(window, playerCenter);
-				Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+				Bullet *bullet = new Bullet(damageP, trajectoireBullet);
 				bullet->shapeB.setFillColor(sf::Color::Cyan);
 				bullets.push_back(bullet);
 				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
@@ -151,11 +148,12 @@ void Player::ShipShootBullet(sf::RenderWindow* window, float deltaTime)
 void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 {
 	actualSpeed = speed;
-	sf::Vector2f direction{ x,y };
+	sf::Vector2f direction{x, y};
 	Movement += direction * (float)1000 * deltaTime;
 
 	float magnitude = sqrt(powf(Movement.x, 2) + powf(Movement.y, 2));
-	if (magnitude > speed) {
+	if (magnitude > speed)
+	{
 		Movement = Movement / magnitude * speed;
 	}
 	return;
@@ -168,7 +166,7 @@ void Player::RotatePlayer(sf::RenderWindow *window)
 float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
-	return timeInSeconds;	
+	return timeInSeconds;
 }
 
 void Player::MovementShipsShape(float deltaTime)
@@ -183,12 +181,13 @@ void Player::MovementShipsShape(float deltaTime)
 	int i = 0;
 	while (it != ships.end())
 	{
-		
+
 		sf::Vector2f direction2 = matrix.transformPoint(shipsShape.getPoint(i)) - (*it)->posShip;
 		float distance = sqrt(powf(direction2.x, 2) + powf(direction2.y, 2));
-		if (distance > 0.1f) {
+		if (distance > 0.1f)
+		{
 			direction2 = direction2 / distance;
-			(*it)->posShip = (*it)->posShip + direction2 * (float)(i+2) *distance * deltaTime;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 2) * distance * deltaTime;
 		}
 		it++;
 		i++;
@@ -223,12 +222,12 @@ void Player::PlayerDeath()
 }
 void Player::DestroyBullet()
 {
-	std::list<Bullet*>::iterator ite = bullets.begin();
+	std::list<Bullet *>::iterator ite = bullets.begin();
 	while (ite != bullets.end())
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
-				DestroyObject(*ite);
+			DestroyObject(*ite);
 			ite = bullets.erase(ite);
 		}
 		else
@@ -238,7 +237,7 @@ void Player::DestroyBullet()
 	}
 }
 
-sf::Vector2f Player::GetTraj(sf::RenderWindow* window, sf::Vector2f pos)
+sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
 {
 	sf::Vector2i mousePosInt = mouse.getPosition(*window);
 	sf::Vector2f mousePos(mousePosInt);
@@ -248,12 +247,11 @@ sf::Vector2f Player::GetTraj(sf::RenderWindow* window, sf::Vector2f pos)
 	return trajNormalized;
 }
 
-
 void Player::ChangeWeapon()
 {
 	LOG("Change weapon");
 	int newType = (int)typeB + 1;
-	if(newType == (int)TYPEBULLET::SIZE)
+	if (newType == (int)TYPEBULLET::SIZE)
 	{
 		newType = 0;
 	}

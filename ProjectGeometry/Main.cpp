@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Map.h";
 #include "Background.h"
+#include "Enemy.h"
 
 const float ENTITY_SPAWN_PERIOD = 0.3f;
 const int NUMBER_STARS = 1000;
@@ -84,11 +85,11 @@ int main()
 
     //TEST ENTITIES
     float entitySpawnTimer = 0.0f;
-    std::list<Entity*> entities;
-    std::list<Entity*>::iterator entityIt = entities.begin();
+    std::list<Entity *> entities;
+    std::list<Entity *>::iterator entityIt = entities.begin();
     //STARS
-    std::list<Star*> stars;
-    std::list<Star*>::iterator starsIt = stars.begin();
+    std::list<Star *> stars;
+    std::list<Star *>::iterator starsIt = stars.begin();
     for (int i = 0; i < NUMBER_STARS; i++)
     {
         float randomX = rand() * window.getSize().x / (float)RAND_MAX;
@@ -97,10 +98,9 @@ int main()
         float colorAlpha = 1 + (rand() % 256);
         sf::Color color(255, 255, 255, colorAlpha);
         float sizeStar = 1 + (rand() % 3);
-        Star* star = new Star(randomX, randomY, color, sizeStar);
+        Star *star = new Star(randomX, randomY, color, sizeStar);
         stars.push_back(star);
     }
-
 
     while (window.isOpen())
     {
@@ -116,33 +116,35 @@ int main()
                 if (i)
                     if (i->isActive)
                         i->OnEvent(&window, event, deltaTime);
-
         }
 
         // HOW TO MANAGE LIFE OF GAME ENTITIES
         entitySpawnTimer += deltaTime;
-        if (entitySpawnTimer > ENTITY_SPAWN_PERIOD) {
+        if (entitySpawnTimer > ENTITY_SPAWN_PERIOD)
+        {
             entitySpawnTimer = 0.0f;
             float randomX = rand() * window.getSize().x / (float)RAND_MAX;
             float randomY = rand() * window.getSize().y / (float)RAND_MAX;
             float randomAngle = rand() * 360.0f / (float)RAND_MAX;
-            Entity* pNewEntity = background->CreateEntity(randomX, randomY, randomAngle);
+            Entity *pNewEntity = background->CreateEntity(randomX, randomY, randomAngle);
             entities.push_back(pNewEntity);
         }
         entityIt = entities.begin();
-        while (entityIt != entities.end()) {
+        while (entityIt != entities.end())
+        {
             background->UpdateB(*entityIt, deltaTime);
-            if (!background->IsAlive(*entityIt)) {
+            if (!background->IsAlive(*entityIt))
+            {
                 background->Destroy(*entityIt);
                 entityIt = entities.erase(entityIt);
             }
-            else {
+            else
+            {
                 entityIt++;
             }
         }
 
         //STARS
-        
 
         window.clear();
         //MouseCursor
@@ -154,18 +156,18 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-        
-	
-       Player::player->ShootBullet(&window, deltaTime);
-       Player::player->ShipShootBullet(&window, deltaTime);
+
+        Player::player->ShootBullet(&window, deltaTime);
+        Player::player->ShipShootBullet(&window, deltaTime);
         window.draw(aimShape);
         entityIt = entities.begin();
-        while (entityIt != entities.end()) {
+        while (entityIt != entities.end())
+        {
             background->DrawEntity(*entityIt, window);
             entityIt++;
         }
         starsIt = stars.begin();
-        while(starsIt != stars.end())
+        while (starsIt != stars.end())
         {
             (*starsIt)->DrawStars(&window);
             starsIt++;
@@ -173,7 +175,8 @@ int main()
         window.display();
     }
     entityIt = entities.begin();
-    while (entityIt != entities.end()) {
+    while (entityIt != entities.end())
+    {
         background->Destroy(*entityIt);
         entityIt++;
     }
