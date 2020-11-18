@@ -80,6 +80,8 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
+std::vector<Enemy *> enemiesM;
+std::vector<Enemy *> &getEnemies() { return enemiesM; }
 int main()
 {
     // MouseCursor

@@ -37,3 +37,5 @@ bool DestroyObject(void *object);
 bool DestroyObject2(void *object2);
 bool MouseButtonDown(bool boule);
 bool MouseButtonUp(bool boule);
+class Enemy;
+std::vector<Enemy *> &getEnemies();

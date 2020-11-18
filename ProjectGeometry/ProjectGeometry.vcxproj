@@ -176,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Object Include="Debug\Bullet.obj" />
-    <Object Include="Debug\Enemy.obj" />
     <Object Include="Debug\Example1.obj" />
     <Object Include="Debug\Example2.obj" />
     <Object Include="Debug\Main.obj" />

@@ -38,5 +38,6 @@ public:
 	float timerBul = cadence;
 	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
+	~Enemy();
 	void Update(sf::RenderWindow *window, float deltaTime);
 };

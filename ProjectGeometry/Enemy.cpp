@@ -5,9 +5,11 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Bullet.h"
-std::list<Bullet *> enemyBullets;
+std::vector<Enemy *> enemies;
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
+	enemies = getEnemies();
+	enemies.push_back(this);
 	map = (Map *)FindObject("Map");
 	this->id = id;
 	this->type = type;
@@ -79,6 +81,10 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	shape.setOrigin(radius, radius);
 	// Player
 	player = (Player *)FindObject("Player");
+}
+Enemy::~Enemy()
+{
+	enemies.erase(std::find(enemies.begin(), enemies.end(), this));
 }
 void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 {
@@ -157,27 +163,20 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	if (magPlay < radius + player->playerShape.getRadius())
 	{
 		player->lifeP -= damage * 2;
-		delete this;
+		health = 0;
 	}
 	// Health
 	if (health <= 0)
-		delete this;
+		DestroyObject(this);
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 {
 	timerBul -= deltaTime;
 	if (timerBul <= 0)
 	{
-		auto bul = new Bullet(10, dir);
+		auto bul = new Bullet(damage, dir, Bullet::Type::Enemy);
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
-		enemyBullets.push_back(bul);
-		// Destroy
-		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)
-		{
-			enemyBullets.erase(std::find(enemyBullets.begin(), enemyBullets.end(), bul));
-			DestroyObject2(bul);
-		}
 		timerBul = cadence;
 	}
 }
