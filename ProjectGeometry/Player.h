@@ -14,7 +14,7 @@ public:
 		BONUS,
 		SIZE
 	} typeB;
-	int lifeP = 0;
+	int lifeP = 1;
 	float Movx = 0;
 	float Movy = 0;
 	sf::Vector2f Movement = sf::Vector2f(0,0);

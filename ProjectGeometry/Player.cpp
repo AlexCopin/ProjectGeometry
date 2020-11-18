@@ -190,6 +190,7 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 		shootTimerShip += deltaTime;
 	}
 }
+
 void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 {
 	actualSpeed = speed;
@@ -203,11 +204,13 @@ void Player::MovePlayer(float x, float y, float speed, float deltaTime)
 	}
 	return;
 }
+
 void Player::RotatePlayer(sf::RenderWindow *window)
 {
 	sf::Vector2i cursor = sf::Mouse::getPosition((*window));
 	sf::Vector2f direction = sf::Vector2f(cursor.x, cursor.y) - playerShape.getPosition();
 }
+
 float Player::GetTime()
 {
 	float timeInSeconds = clock() / (float)CLOCKS_PER_SEC;
@@ -241,6 +244,7 @@ void Player::MovementShipsShape(float deltaTime)
 
 void Player::GetShip(Ship *ship)
 {
+	lifeP++;
 	//int shipPositions = ships.size() > 3 ? ships.size() : 3;
 	sf::Transform matrix = shipsShape.getTransform();
 	shipsShape.setPointCount(shipsShape.getPointCount() + 1);
@@ -254,17 +258,23 @@ void Player::TakeDamage(int damages)
 
 	for (int i = 0; i < damages; i++)
 	{
-		delete ships.back();
-		ships.pop_back();
+		if (ships.size() > 0) {
+			delete ships.back();
+			ships.pop_back();
+		}
 	}
+
+	if (lifeP <= 0) {
+		PlayerDeath();
+	}
+	
 }
+
 void Player::PlayerDeath()
-{
-	if (lifeP <= 0)
-	{
-		DestroyObject(this);
-	}
+{		
+	DestroyObject(this);
 }
+
 void Player::DestroyBullet()
 {
 	std::list<Bullet *>::iterator ite = bullets.begin();
@@ -289,8 +299,6 @@ sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
 	sf::Vector2f trajectoireBullet = (mousePos - pos);
 	return  Normalized(trajectoireBullet);
 }
-
-
 
 void Player::ChangeWeapon()
 {
