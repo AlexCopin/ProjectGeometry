@@ -21,6 +21,8 @@ public:
 	float speedP = 400;
 	float actualSpeed = 0;
 	sf::Mouse mouse;
+	float bonusDuration = 0.0f;
+	float bonusDurationValue = 1.5f;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
 	//ALEXBULLET
@@ -48,4 +50,5 @@ public:
 	sf::Vector2f GetTraj(sf::RenderWindow* window, sf::Vector2f pos);
 	void Update(sf::RenderWindow *window, float deltaTime);
 	void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
+	void GameOver(sf::RenderWindow* window);
 };

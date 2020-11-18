@@ -78,12 +78,7 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	MovementShipsShape(deltaTime);
 	//ChangeWeapon();
 	window->draw(playerShape);
-	window->draw(shipsShape);
-	/*std::list<Ship*>::iterator it = ships.begin();
-	while (it != ships.end()) {
-		window->draw((*it)->shipShape);
-	}*/
-}
+	window->draw(shipsShape);}
 
 void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 {
@@ -133,11 +128,7 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 				Bullet* bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle2), GetTraj(window, playerCenter)));
 				bullet2->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet2);
-				/*float angle3 = 1 + (rand() % 360);
-				Bullet* bullet3 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle3), GetTraj(window, playerCenter)));
-				bullet3->shapeB.setPosition(playerCenter);
-				bullets.push_back(bullet3);*/
-				//shootTimer = 0;
+				shootTimer = 0;
 			}else if(typeB == TYPEBULLET::BONUS)
 			{
 				float angle = 1 + (rand() % 360);
@@ -304,9 +295,15 @@ void Player::ChangeWeapon()
 {
 	LOG("Change weapon");
 	int newType = (int)typeB + 1;
-	if (newType == (int)TYPEBULLET::SIZE)
+
+	if(newType == (int)TYPEBULLET::SIZE || (newType == (int)TYPEBULLET::BONUS && bonusDuration <= 0))
 	{
 		newType = 0;
 	}
 	typeB = (TYPEBULLET)newType;
+}
+
+void Player::GameOver(sf::RenderWindow* window)
+{
+
 }
