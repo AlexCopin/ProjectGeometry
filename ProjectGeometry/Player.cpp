@@ -152,7 +152,7 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 					sound.setBuffer(buffer_rifle4);
 					sound.play();
 				}
-				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter));
+				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
 				shootTimer = 0;

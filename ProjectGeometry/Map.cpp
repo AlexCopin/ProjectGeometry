@@ -143,6 +143,3 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Octagon);
 	}
 }
-
-
-void 
