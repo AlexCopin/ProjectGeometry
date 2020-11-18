@@ -8,9 +8,10 @@ class Player : Object
 public:
 	enum class TYPEBULLET
 	{
-		TRIANGLE,
-		SQUARE,
-		HEXAGONE,
+		BASE,
+		SHOTGUN,
+		MITRAILLETTE,
+		CRAZY,
 		BONUS,
 		SIZE
 	} typeB;
@@ -26,7 +27,8 @@ public:
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
 	//ALEXBULLET
-	int damageP = 2;
+	float damageP = 2.0f;
+	float damageShip = 0.5f;
 	std::list<sf::Vector2f> trajectoriesBullets;
 	float shootTimer = 0.5f;
 	float shootTimerValue = 0.2f;
@@ -51,4 +53,5 @@ public:
 	void Update(sf::RenderWindow *window, float deltaTime);
 	void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
 	void GameOver(sf::RenderWindow* window);
+	void Health(sf::RenderWindow* window);
 };

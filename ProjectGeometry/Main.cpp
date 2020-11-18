@@ -3,7 +3,7 @@
 #include "Background.h"
 #include "Enemy.h"
 const float ENTITY_SPAWN_PERIOD = 1.0f;
-const int NUMBER_STARS = 500;
+const int NUMBER_STARS = 750;
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -168,8 +168,6 @@ int main()
             if (i)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-        Player::player->ShootBullet(&window, deltaTime);
-        Player::player->ShipShootBullet(&window, deltaTime);
         window.draw(aimShape);
         entityIt = entities.begin();
         while (entityIt != entities.end())

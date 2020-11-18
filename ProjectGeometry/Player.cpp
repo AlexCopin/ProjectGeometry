@@ -24,7 +24,7 @@ Player::Player(std::string id, int life, int posX, int posY)
 	shipsShape.setOutlineColor(sf::Color::Red);
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
-	typeB = TYPEBULLET::TRIANGLE;
+	typeB = TYPEBULLET::BASE;
 	player = this;
 }
 
@@ -74,6 +74,8 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	playerShape.setPosition(playerShape.getPosition() + Movement * deltaTime);
 
 	DestroyBullet();
+	ShootBullet(window, deltaTime);
+	ShipShootBullet(window, deltaTime);
 	posPlayer = playerShape.getPosition();
 	MovementShipsShape(deltaTime);
 	//ChangeWeapon();
@@ -99,7 +101,7 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
 			
-			if(typeB == TYPEBULLET::SQUARE)
+			if(typeB == TYPEBULLET::SHOTGUN)
 			{
 
 				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter)); 
@@ -118,7 +120,15 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 				bullets.push_back(bullet4);
 				bullets.push_back(bullet5);
 				shootTimer = 0;
-			}else if(typeB == TYPEBULLET::HEXAGONE)
+			}
+			else if(typeB == TYPEBULLET::MITRAILLETTE)
+			{
+				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter));
+				bullet->shapeB.setPosition(playerCenter);
+				bullets.push_back(bullet);
+				shootTimer = 0;
+			}
+			else if(typeB == TYPEBULLET::CRAZY)
 			{
 				float angle = 1 + (rand() % 360);
 				Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)));
@@ -163,33 +173,38 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 			while (ite != ships.end())
 			{
 				sf::Vector2f trajectoireBullet = GetTraj(window, (*ite)->shipShape.getPosition());
-				if (typeB == TYPEBULLET::SQUARE)
+				if (typeB == TYPEBULLET::SHOTGUN)
 				{
 
-					Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+					Bullet* bullet = new Bullet(damageShip, trajectoireBullet);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
-					Bullet* bullet4 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(160), trajectoireBullet));
+					Bullet* bullet4 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(160), trajectoireBullet));
 					bullet4->shapeB.setPosition((*ite)->shipShape.getPosition());
-					Bullet* bullet5 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(-160), trajectoireBullet));
+					Bullet* bullet5 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(-160), trajectoireBullet));
 					bullet5->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet4->shapeB.setRadius(bullet4->shapeB.getRadius() / 2);
 					bullet5->shapeB.setRadius(bullet5->shapeB.getRadius() / 2);
+					bullet->shapeB.setFillColor(sf::Color::Cyan);
+					bullet4->shapeB.setFillColor(sf::Color::Cyan);
+					bullet5->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
 					bullets.push_back(bullet4);
 					bullets.push_back(bullet5);
 					shootTimerShip = 0;
 				}
-				else if (typeB == TYPEBULLET::HEXAGONE)
+				else if (typeB == TYPEBULLET::CRAZY)
 				{
 					float angle = 1 + (rand() % 360);
-					Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
+					Bullet* bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 					float angle2 = 1 + (rand() % 360);
-					Bullet* bullet2 = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle2), trajectoireBullet));
+					Bullet* bullet2 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle2), trajectoireBullet));
 					bullet2->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet2->shapeB.setRadius(bullet2->shapeB.getRadius() / 2);
+					bullet->shapeB.setFillColor(sf::Color::Cyan);
+					bullet2->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
 					bullets.push_back(bullet2);
 					shootTimerShip = 0;
@@ -197,16 +212,18 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 				else if (typeB == TYPEBULLET::BONUS)
 				{
 					float angle = 1 + (rand() % 360);
-					Bullet* bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
+					Bullet* bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullet->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
 				}
 				else
 				{
-					Bullet* bullet = new Bullet(damageP, trajectoireBullet);
+					Bullet* bullet = new Bullet(damageShip, trajectoireBullet);
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
+					bullet->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
 					shootTimerShip = 0;
 				}
@@ -326,7 +343,7 @@ void Player::DestroyBullet()
 	{
 		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
 		{
-			DestroyObject(*ite);
+			DestroyObject2(*ite);
 			ite = bullets.erase(ite);
 		}
 		else
@@ -357,6 +374,11 @@ void Player::ChangeWeapon()
 }
 
 void Player::GameOver(sf::RenderWindow* window)
+{
+
+}
+
+void Player::Health(sf::RenderWindow* window)
 {
 
 }

@@ -1,17 +1,17 @@
 #include "Bullet.h"
 
-Bullet::Bullet(int damage, sf::Vector2f direction)
+Bullet::Bullet(float damage, sf::Vector2f direction)
 {
 	sf::Color color;
 	std::size_t count = 0;
-	if (Player::player->typeB == Player::TYPEBULLET::TRIANGLE)
+	if (Player::player->typeB == Player::TYPEBULLET::BASE)
 	{
 		count = 3;
 		color = sf::Color::Red;
 		Player::player->shootTimerValue = 0.5f;
 		Player::player->shootTimerShipValue = 0.5f;
 	}
-	else if (Player::player->typeB == Player::TYPEBULLET::SQUARE)
+	else if (Player::player->typeB == Player::TYPEBULLET::SHOTGUN)
 	{
 
 		Player::player->shootTimerValue = 1.0f;
@@ -19,11 +19,15 @@ Bullet::Bullet(int damage, sf::Vector2f direction)
 		color = sf::Color::Magenta;
 		count = 4;
 	}
-	/*else if (Player::player->typeB == Player::TYPEBULLET::PENTAGONE)
+	else if (Player::player->typeB == Player::TYPEBULLET::MITRAILLETTE)
 	{
+		Player::player->shootTimerValue = 0.1f;
+		Player::player->shootTimerShipValue = 0.3f;
+		color = sf::Color::Blue;
+		scaleB = 0.5f;
 		count = 5;
-	}*/
-	else if (Player::player->typeB == Player::TYPEBULLET::HEXAGONE)
+	}
+	else if (Player::player->typeB == Player::TYPEBULLET::CRAZY)
 	{
 
 		Player::player->shootTimerValue = 0.2f;
