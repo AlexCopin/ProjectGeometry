@@ -198,15 +198,9 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 					float angle = 1 + (rand() % 360);
 					Bullet* bullet = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle), trajectoireBullet));
 					bullet->shapeB.setPosition((*ite)->shipShape.getPosition());
-					float angle2 = 1 + (rand() % 360);
-					Bullet* bullet2 = new Bullet(damageShip, VectorNewAngle(ConvertRadToDeg(angle2), trajectoireBullet));
-					bullet2->shapeB.setPosition((*ite)->shipShape.getPosition());
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
-					bullet2->shapeB.setRadius(bullet2->shapeB.getRadius() / 2);
 					bullet->shapeB.setFillColor(sf::Color::Cyan);
-					bullet2->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
-					bullets.push_back(bullet2);
 					shootTimerShip = 0;
 				}
 				else if (typeB == TYPEBULLET::BONUS)
