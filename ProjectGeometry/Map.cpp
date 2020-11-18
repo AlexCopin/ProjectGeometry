@@ -40,7 +40,7 @@ void Map::Update(sf::RenderWindow *window, float deltaTime)
 {
 
 	CollisionPlayer(deltaTime);
-
+	
 	window->draw(limitUP);
 	window->draw(limitDOWN);
 	window->draw(limitRIGHT);
@@ -67,3 +67,82 @@ void Map::CollisionPlayer(float deltaTime)
 		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(1000 * deltaTime, 0));
 	}
 }
+
+
+void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
+{
+	bool isValid = false;
+	if(spawnEnemy01 >= spawnEnemy01Value)
+	{
+		float randomX;
+		float randomY;
+		while(!isValid)
+		{
+			randomX = rand() * window->getSize().x / (float)RAND_MAX;
+			randomY = rand() * window->getSize().y / (float)RAND_MAX;
+			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			isValid = distance < 400;
+		}
+		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Triangle);
+		spawnEnemy01 = 0;
+	}
+	if (spawnEnemy01 < spawnEnemy01Value)
+	{
+		spawnEnemy01 += deltaTime;
+	}
+
+	if (spawnEnemy02 >= spawnEnemy02Value)
+	{
+		float randomX;
+		float randomY;
+		while (!isValid)
+		{
+			randomX = rand() * window->getSize().x / (float)RAND_MAX;
+			randomY = rand() * window->getSize().y / (float)RAND_MAX;
+			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			isValid = distance < 400;
+		}
+		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Square);
+		spawnEnemy02 = 0;
+	}
+	if (spawnEnemy02 < spawnEnemy02Value)
+	{
+		spawnEnemy02 += deltaTime;
+	}
+
+	if (spawnEnemy03 >= spawnEnemy03Value)
+	{
+		float randomX;
+		float randomY;
+		while (!isValid)
+		{
+			randomX = rand() * window->getSize().x / (float)RAND_MAX;
+			randomY = rand() * window->getSize().y / (float)RAND_MAX;
+			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			isValid = distance < 400;
+		}
+		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Circle);
+		spawnEnemy03 = 0;
+	}
+	if (spawnEnemy03 < spawnEnemy03Value)
+	{
+		spawnEnemy03 += deltaTime;
+	}
+
+	if(compteurEnemy <= 0)
+	{
+		float randomX;
+		float randomY;
+		while (!isValid)
+		{
+			randomX = rand() * window->getSize().x / (float)RAND_MAX;
+			randomY = rand() * window->getSize().y / (float)RAND_MAX;
+			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			isValid = distance < 400;
+		}
+		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Octagon);
+	}
+}
+
+
+void 
