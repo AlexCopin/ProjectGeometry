@@ -54,7 +54,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		srand(time(0));
 		patrolTime = 2 + (rand() % 10);
 		// Bullet
-		cadence = .2;
+		cadence = 1;
 	}
 	break;
 	case Type::Octagon:
@@ -137,8 +137,7 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		rot++;
 		shape.setRotation(rot);
 		// Bullet
-		ShootBul();
-		DestroyBul();
+		ShootBul(deltaTime);
 	}
 	break;
 	}
@@ -148,9 +147,9 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	if (health <= 0)
 		delete this;
 }
-void Enemy::ShootBul()
+void Enemy::ShootBul(float deltaTime)
 {
-	timerBul--;
+	timerBul -= deltaTime;
 	if (timerBul <= 0)
 	{
 		sf::Vector2f dirBul = sf::Vector2f(0, -1) - shape.getPosition();
@@ -161,22 +160,12 @@ void Enemy::ShootBul()
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angleBul + IIM_PI / 2));
 		enemyBullets.push_back(bul);
+		// Destroy
+		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)
+		{
+			enemyBullets.erase(std::find(enemyBullets.begin(), enemyBullets.end(), bul));
+			DestroyObject2(bul);
+		}
 		timerBul = cadence;
-	}
-}
-void Enemy::DestroyBul()
-{
-	std::list<Bullet *>::iterator ite = enemyBullets.begin();
-	while (ite != enemyBullets.end())
-	{
-		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
-		{
-			ite = enemyBullets.erase(ite);
-			DestroyObject2(*ite);
-		}
-		else
-		{
-			ite++;
-		}
 	}
 }

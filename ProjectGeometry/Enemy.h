@@ -36,8 +36,7 @@ public:
 	// Bullet
 	float cadence;
 	float timerBul = cadence;
-	void ShootBul();
-	void DestroyBul();
+	void ShootBul(float deltaTime);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	void Update(sf::RenderWindow *window, float deltaTime);
 };
