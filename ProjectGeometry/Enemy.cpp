@@ -162,6 +162,8 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 	if (magPlay < radius + player->playerShape.getRadius())
 	{
+		Map::mape->compteurEnemy--;
+		LOG(Map::mape->compteurEnemy);
 		player->lifeP -= damage * 2;
 		health = 0;
 	}
@@ -177,6 +179,12 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		auto bul = new Bullet(damage, dir, Bullet::Type::Enemy);
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
+		enemyBullets.push_back(bul);
+		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)
+		{
+			enemyBullets.erase(std::find(enemyBullets.begin(), enemyBullets.end(), bul));
+			DestroyObject2(bul);
+		}
 		timerBul = cadence;
 	}
 }

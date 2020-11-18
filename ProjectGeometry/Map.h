@@ -11,7 +11,6 @@ public:
 	sf::RectangleShape limitRIGHT;
 	sf::RectangleShape limitDOWN;
 	sf::RectangleShape limitLEFT;
-
 	Player *player;
 
 	float spawnEnemy01 = 2.0f;
@@ -23,9 +22,10 @@ public:
 	float spawnEnemy03Value = 3.0f;
 	float spawnEnemy04Value = 15.0f;
 
-	int compteurEnemy = 0;
-	int compteurEnemyValue = 15;
+	int compteurEnemy = 5;
+	int compteurEnemyValue = 5;
 
+	static Map* mape;
 	Map(std::string id, sf::RenderWindow *window);
 	void Update(sf::RenderWindow *window, float deltaTime);
 	void CollisionPlayer(float deltaTime);
