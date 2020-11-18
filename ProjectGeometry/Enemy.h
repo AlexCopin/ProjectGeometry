@@ -17,7 +17,7 @@ public:
 		Octagon
 	} type;
 	sf::Vector2f position;
-	uint16_t health;
+	uint16_t health, damage;
 	float speed, speedX, speedY;
 	sf::Clock clock;
 	// Appearance
@@ -36,7 +36,7 @@ public:
 	// Bullet
 	float cadence;
 	float timerBul = cadence;
-	void ShootBul(float deltaTime);
+	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	void Update(sf::RenderWindow *window, float deltaTime);
 };
