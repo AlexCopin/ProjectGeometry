@@ -25,6 +25,15 @@ Player::Player(std::string id, int life, int posX, int posY)
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 	typeB = TYPEBULLET::BASE;
+
+	buffer_gun.loadFromFile(getAssetsPath() + "Sounds\\gun1.ogg");
+	buffer_shotgun.loadFromFile(getAssetsPath() + "Sounds\\pompe2.ogg");
+	buffer_rifle1.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette1.ogg");
+	buffer_rifle2.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette2.ogg");
+	buffer_rifle3.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette3.ogg");
+	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillete4.ogg");
+	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
+	
 	player = this;
 }
 
@@ -103,6 +112,8 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			
 			if(typeB == TYPEBULLET::SHOTGUN)
 			{
+				sound.setBuffer(buffer_shotgun);
+				sound.play();
 
 				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter)); 
 				bullet->shapeB.setPosition(playerCenter);
@@ -123,6 +134,23 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 			else if(typeB == TYPEBULLET::MITRAILLETTE)
 			{
+				int i = rand() % 4 + 1;
+				if (i == 1) {
+					sound.setBuffer(buffer_rifle1);
+					sound.play();
+				}
+				else if (i == 2) {
+					sound.setBuffer(buffer_rifle2);
+					sound.play();
+				}
+				else if (i == 3) {
+					sound.setBuffer(buffer_rifle3);
+					sound.play();
+				}
+				else if (i == 4) {
+					sound.setBuffer(buffer_rifle4);
+					sound.play();
+				}
 				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter));
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
@@ -290,7 +318,7 @@ void Player::MovementShipsShape(float deltaTime)
 		if (distance > 0.1f)
 		{
 			direction2 = direction2 / distance;
-			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 2) * distance * deltaTime;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 3) * distance * deltaTime;
 		}
 		it++;
 		i++;
