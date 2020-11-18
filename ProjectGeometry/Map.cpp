@@ -41,7 +41,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 void Map::Update(sf::RenderWindow *window, float deltaTime)
 {
 
-	CollisionPlayer();
+	CollisionPlayer(deltaTime);
 
 	window->draw(limitUP);
 	window->draw(limitDOWN);
@@ -49,24 +49,24 @@ void Map::Update(sf::RenderWindow *window, float deltaTime)
 	window->draw(limitLEFT);
 }
 
-void Map::CollisionPlayer()
+void Map::CollisionPlayer(float deltaTime)
 {
 	if (limitUP.getGlobalBounds().intersects(player->playerShape.getGlobalBounds()))
 	{
-		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, -1));
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, -1000 * deltaTime));
 	}
 	else if (limitDOWN.getGlobalBounds().intersects(player->playerShape.getGlobalBounds()))
 	{
-		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, 1));
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(0, 1000 * deltaTime));
 	}
 
 	if (limitRIGHT.getGlobalBounds().intersects(player->playerShape.getGlobalBounds()))
 	{
-		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(-1, 0));
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(-1000 * deltaTime, 0));
 	}
 	else if (limitLEFT.getGlobalBounds().intersects(player->playerShape.getGlobalBounds()))
 	{
-		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(1, 0));
+		player->playerShape.setPosition(player->playerShape.getPosition() - sf::Vector2f(1000 * deltaTime, 0));
 	}
 }
 
