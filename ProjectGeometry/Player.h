@@ -10,8 +10,8 @@ public:
 	{
 		TRIANGLE,
 		SQUARE,
-		PENTAGONE,
 		HEXAGONE,
+		BONUS,
 		SIZE
 	} typeB;
 	int lifeP = 0;

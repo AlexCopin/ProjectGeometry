@@ -9,7 +9,7 @@ public:
 
 	};
 	int damageB = 2;
-	float scaleB = 0.8f;
+	float scaleB = 0.6f;
 	float radiusB = 10.0f;
 	float speedB = 1000;
 	sf::CircleShape shapeB;

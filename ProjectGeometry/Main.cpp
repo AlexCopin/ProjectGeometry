@@ -3,8 +3,8 @@
 #include "Background.h"
 #include "Enemy.h"
 
-const float ENTITY_SPAWN_PERIOD = 0.3f;
-const int NUMBER_STARS = 1000;
+const float ENTITY_SPAWN_PERIOD = 1.0f;
+const int NUMBER_STARS = 500;
 
 std::string getAppPath()
 {
@@ -93,7 +93,6 @@ int main()
     for (int i = 0; i < NUMBER_STARS; i++)
     {
         float randomX = rand() * window.getSize().x / (float)RAND_MAX;
-        LOG("Star created");
         float randomY = rand() * window.getSize().y / (float)RAND_MAX;
         float colorAlpha = 1 + (rand() % 256);
         sf::Color color(255, 255, 255, colorAlpha);

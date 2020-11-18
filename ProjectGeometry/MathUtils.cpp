@@ -25,3 +25,25 @@ int GetMax(int a, int b) {
 int GetMin(int a, int b) {
 	return a < b ? a : b;
 }
+
+float Magnitude(sf::Vector2f vdirection, sf::Vector2f vdirection2)
+{
+	float magnitude;
+	magnitude = (vdirection.x * vdirection2.x + vdirection.y * vdirection2.y);
+	return magnitude;
+}
+
+sf::Vector2f VectorNewAngle(float angle, sf::Vector2f direction)
+{
+	sf::Vector2f newVector;
+	newVector.x = direction.x * cos(angle) - direction.y * sin(angle);
+	newVector.y = direction.x * sin(angle) + direction.y * cos(angle);
+	return newVector;
+}
+
+sf::Vector2f Normalized(sf::Vector2f vector)
+{
+	float distance = sqrt(powf(vector.x, 2) + powf(vector.y, 2));
+	sf::Vector2f vectorNormalized = vector / distance;
+	return vectorNormalized;
+}
