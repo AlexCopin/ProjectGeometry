@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Ship.h"
 
+Map* Map::mape = nullptr;
 Map::Map(std::string id, sf::RenderWindow *window)
 {
 
@@ -34,8 +35,8 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	auto testEnemy0 = new Enemy("testEnemy0", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Triangle);
 	auto testEnemy1 = new Enemy("testEnemy1", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);
 	auto testEnemy2 = new Enemy("testEnemy2", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Circle);
+	mape = this;
 }
-
 void Map::Update(sf::RenderWindow *window, float deltaTime)
 {
 
@@ -71,9 +72,10 @@ void Map::CollisionPlayer(float deltaTime)
 
 void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 {
-	bool isValid = false;
+	
 	if(spawnEnemy01 >= spawnEnemy01Value)
 	{
+		bool isValid = false;
 		float randomX;
 		float randomY;
 		while(!isValid)
@@ -84,6 +86,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			isValid = distance < 400;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Triangle);
+		isValid = false;
 		spawnEnemy01 = 0;
 	}
 	if (spawnEnemy01 < spawnEnemy01Value)
@@ -93,6 +96,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 
 	if (spawnEnemy02 >= spawnEnemy02Value)
 	{
+		bool isValid = false;
 		float randomX;
 		float randomY;
 		while (!isValid)
@@ -103,6 +107,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			isValid = distance < 400;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Square);
+		isValid = false;
 		spawnEnemy02 = 0;
 	}
 	if (spawnEnemy02 < spawnEnemy02Value)
@@ -112,6 +117,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 
 	if (spawnEnemy03 >= spawnEnemy03Value)
 	{
+		bool isValid = false;
 		float randomX;
 		float randomY;
 		while (!isValid)
@@ -122,7 +128,9 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			isValid = distance < 400;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Circle);
+		isValid = false;
 		spawnEnemy03 = 0;
+
 	}
 	if (spawnEnemy03 < spawnEnemy03Value)
 	{
@@ -131,6 +139,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 
 	if(compteurEnemy <= 0)
 	{
+		bool isValid = false;
 		float randomX;
 		float randomY;
 		while (!isValid)
@@ -141,8 +150,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			isValid = distance < 400;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Octagon);
+		isValid = false;
+		compteurEnemy = compteurEnemyValue;
 	}
 }
-
-
-void 

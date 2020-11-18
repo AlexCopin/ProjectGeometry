@@ -95,7 +95,8 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
-    auto map = new Map("map", &window);
+    auto map = new Map("Map", &window);
+    Map::mape = map;
     auto background = new Background("background", &window);
     //TEST ENTITIES
     float entitySpawnTimer = 0.0f;
@@ -170,6 +171,8 @@ int main()
                     i->Update(&window, deltaTime);
 
         map->SpawnEnemies(&window, deltaTime);
+
+
         window.draw(aimShape);
         entityIt = entities.begin();
         while (entityIt != entities.end())

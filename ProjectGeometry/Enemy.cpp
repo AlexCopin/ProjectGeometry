@@ -156,12 +156,16 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 	if (magPlay < radius + player->playerShape.getRadius())
 	{
+		Map::mape->compteurEnemy--;
+		LOG(Map::mape->compteurEnemy);
 		player->lifeP -= damage * 2;
 		delete this;
 	}
 	// Health
 	if (health <= 0)
+	{
 		delete this;
+	}
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 {
@@ -172,7 +176,6 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
 		enemyBullets.push_back(bul);
-		// Destroy
 		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)
 		{
 			enemyBullets.erase(std::find(enemyBullets.begin(), enemyBullets.end(), bul));
