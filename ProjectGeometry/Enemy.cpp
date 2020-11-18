@@ -17,6 +17,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	case Type::Triangle:
 	{
 		health = 100;
+		damage = 10;
 		speed = 200;
 		// Appearance
 		shape.setPointCount(3);
@@ -28,6 +29,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	case Type::Square:
 	{
 		health = 200;
+		damage = 20;
 		speed = 100;
 		// Appearance
 		shape.setPointCount(4);
@@ -46,6 +48,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	case Type::Circle:
 	{
 		health = 400;
+		damage = 30;
 		speed = 60;
 		// Appearance
 		color = sf::Color::Yellow;
@@ -60,6 +63,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	case Type::Octagon:
 	{
 		health = 1000;
+		damage = 60;
 		speed = 20;
 		// Appearance
 		shape.setPointCount(8);
@@ -137,28 +141,36 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		rot++;
 		shape.setRotation(rot);
 		// Bullet
-		ShootBul(deltaTime);
+		sf::Vector2f dirBul = sf::Vector2f(0, -1) - shape.getPosition();
+		float angleBul = atan2f(dirBul.y, dirBul.x);
+		float bulMag = sqrt(powf(dirBul.x, 2) + powf(dirBul.y, 2));
+		sf::Vector2f dirBulNorm = dirBul / bulMag;
+		ShootBul(deltaTime, dirBulNorm, angleBul);
 	}
 	break;
 	}
 	// Draw
 	window->draw(shape);
+	// Player
+	sf::Vector2f dirPlay = player->playerShape.getPosition() - shape.getPosition();
+	float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
+	if (magPlay < radius + player->playerShape.getRadius())
+	{
+		player->lifeP -= damage * 2;
+		delete this;
+	}
 	// Health
 	if (health <= 0)
 		delete this;
 }
-void Enemy::ShootBul(float deltaTime)
+void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 {
 	timerBul -= deltaTime;
 	if (timerBul <= 0)
 	{
-		sf::Vector2f dirBul = sf::Vector2f(0, -1) - shape.getPosition();
-		float angleBul = atan2f(dirBul.y, dirBul.x);
-		float bulMag = sqrt(powf(dirBul.x, 2) + powf(dirBul.y, 2));
-		sf::Vector2f dirBulNorm = dirBul / bulMag;
-		auto bul = new Bullet(10, dirBulNorm);
+		auto bul = new Bullet(10, dir);
 		bul->shapeB.setPosition(shape.getPosition());
-		bul->shapeB.setRotation(ConvertRadToDeg(angleBul + IIM_PI / 2));
+		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
 		enemyBullets.push_back(bul);
 		// Destroy
 		if (bul->shapeB.getPosition().y < 0 || bul->shapeB.getPosition().x < 0 || bul->shapeB.getPosition().y > 1500 || bul->shapeB.getPosition().x > 2500)

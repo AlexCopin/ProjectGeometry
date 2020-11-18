@@ -29,7 +29,8 @@ int GetMin(int a, int b) {
 float Magnitude(sf::Vector2f vdirection, sf::Vector2f vdirection2)
 {
 	float magnitude;
-	magnitude = (vdirection.x * vdirection2.x + vdirection.y * vdirection2.y);
+	sf::Vector2f v3 = vdirection - vdirection2;
+	magnitude = sqrt(v3.x * v3.x + v3.y * v3.y);
 	return magnitude;
 }
 
