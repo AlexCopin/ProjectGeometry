@@ -187,6 +187,15 @@
     <Object Include="Debug\Ship.obj" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Debug\Assets\Sounds\deflagration.ogg" />
+    <None Include="Debug\Assets\Sounds\gun1.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillete1.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillete2.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillete3.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillete4.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillette_End.ogg" />
+    <None Include="Debug\Assets\Sounds\pompe1.ogg" />
+    <None Include="Debug\Assets\Sounds\pompe2.ogg" />
     <None Include="Debug\openal32.dll" />
     <None Include="Debug\ProjectGeometry.exe" />
     <None Include="Debug\ProjectGeometry.exe.recipe" />
@@ -197,6 +206,15 @@
     <None Include="Debug\sfml-window-d-2.dll" />
     <None Include="Debug\vc142.idb" />
     <None Include="Debug\vc142.pdb" />
+    <None Include="Release\Assets\Sounds\deflagration.ogg" />
+    <None Include="Release\Assets\Sounds\gun1.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillete1.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillete2.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillete3.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillete4.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillette_End.ogg" />
+    <None Include="Release\Assets\Sounds\pompe1.ogg" />
+    <None Include="Release\Assets\Sounds\pompe2.ogg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Debug\ProjectGeometry.log" />
