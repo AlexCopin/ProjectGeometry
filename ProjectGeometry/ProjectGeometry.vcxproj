@@ -189,8 +189,10 @@
     <Object Include="Debug\Ship.obj" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Debug\Assets\Sounds\crazy.ogg" />
     <None Include="Debug\Assets\Sounds\deflagration.ogg" />
     <None Include="Debug\Assets\Sounds\gun1.ogg" />
+    <None Include="Debug\Assets\Sounds\gun2.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillete1.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillete2.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillete3.ogg" />
@@ -202,6 +204,7 @@
     <None Include="Debug\Assets\Sounds\Mitraillette_End.ogg" />
     <None Include="Debug\Assets\Sounds\pompe1.ogg" />
     <None Include="Debug\Assets\Sounds\pompe2.ogg" />
+    <None Include="Debug\Assets\Sounds\pompe3.ogg" />
     <None Include="Debug\openal32.dll" />
     <None Include="Debug\ProjectGeometry.exe" />
     <None Include="Debug\ProjectGeometry.exe.recipe" />
@@ -212,19 +215,39 @@
     <None Include="Debug\sfml-window-d-2.dll" />
     <None Include="Debug\vc142.idb" />
     <None Include="Debug\vc142.pdb" />
+    <None Include="Release\Assets\Sounds\crazy.ogg" />
     <None Include="Release\Assets\Sounds\deflagration.ogg" />
     <None Include="Release\Assets\Sounds\gun1.ogg" />
+    <None Include="Release\Assets\Sounds\gun2.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillete1.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillete2.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillete3.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillete4.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillette1.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillette2.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillette3.ogg" />
+    <None Include="Release\Assets\Sounds\Mitraillette4.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillette_End.ogg" />
     <None Include="Release\Assets\Sounds\pompe1.ogg" />
     <None Include="Release\Assets\Sounds\pompe2.ogg" />
+    <None Include="Release\Assets\Sounds\pompe3.ogg" />
+    <None Include="Release\openal32.dll" />
+    <None Include="Release\ProjectGeometry.exe.recipe" />
+    <None Include="Release\sfml-audio-2.dll" />
+    <None Include="Release\sfml-graphics-2.dll" />
+    <None Include="Release\sfml-system-2.dll" />
+    <None Include="Release\sfml-window-2.dll" />
+    <None Include="Release\vc142.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Debug\ProjectGeometry.log" />
     <Text Include="Debug\ProjectGeometry.vcxproj.FileListAbsolute.txt" />
+    <Text Include="Release\ProjectGeometry.log" />
+    <Text Include="Release\ProjectGeometry.vcxproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Debug\Assets\spaceAge.ttf" />
+    <Font Include="Release\Assets\spaceAge.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

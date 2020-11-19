@@ -41,12 +41,15 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		radius = 30;
 		// Target
 		srand(time(0));
-		patrolTime = 1 + (rand() % 9);
+		patrolTime = 2 + (rand() % 10);
 		// Rotation
 		srand(time(0));
 		isRot = rand() % 2;
 		float rot = isRot ? 0 : 45;
 		shape.setRotation(rot);
+		// Bullet
+		cadence = 1;
+		bulCount = 4;
 	}
 	break;
 	case Type::Circle:
@@ -61,9 +64,11 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		radius = 30;
 		// Target
 		srand(time(0));
+		isDirVert = rand() % 2;
 		patrolTime = 2 + (rand() % 10);
 		// Bullet
-		cadence = 1;
+		cadence = .5;
+		bulCount = 32;
 	}
 	break;
 	case Type::Octagon:
@@ -73,10 +78,17 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		speed = 20;
 		// Appearance
 		shape.setPointCount(8);
+		radius = 80;
 		shape.setOutlineColor(sf::Color(96, 96, 96));
 		shape.setOutlineThickness(2);
 		color = sf::Color(102, 0, 0);
-		radius = 100;
+		// Target
+		srand(time(0));
+		isDirVert = rand() % 2;
+		patrolTime = 1 + (rand() % 5);
+		// Bullet
+		cadence = .5;
+		bulCount = 8;
 	}
 	break;
 	}
@@ -126,6 +138,51 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
 		sf::Vector2f dirNorm = direction / distance;
 		shape.setPosition(shape.getPosition() + dirNorm * isOnTarget * speed * deltaTime);
+		// Bullet
+		if (shape.getRotation() == 45)
+		{
+			sf::Vector2f dir1 = sf::Vector2f(-1, 0);
+			float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			sf::Vector2f dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(1, 0);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(0, -1);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(0, 1);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+		}
+		else
+		{
+			sf::Vector2f dir1 = sf::Vector2f(-.5, .5);
+			float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			sf::Vector2f dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(.5, .5);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(.5, -.5);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+			//
+			dir1 = sf::Vector2f(.5, .5);
+			bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+			dir2 = dir1 / bulMag;
+			ShootBul(deltaTime, dir2, 0);
+		}
 	}
 	break;
 	case Type::Circle:
@@ -153,11 +210,76 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		rot++;
 		shape.setRotation(rot);
 		// Bullet
-		sf::Vector2f dirBul = sf::Vector2f(0, -1) - shape.getPosition();
-		float angleBul = atan2f(dirBul.y, dirBul.x);
-		float bulMag = sqrt(powf(dirBul.x, 2) + powf(dirBul.y, 2));
-		sf::Vector2f dirBulNorm = dirBul / bulMag;
-		ShootBul(deltaTime, dirBulNorm, angleBul);
+		sf::Vector2f dir1 = VectorNewAngle(shape.getRotation(), shape.getPosition());
+		float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		sf::Vector2f dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, shape.getRotation());
+	}
+	break;
+	case Type::Octagon:
+	{
+		// Timer
+		timer -= deltaTime;
+		if (timer <= 0)
+		{
+			isOnTarget *= -1;
+			timer = patrolTime;
+		}
+		// Rotation
+		float rot = shape.getRotation();
+		rot += isOnTarget == 1 ? .5 : -.5;
+		shape.setRotation(rot);
+		// Target
+		target = isDirVert ? sf::Vector2f(position.x, position.y + window->getSize().y) : sf::Vector2f(position.x + window->getSize().x, position.y);
+		// PositionX
+		sf::Vector2f direction = target - shape.getPosition();
+		float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
+		sf::Vector2f dirNorm = direction / distance;
+		// PositionY
+		sf::Time elapsed = clock.getElapsedTime();
+		// Position
+		shape.setPosition(shape.getPosition().x + dirNorm.x * isOnTarget * speed * deltaTime,
+						  shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
+		// Bullet
+		sf::Vector2f dir1 = sf::Vector2f(-1, 0);
+		float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		sf::Vector2f dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(1, 0);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(0, -1);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(0, 1);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(-.5, .5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, .5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, -.5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, .5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
 	}
 	break;
 	}
@@ -190,6 +312,9 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		auto bul = new Bullet(damage, dir, Bullet::Type::Enemy);
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
+		bul->shapeB.setScale(.5, .5);
+		bul->shapeB.setFillColor(color);
+		bul->count = bulCount;
 		timerBul = cadence;
 	}
 }
