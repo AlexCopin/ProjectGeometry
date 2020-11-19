@@ -67,8 +67,11 @@ bool DestroyObject2(void *object2)
 {
     if (object2)
     {
-        ((Object2 *)object2)->~Object2();
-        return 1;
+        if (std::find(Objects2.begin(), Objects2.end(), (Object2 *)object2) != Objects2.end())
+        {
+            ((Object2 *)object2)->~Object2();
+            return 1;
+        }
     }
     else
         return 0;
@@ -104,7 +107,6 @@ int main()
     auto ui = new UI("UI", &window);
     //STARS
     background->CreateStars(window);
-
     while (window.isOpen())
     {
         float deltaTime = clock.getElapsedTime().asSeconds();
@@ -121,7 +123,6 @@ int main()
         //Entities
         background->SpawnEntities(window, deltaTime);
         background->EndEntities(deltaTime);
-
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
@@ -134,11 +135,9 @@ int main()
         for (auto i : Objects2)
             if (i->isActive)
                 i->Update(&window, deltaTime);
-
         map->SpawnEnemies(&window, deltaTime);
         window.draw(aimShape);
         window.display();
     }
-
     background->DestroyEntities();
 }

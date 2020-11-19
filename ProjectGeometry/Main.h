@@ -17,9 +17,9 @@ struct Object
     bool isActive = 1;
     Object();
     ~Object();
-    virtual void Start(sf::RenderWindow* window) {};
-    virtual void Update(sf::RenderWindow* window, float deltaTime) {};
-    virtual void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime) {};
+    virtual void Start(sf::RenderWindow *window){};
+    virtual void Update(sf::RenderWindow *window, float deltaTime){};
+    virtual void OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime){};
 };
 struct Object2
 {
@@ -27,15 +27,15 @@ struct Object2
     bool isActive = 1;
     Object2();
     ~Object2();
-    virtual void Start(sf::RenderWindow* window) {};
-    virtual void Update(sf::RenderWindow* window, float deltaTime) {};
-    virtual void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime) {};
+    virtual void Start(sf::RenderWindow *window){};
+    virtual void Update(sf::RenderWindow *window, float deltaTime){};
+    virtual void OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime){};
 };
-Object* FindObject(std::string id);
-bool SetActive(void* object, bool isActive);
-bool DestroyObject(void* object);
-bool DestroyObject2(void* object2);
+Object *FindObject(std::string id);
+bool SetActive(void *object, bool isActive);
+bool DestroyObject(void *object);
+bool DestroyObject2(void *object2);
 bool MouseButtonDown(bool boule);
 bool MouseButtonUp(bool boule);
 class Enemy;
-std::vector<Enemy*>& getEnemies();
+std::vector<Enemy *> &getEnemies();
