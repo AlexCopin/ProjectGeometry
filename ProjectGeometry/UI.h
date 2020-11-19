@@ -7,11 +7,12 @@
 class UI : Object
 {
 public:
-	UI(std::string id, sf::RenderWindow* window);
-	void Update(sf::RenderWindow* window, float DeltaTime);
+
+	sf::Font policeUI;
+	UI(std::string id, sf::RenderWindow* window,sf::Font font);
+	void Update(sf::RenderWindow* window, float deltaTime);
 	void DrawPlayerHealth(sf::RenderWindow* window);
 	void GameOver(sf::RenderWindow* window);
 	void GameStart(sf::RenderWindow* window);
 	void Score(sf::RenderWindow* window);
-	sf::Font GetFont();
 };

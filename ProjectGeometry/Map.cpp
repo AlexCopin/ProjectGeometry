@@ -83,7 +83,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
 			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
-			isValid = distance < 400;
+			isValid = distance < 600;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Triangle);
 		isValid = false;
@@ -104,7 +104,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
 			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
-			isValid = distance < 400;
+			isValid = distance < 600;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Square);
 		isValid = false;
@@ -125,7 +125,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
 			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
-			isValid = distance < 400;
+			isValid = distance < 600;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Circle);
 		isValid = false;
@@ -147,7 +147,7 @@ void Map::SpawnEnemies(sf::RenderWindow* window, float deltaTime)
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
 			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
-			isValid = distance < 400;
+			isValid = distance < 800;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Octagon);
 		isValid = false;
