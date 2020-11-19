@@ -4,6 +4,7 @@ class Player;
 class Enemy : Object
 {
 public:
+	bool loot;
 	// Map
 	Map *map;
 	// Player

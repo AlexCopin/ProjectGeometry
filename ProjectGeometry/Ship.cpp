@@ -1,8 +1,8 @@
 #include "Ship.h"
 #include "Player.h"
 
-
-Ship::Ship(sf::Vector2f position, std::string id) {
+Ship::Ship(sf::Vector2f position, std::string id)
+{
 	this->id = id;
 	shipShape.setPointCount(3);
 	shipShape.setFillColor(sf::Color::Cyan);
@@ -13,11 +13,6 @@ Ship::Ship(sf::Vector2f position, std::string id) {
 	shipShape.setOrigin(sf::Vector2f(10, 10));
 	GetPlayer();
 }
-
-void Ship::Start(sf::RenderWindow* window) {
-	
-}
-
 
 void Ship::Update(sf::RenderWindow *window, float deltaTime)
 {
@@ -37,20 +32,26 @@ void Ship::RotateShip(sf::RenderWindow *window)
 	shipShape.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 }
 
-void Ship::GetPlayer() {
-	player = (Player*)FindObject("Player");
+void Ship::GetPlayer()
+{
+	player = (Player *)FindObject("Player");
 }
 
-void Ship::GetDistanceWithPlayer() {
-	
-	if (!isWithPlayer) {
-		sf::Vector2f shipToPlayer = player->posPlayer - shipShape.getPosition();;
+void Ship::GetDistanceWithPlayer()
+{
+
+	if (!isWithPlayer)
+	{
+		sf::Vector2f shipToPlayer = player->posPlayer - shipShape.getPosition();
+		;
 		float distance = sqrt(powf(shipToPlayer.x, 2) + powf(shipToPlayer.y, 2));
-		if (distance < player->playerShape.getRadius() + (shipShape.getRadius())) {
+		if (distance < player->playerShape.getRadius() + (shipShape.getRadius()))
+		{
 			player->GetShip(this);
 			isWithPlayer = true;
 		}
-		else {
+		else
+		{
 			return;
 		}
 	}

@@ -7,6 +7,8 @@
 #include "Bullet.h"
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
+	srand(time(0));
+	loot = rand() % 2;
 	getEnemies().push_back(this);
 	map = (Map *)FindObject("Map");
 	this->id = id;
@@ -302,6 +304,8 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		player->score += score;
 		getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
 		DestroyObject(this);
+		if (loot)
+			new Ship(shape.getPosition(), "enemyLoot");
 	}
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
