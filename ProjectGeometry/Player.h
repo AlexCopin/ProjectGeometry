@@ -47,7 +47,7 @@ public:
 	sf::SoundBuffer buffer_rifle4;
 	sf::SoundBuffer buffer_rifleEnd;
 	sf::SoundBuffer buffer_shotgun;
-	sf::SoundBuffer buffer_other;
+	sf::SoundBuffer buffer_crazy;
 	// on charge quelque chose dans le buffer...
 	sf::Sound sound;
 	void ShootBullet(sf::RenderWindow *window, float deltaTime);
