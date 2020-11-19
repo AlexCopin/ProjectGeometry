@@ -62,7 +62,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	break;
 	case Type::Octagon:
 	{
-		health = 1000;
+		health = 800;
 		damage = 60;
 		speed = 20;
 		// Appearance
@@ -168,7 +168,11 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	score = damage * 10;
 	// Health
 	if (health <= 0)
+	{
+		player->score += score;
+		getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
 		DestroyObject(this);
+	}
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 {

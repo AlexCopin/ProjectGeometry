@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include <list>
 #include "SFML/Audio.hpp"
+std::list<Bullet *> &getBullets();
 class Player : Object
 {
 public:
@@ -32,14 +33,13 @@ public:
 	sf::Vector2f posPlayer;
 	//ALEXBULLET
 	float damageP = 100;
-	float damageShip = 0.5f;
+	float damageShip = 20;
 	std::list<sf::Vector2f> trajectoriesBullets;
 	float shootTimer = 0.5f;
 	float shootTimerValue = 0.2f;
 	float shootTimerShip = 0.4f;
 	float shootTimerShipValue = 0.1f;
 	static Player *player;
-
 	sf::SoundBuffer buffer_gun;
 	sf::SoundBuffer buffer_rifle1;
 	sf::SoundBuffer buffer_rifle2;
@@ -48,11 +48,8 @@ public:
 	sf::SoundBuffer buffer_rifleEnd;
 	sf::SoundBuffer buffer_shotgun;
 	sf::SoundBuffer buffer_other;
-
 	// on charge quelque chose dans le buffer...
-
 	sf::Sound sound;
-
 	void ShootBullet(sf::RenderWindow *window, float deltaTime);
 	sf::CircleShape shipsShape;
 	float shipsShapeAngle = 0;
