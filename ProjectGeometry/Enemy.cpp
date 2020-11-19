@@ -37,7 +37,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		radius = 30;
 		// Target
 		srand(time(0));
-		patrolTime = 1 + (rand() % 9);
+		patrolTime = 2 + (rand() % 10);
 		// Rotation
 		srand(time(0));
 		isRot = rand() % 2;
@@ -72,7 +72,10 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		// Appearance
 		shape.setPointCount(8);
 		color = sf::Color::Green;
-		radius = 100;
+		radius = 80;
+		// Target
+		srand(time(0));
+		patrolTime = 1 + (rand() % 5);
 		// Bullet
 		cadence = .2;
 		bulCount = 8;
@@ -201,6 +204,41 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
 		sf::Vector2f dir2 = dir1 / bulMag;
 		ShootBul(deltaTime, dir2, shape.getRotation());
+	}
+	break;
+	case Type::Octagon:
+	{
+		// Timer
+		timer -= deltaTime;
+		if (timer <= 0)
+		{
+			isOnTarget *= -1;
+			timer = patrolTime;
+		}
+		// Rotation
+		float rot = shape.getRotation();
+		rot += isOnTarget == 1 ? .5 : -.5;
+		shape.setRotation(rot);
+		// Bullet
+		sf::Vector2f dir1 = sf::Vector2f(-1, 0);
+		float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		sf::Vector2f dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(1, 0);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(0, -1);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(0, 1);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
 	}
 	break;
 	}
