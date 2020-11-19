@@ -37,5 +37,6 @@ bool DestroyObject(void *object);
 bool DestroyObject2(void *object2);
 bool MouseButtonDown(bool boule);
 bool MouseButtonUp(bool boule);
+void BeginGame(sf::RenderWindow& window, sf::Font police);
 class Enemy;
 std::vector<Enemy *> &getEnemies();

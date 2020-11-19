@@ -3,8 +3,13 @@
 #include "Background.h"
 #include "UI.h"
 #include "Enemy.h"
+#include "Menu.h"
 //const float ENTITY_SPAWN_PERIOD = 1.0f;
 //const int NUMBER_STARS = 750;
+
+Background* background;
+Map* map;
+UI* ui;
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -84,6 +89,10 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
+void BeginGame(sf::RenderWindow& window, sf::Font police)
+{
+    
+}
 std::vector<Enemy *> enemiesM;
 std::vector<Enemy *> &getEnemies() { return enemiesM; }
 int main()
@@ -101,16 +110,50 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
-    auto map = new Map("Map", &window);
-    Map::mape = map;
-    auto background = new Background("background", &window);
 
+    auto menu = new Menu(window);
+    bool allCreated = false;
+    background = new Background("background", &window);
+
+    background->CreateStars(window);
+    //background->CreateStars(window);
     //UIFonts
     sf::Font police;
     police.loadFromFile(getAssetsPath() + "\\spaceAge.ttf");
-    auto ui = new UI("UI", &window,police);
-    //STARS
-    background->CreateStars(window);
+    //MENUUUUUUUUUUUUUUUUUUUU
+    while (!menu->gameLaunched)
+    {
+        float deltaTime = clock.getElapsedTime().asSeconds();
+        clock.restart();
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+                window.close();
+
+            menu->OnEventMenu(&window, event, deltaTime);
+        }
+        window.clear();
+        background->Update(&window, deltaTime);
+        sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
+        sf::Vector2f mousePosition(mousePositionInt);
+        aimShape.setPosition(mousePosition);
+        menu->drawMenu(window);
+        window.display();
+    }
+
+    if (menu->gameLaunched && !allCreated)
+    {
+        LOG("Create all");
+        map = new Map("Map", &window);
+        Map::mape = map;
+        ui = new UI("UI", &window, police);
+        allCreated = true;
+    }
+
+    delete menu;
+
+    //
     while (window.isOpen())
     {
         float deltaTime = clock.getElapsedTime().asSeconds();
@@ -125,8 +168,8 @@ int main()
                     i->OnEvent(&window, event, deltaTime);
         }
         //Entities
-        background->SpawnEntities(window, deltaTime);
-        background->EndEntities(deltaTime);
+            background->SpawnEntities(window, deltaTime);
+            background->EndEntities(deltaTime);
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
