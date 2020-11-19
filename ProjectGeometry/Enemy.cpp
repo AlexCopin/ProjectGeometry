@@ -163,7 +163,6 @@ void Enemy::Update(sf::RenderWindow* window, float deltaTime)
 	if (magPlay < radius + player->playerShape.getRadius())
 	{
 		Map::mape->compteurEnemy--;
-		LOG(Map::mape->compteurEnemy);
 		player->lifeP -= damage * 2;
 		health = 0;
 	}

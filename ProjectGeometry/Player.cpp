@@ -370,7 +370,3 @@ void Player::ChangeWeapon()
 void Player::GameOver(sf::RenderWindow* window)
 {
 }
-
-void Player::Health(sf::RenderWindow* window)
-{
-}

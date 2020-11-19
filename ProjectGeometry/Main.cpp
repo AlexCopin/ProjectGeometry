@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Map.h";
 #include "Background.h"
+#include "UI.h"
 #include "Enemy.h"
 //const float ENTITY_SPAWN_PERIOD = 1.0f;
 //const int NUMBER_STARS = 750;
@@ -100,7 +101,7 @@ int main()
     auto map = new Map("Map", &window);
     Map::mape = map;
     auto background = new Background("background", &window);
-    
+    auto ui = new UI("UI", &window);
     //STARS
     background->CreateStars(window);
 

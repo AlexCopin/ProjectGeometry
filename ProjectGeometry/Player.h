@@ -53,5 +53,4 @@ public:
 	void Update(sf::RenderWindow* window, float deltaTime);
 	void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
 	void GameOver(sf::RenderWindow* window);
-	void Health(sf::RenderWindow* window);
 };
