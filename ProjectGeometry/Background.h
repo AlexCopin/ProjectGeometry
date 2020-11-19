@@ -17,7 +17,7 @@ struct Star
 };
 
 
-class Background : Object
+class Background : Object2
 {
 public:
 	//ENTITY
@@ -27,7 +27,11 @@ public:
 	void DrawEntity(Entity* pEntity, sf::RenderWindow& window);
 	bool IsAlive(Entity* pEntity);
 	void Destroy(Entity* pEntity);
-
 	//STARS
+	void CreateStars(sf::RenderWindow& window);
+	void Update(sf::RenderWindow* window, float deltaTime);
+	void SpawnEntities(sf::RenderWindow& window, float deltaTime);
+	void DestroyEntities();
+	void EndEntities(float deltaTime);
 	Background(std::string, sf::RenderWindow* window);
 };

@@ -1,8 +1,6 @@
 #pragma once
 #include "Main.h"
 #include "Player.h"
-//#include "Player.h"
-//#include "Enemy.h"
 class Map : Object
 {
 public:
