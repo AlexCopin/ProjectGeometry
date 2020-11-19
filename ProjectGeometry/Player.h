@@ -3,6 +3,7 @@
 #include "Ship.h"
 #include "Bullet.h"
 #include <list>
+#include "SFML/Audio.hpp"
 class Player : Object
 {
 public:
@@ -35,6 +36,21 @@ public:
 	float shootTimerShip = 0.4f;
 	float shootTimerShipValue = 0.1f;
 	static Player* player;
+
+	sf::SoundBuffer buffer_gun;
+	sf::SoundBuffer buffer_rifle1;
+	sf::SoundBuffer buffer_rifle2;
+	sf::SoundBuffer buffer_rifle3;
+	sf::SoundBuffer buffer_rifle4;
+	sf::SoundBuffer buffer_rifleEnd;
+	sf::SoundBuffer buffer_shotgun;
+	sf::SoundBuffer buffer_other;
+
+
+	// on charge quelque chose dans le buffer... 
+
+	sf::Sound sound;
+
 	void ShootBullet(sf::RenderWindow* window, float deltaTime);
 	sf::CircleShape shipsShape;
 	float shipsShapeAngle = 0;
