@@ -249,11 +249,6 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 					shootTimerShip = 0;
 				}
 				ite++;
-				/*
-				Bullet *bullet = new Bullet(damageP, trajectoireBullet);
-				bullet->shapeB.setFillColor(sf::Color::Cyan);
-				bullets.push_back(bullet);
-				bullet->shapeB.setPosition((*ite)->shipShape.getPosition());*/
 			}
 		}
 	}
