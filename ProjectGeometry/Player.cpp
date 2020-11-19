@@ -195,7 +195,7 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 		}
 	}
-	else if(sf::Mouse::isButtonPressed)
+	// else if(sf::Mouse::isButtonPressed)
 	if (shootTimer < shootTimerValue)
 	{
 		shootTimer += deltaTime;
