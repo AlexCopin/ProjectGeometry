@@ -1,10 +1,8 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Enemy.h"
-std::vector<Enemy*> enemiesB;
 Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 {
-	enemiesB = getEnemies();
 	this->type = type;
 	sf::Color color;
 	std::size_t count = 0;
@@ -48,7 +46,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 	player = Player::player;
 }
-void Bullet::Update(sf::RenderWindow* window, float deltaTime)
+void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 {
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);
@@ -58,13 +56,15 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 	// Player
 	if (type == Type::Player)
 	{
-		for (auto enemy : enemiesB)
+		for (auto enemy : getEnemies())
 		{
-			LOG(enemy->health);
 			sf::Vector2f dir = enemy->shape.getPosition() - shapeB.getPosition();
 			float mag = sqrt(powf(dir.x, 2) + powf(dir.y, 2));
 			if (mag < shapeB.getRadius() + enemy->shape.getRadius())
+			{
 				enemy->health -= damageB;
+				DestroyObject2(this);
+			}
 		}
 	}
 	// Enemy

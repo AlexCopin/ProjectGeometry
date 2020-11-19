@@ -18,7 +18,7 @@ std::string getAssetsPath()
     return getAppPath() + "\\Assets\\";
 }
 // Julien: API
-std::vector<Object*> Objects;
+std::vector<Object *> Objects;
 Object::Object()
 {
     Objects.push_back(this);
@@ -27,14 +27,14 @@ Object::~Object()
 {
     Objects.erase(std::find(Objects.begin(), Objects.end(), this));
 }
-Object* FindObject(std::string id)
+Object *FindObject(std::string id)
 {
     for (auto i : Objects)
         if (i->id == id)
             return i;
     return 0;
 }
-std::vector<Object2*> Objects2;
+std::vector<Object2 *> Objects2;
 Object2::Object2()
 {
     Objects2.push_back(this);
@@ -43,31 +43,31 @@ Object2::~Object2()
 {
     Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
 }
-bool SetActive(void* object, bool isActive)
+bool SetActive(void *object, bool isActive)
 {
     if (object)
     {
-        ((Object*)object)->isActive = isActive;
+        ((Object *)object)->isActive = isActive;
         return 1;
     }
     else
         return 0;
 }
-bool DestroyObject(void* object)
+bool DestroyObject(void *object)
 {
     if (object)
     {
-        ((Object*)object)->~Object();
+        ((Object *)object)->~Object();
         return 1;
     }
     else
         return 0;
 }
-bool DestroyObject2(void* object2)
+bool DestroyObject2(void *object2)
 {
     if (object2)
     {
-        ((Object2*)object2)->~Object2();
+        ((Object2 *)object2)->~Object2();
         return 1;
     }
     else
@@ -81,8 +81,8 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
-std::vector<Enemy*> enemiesM;
-std::vector<Enemy*>& getEnemies() { return enemiesM; }
+std::vector<Enemy *> enemiesM;
+std::vector<Enemy *> &getEnemies() { return enemiesM; }
 int main()
 {
     // MouseCursor
@@ -97,14 +97,13 @@ int main()
     settings.antialiasingLevel = 4;
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
-    sf::Clock(clock); 
+    sf::Clock(clock);
     auto map = new Map("Map", &window);
     Map::mape = map;
     auto background = new Background("background", &window);
     auto ui = new UI("UI", &window);
     //STARS
     background->CreateStars(window);
-
 
     while (window.isOpen())
     {
@@ -116,9 +115,8 @@ int main()
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
             for (auto i : Objects)
-                if (i)
-                    if (i->isActive)
-                        i->OnEvent(&window, event, deltaTime);
+                if (i->isActive)
+                    i->OnEvent(&window, event, deltaTime);
         }
         //Entities
         background->SpawnEntities(window, deltaTime);
@@ -131,13 +129,11 @@ int main()
         aimShape.setPosition(mousePosition);
         // Julien: Update Function
         for (auto i : Objects)
-            if (i)
-                if (i->isActive)
-                    i->Update(&window, deltaTime);
+            if (i->isActive)
+                i->Update(&window, deltaTime);
         for (auto i : Objects2)
-            if (i)
-                if (i->isActive)
-                    i->Update(&window, deltaTime);
+            if (i->isActive)
+                i->Update(&window, deltaTime);
 
         map->SpawnEnemies(&window, deltaTime);
         window.draw(aimShape);

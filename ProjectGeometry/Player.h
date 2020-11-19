@@ -17,6 +17,8 @@ public:
 		SIZE
 	} typeB;
 	int lifeP = 1;
+	// Julien: Score
+	int score;
 	float Movx = 0;
 	float Movy = 0;
 	sf::Vector2f Movement = sf::Vector2f(0, 0);
@@ -35,7 +37,7 @@ public:
 	float shootTimerValue = 0.2f;
 	float shootTimerShip = 0.4f;
 	float shootTimerShipValue = 0.1f;
-	static Player* player;
+	static Player *player;
 
 	sf::SoundBuffer buffer_gun;
 	sf::SoundBuffer buffer_rifle1;
@@ -46,27 +48,26 @@ public:
 	sf::SoundBuffer buffer_shotgun;
 	sf::SoundBuffer buffer_other;
 
-
-	// on charge quelque chose dans le buffer... 
+	// on charge quelque chose dans le buffer...
 
 	sf::Sound sound;
 
-	void ShootBullet(sf::RenderWindow* window, float deltaTime);
+	void ShootBullet(sf::RenderWindow *window, float deltaTime);
 	sf::CircleShape shipsShape;
 	float shipsShapeAngle = 0;
 	void MovePlayer(float x, float y, float speed, float deltaTime);
-	void RotatePlayer(sf::RenderWindow* window);
+	void RotatePlayer(sf::RenderWindow *window);
 	float GetTime();
 	void TakeDamage(int damages);
 	void PlayerDeath();
 	void DestroyBullet();
 	void ChangeWeapon();
-	void GetShip(Ship* ship);
-	void ShipShootBullet(sf::RenderWindow* window, float deltaTime);
+	void GetShip(Ship *ship);
+	void ShipShootBullet(sf::RenderWindow *window, float deltaTime);
 	void MovementShipsShape(float deltaTime);
 	Player(std::string id, int life, int posX, int posY);
-	sf::Vector2f GetTraj(sf::RenderWindow* window, sf::Vector2f pos);
-	void Update(sf::RenderWindow* window, float deltaTime);
-	void OnEvent(sf::RenderWindow* window, sf::Event event, float deltaTime);
-	void GameOver(sf::RenderWindow* window);
+	sf::Vector2f GetTraj(sf::RenderWindow *window, sf::Vector2f pos);
+	void Update(sf::RenderWindow *window, float deltaTime);
+	void OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime);
+	void GameOver(sf::RenderWindow *window);
 };

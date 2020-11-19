@@ -5,12 +5,10 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Bullet.h"
-std::vector<Enemy*> enemies;
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
-	enemies = getEnemies();
-	enemies.push_back(this);
-	map = (Map*)FindObject("Map");
+	getEnemies().push_back(this);
+	map = (Map *)FindObject("Map");
 	this->id = id;
 	this->type = type;
 	this->position = position;
@@ -80,13 +78,13 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	shape.setRadius(radius);
 	shape.setOrigin(radius, radius);
 	// Player
-	player = (Player*)FindObject("Player");
+	player = (Player *)FindObject("Player");
 }
 Enemy::~Enemy()
 {
-	enemies.erase(std::find(enemies.begin(), enemies.end(), this));
+	getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
 }
-void Enemy::Update(sf::RenderWindow* window, float deltaTime)
+void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 {
 	switch (type)
 	{
@@ -141,7 +139,7 @@ void Enemy::Update(sf::RenderWindow* window, float deltaTime)
 		sf::Time elapsed = clock.getElapsedTime();
 		// Position
 		shape.setPosition(shape.getPosition().x + dirNorm.x * isOnTarget * speed * deltaTime,
-			shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
+						  shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
 		// Rotation
 		float rot = shape.getRotation();
 		rot++;
@@ -166,6 +164,8 @@ void Enemy::Update(sf::RenderWindow* window, float deltaTime)
 		player->lifeP -= damage * 2;
 		health = 0;
 	}
+	// Score
+	score = damage * 10;
 	// Health
 	if (health <= 0)
 		DestroyObject(this);
