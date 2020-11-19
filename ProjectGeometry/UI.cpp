@@ -21,8 +21,8 @@ void UI::DrawPlayerHealth(sf::RenderWindow* window)
 {
 	sf::Text playerHealth;
 	playerHealth.setFont(policeUI);
-	playerHealth.setString(std::to_string(Player::player->lifeP));
-	playerHealth.setPosition(50, 50);
+	playerHealth.setString("HP : " + std::to_string(Player::player->lifeP));
+	playerHealth.setPosition(((playerHealth.getCharacterSize() * playerHealth.getString().getSize()) / 2), 50);
 	window->draw(playerHealth);
 }
 
@@ -38,7 +38,7 @@ void UI::Score(sf::RenderWindow* window)
 {
 	sf::Text textScore;
 	textScore.setFont(policeUI);
-	textScore.setString(std::to_string(Player::player->score));
-	textScore.setPosition(window->getSize().x - 200, 50);
+	textScore.setString("Score : " + std::to_string(Player::player->score));
+	textScore.setPosition(window->getSize().x - ( 80 + (textScore.getCharacterSize() * textScore.getString().getSize())), 50);
 	window->draw(textScore);
 }
