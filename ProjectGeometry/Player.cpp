@@ -95,6 +95,8 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
+		isMouseButtonDown = true;
+
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
 			if (typeB == TYPEBULLET::SHOTGUN)
@@ -178,7 +180,15 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 		}
 	}
-	// else if(sf::Mouse::isButtonPressed)
+	else {
+		if (isMouseButtonDown) {
+			isMouseButtonDown = false;
+			if (typeB == TYPEBULLET::MITRAILLETTE) {
+				sound.setBuffer(buffer_rifleEnd);
+				sound.play();
+			}
+		}
+	}
 	if (shootTimer < shootTimerValue)
 	{
 		shootTimer += deltaTime;
