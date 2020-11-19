@@ -5,7 +5,6 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 {
 	this->type = type;
 	sf::Color color;
-	std::size_t count = 0;
 	if (Player::player->typeB == Player::TYPEBULLET::BASE)
 	{
 		count = 3;
@@ -38,7 +37,6 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	}
 	damageB = damage;
 	trajectoire = direction;
-	shapeB.setPointCount(count);
 	shapeB.setFillColor(color);
 	shapeB.setRadius(radiusB);
 	shapeB.setScale(scaleB, 1.0f);
@@ -48,6 +46,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 }
 void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 {
+	shapeB.setPointCount(count);
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);
 	// Destroy

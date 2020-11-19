@@ -36,6 +36,7 @@ public:
 	// Bullet
 	float cadence;
 	float timerBul = cadence;
+	short bulCount;
 	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	~Enemy();
