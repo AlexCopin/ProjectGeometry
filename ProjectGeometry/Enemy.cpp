@@ -58,6 +58,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		radius = 30;
 		// Target
 		srand(time(0));
+		isDirVert = rand() % 2;
 		patrolTime = 2 + (rand() % 10);
 		// Bullet
 		cadence = .5;
@@ -75,9 +76,10 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		radius = 80;
 		// Target
 		srand(time(0));
+		isDirVert = rand() % 2;
 		patrolTime = 1 + (rand() % 5);
 		// Bullet
-		cadence = .2;
+		cadence = .5;
 		bulCount = 8;
 	}
 	break;
@@ -219,6 +221,17 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		float rot = shape.getRotation();
 		rot += isOnTarget == 1 ? .5 : -.5;
 		shape.setRotation(rot);
+		// Target
+		target = isDirVert ? sf::Vector2f(position.x, position.y + window->getSize().y) : sf::Vector2f(position.x + window->getSize().x, position.y);
+		// PositionX
+		sf::Vector2f direction = target - shape.getPosition();
+		float distance = sqrt(powf(direction.x, 2) + powf(direction.y, 2));
+		sf::Vector2f dirNorm = direction / distance;
+		// PositionY
+		sf::Time elapsed = clock.getElapsedTime();
+		// Position
+		shape.setPosition(shape.getPosition().x + dirNorm.x * isOnTarget * speed * deltaTime,
+						  shape.getPosition().y + sin(elapsed.asSeconds()) * amplitude * speed * deltaTime);
 		// Bullet
 		sf::Vector2f dir1 = sf::Vector2f(-1, 0);
 		float bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
@@ -236,6 +249,26 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		ShootBul(deltaTime, dir2, 0);
 		//
 		dir1 = sf::Vector2f(0, 1);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(-.5, .5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, .5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, -.5);
+		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
+		dir2 = dir1 / bulMag;
+		ShootBul(deltaTime, dir2, 0);
+		//
+		dir1 = sf::Vector2f(.5, .5);
 		bulMag = sqrt(powf(dir1.x, 2) + powf(dir1.y, 2));
 		dir2 = dir1 / bulMag;
 		ShootBul(deltaTime, dir2, 0);
