@@ -31,7 +31,7 @@ Player::Player(std::string id, int life, int posX, int posY)
 	buffer_rifle1.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette1.ogg");
 	buffer_rifle2.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette2.ogg");
 	buffer_rifle3.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette3.ogg");
-	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillete4.ogg");
+	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette4.ogg");
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
 
 	player = this;
@@ -141,18 +141,22 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 				if (i == 1) {
 					sound.setBuffer(buffer_rifle1);
 					sound.play();
+					LOG(1);
 				}
 				else if (i == 2) {
 					sound.setBuffer(buffer_rifle2);
 					sound.play();
+					LOG(2);
 				}
 				else if (i == 3) {
 					sound.setBuffer(buffer_rifle3);
 					sound.play();
+					LOG(3);
 				}
 				else if (i == 4) {
 					sound.setBuffer(buffer_rifle4);
 					sound.play();
+					LOG(4);
 				}
 				Bullet* bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
@@ -187,6 +191,7 @@ void Player::ShootBullet(sf::RenderWindow* window, float deltaTime)
 			}
 		}
 	}
+	else if(sf::Mouse::isButtonPressed)
 	if (shootTimer < shootTimerValue)
 	{
 		shootTimer += deltaTime;
