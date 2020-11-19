@@ -104,7 +104,11 @@ int main()
     auto map = new Map("Map", &window);
     Map::mape = map;
     auto background = new Background("background", &window);
-    auto ui = new UI("UI", &window);
+
+    //UIFonts
+    sf::Font police;
+    police.loadFromFile(getAssetsPath() + "\\spaceAge.ttf");
+    auto ui = new UI("UI", &window,police);
     //STARS
     background->CreateStars(window);
     while (window.isOpen())
