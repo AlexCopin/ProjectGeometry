@@ -195,6 +195,10 @@
     <None Include="Debug\Assets\Sounds\Mitraillete2.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillete3.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillete4.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillette1.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillette2.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillette3.ogg" />
+    <None Include="Debug\Assets\Sounds\Mitraillette4.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillette_End.ogg" />
     <None Include="Debug\Assets\Sounds\pompe1.ogg" />
     <None Include="Debug\Assets\Sounds\pompe2.ogg" />

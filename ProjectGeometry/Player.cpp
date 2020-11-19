@@ -23,13 +23,14 @@ Player::Player(std::string id, int life, int posX, int posY)
 	shipsShape.setOrigin(sf::Vector2f(70, 70));
 	shipsShape.setOutlineThickness(3);
 	typeB = TYPEBULLET::BASE;
-	buffer_gun.loadFromFile(getAssetsPath() + "Sounds\\gun1.ogg");
-	buffer_shotgun.loadFromFile(getAssetsPath() + "Sounds\\pompe2.ogg");
+	buffer_gun.loadFromFile(getAssetsPath() + "Sounds\\gun2.ogg");
+	buffer_shotgun.loadFromFile(getAssetsPath() + "Sounds\\pompe3.ogg");
 	buffer_rifle1.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette1.ogg");
 	buffer_rifle2.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette2.ogg");
 	buffer_rifle3.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette3.ogg");
 	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette4.ogg");
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
+	buffer_crazy.loadFromFile(getAssetsPath() + "Sounds\\crazy.ogg");
 	player = this;
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
@@ -95,6 +96,8 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
+		isMouseButtonDown = true;
+
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
 			if (typeB == TYPEBULLET::SHOTGUN)
@@ -152,6 +155,8 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 			else if (typeB == TYPEBULLET::CRAZY)
 			{
+				sound.setBuffer(buffer_crazy);
+				sound.play();
 				float angle = 1 + (rand() % 360);
 				Bullet *bullet = new Bullet(damageP, VectorNewAngle(ConvertRadToDeg(angle), GetTraj(window, playerCenter)), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
@@ -171,6 +176,8 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 			else
 			{
+				sound.setBuffer(buffer_gun);
+				sound.play();
 				Bullet *bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
 				bullets.push_back(bullet);
@@ -178,7 +185,15 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 		}
 	}
-	// else if(sf::Mouse::isButtonPressed)
+	else {
+		if (isMouseButtonDown) {
+			isMouseButtonDown = false;
+			if (typeB == TYPEBULLET::MITRAILLETTE) {
+				sound.setBuffer(buffer_rifleEnd);
+				sound.play();
+			}
+		}
+	}
 	if (shootTimer < shootTimerValue)
 	{
 		shootTimer += deltaTime;
