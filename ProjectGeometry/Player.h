@@ -25,6 +25,7 @@ public:
 	float speedP = 400;
 	float actualSpeed = 0;
 	sf::Mouse mouse;
+	bool isMouseButtonDown = false;
 	float bonusDuration = 0.0f;
 	float bonusDurationValue = 1.5f;
 	sf::CircleShape playerShape;
