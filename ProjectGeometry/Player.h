@@ -17,7 +17,7 @@ public:
 		BONUS,
 		SIZE
 	} typeB;
-	int lifeP = 1;
+	int lifeP = 5000;
 	// Julien: Score
 	int score;
 	float Movx = 0;

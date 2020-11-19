@@ -8,7 +8,7 @@ class Menu : Object
 public:
 	Menu(sf::RenderWindow& window);
 	~Menu();
-
+	bool isPaused = false;
 	bool gameLaunched = false;
 	void drawMenu(sf::RenderWindow& window);
 	void MoveUp();

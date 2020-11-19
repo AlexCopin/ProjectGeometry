@@ -4,9 +4,6 @@
 #include "UI.h"
 #include "Enemy.h"
 #include "Menu.h"
-//const float ENTITY_SPAWN_PERIOD = 1.0f;
-//const int NUMBER_STARS = 750;
-
 Background* background;
 Map* map;
 UI* ui;
@@ -150,9 +147,6 @@ int main()
         ui = new UI("UI", &window, police);
         allCreated = true;
     }
-
-    delete menu;
-
     //
     while (window.isOpen())
     {
@@ -161,28 +155,46 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-                window.close();
-            for (auto i : Objects)
-                if (i->isActive)
-                    i->OnEvent(&window, event, deltaTime);
+            if(!menu->isPaused)
+            {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+                if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P || event.key.code == sf::Keyboard::Escape))
+                    menu->isPaused = true;
+                for (auto i : Objects)
+                    if (i->isActive)
+                        i->OnEvent(&window, event, deltaTime);
+            }else 
+            {
+                menu->OnEventMenu(&window, event, deltaTime);
+            }
+            
         }
         //Entities
-            background->SpawnEntities(window, deltaTime);
-            background->EndEntities(deltaTime);
+        background->SpawnEntities(window, deltaTime);
+        background->EndEntities(deltaTime);
         window.clear();
         //MouseCursor
         sf::Vector2i mousePositionInt = sf::Mouse::getPosition(window);
         sf::Vector2f mousePosition(mousePositionInt);
         aimShape.setPosition(mousePosition);
         // Julien: Update Function
-        for (auto i : Objects)
-            if (i->isActive)
-                i->Update(&window, deltaTime);
-        for (auto i : Objects2)
-            if (i->isActive)
-                i->Update(&window, deltaTime);
-        map->SpawnEnemies(&window, deltaTime);
+        if (!ui->loser && !menu->isPaused)
+        {
+            for (auto i : Objects)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
+            for (auto i : Objects2)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
+            map->SpawnEnemies(&window, deltaTime);
+        }
+        if(menu->isPaused)
+        {
+            menu->drawMenu(window);
+        }
+        if(ui->loser)
+            ui->GameOver(&window);
         window.draw(aimShape);
         window.display();
     }

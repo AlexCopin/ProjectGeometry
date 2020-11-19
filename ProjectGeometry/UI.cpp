@@ -10,7 +10,10 @@ void UI::Update(sf::RenderWindow* window, float deltaTime)
 {
 	DrawPlayerHealth(window);
 	Score(window);
-	GameOver(window);
+	if (Player::player->lifeP < 0)
+	{
+		loser = true;
+	}
 }
 
 
@@ -25,18 +28,12 @@ void UI::DrawPlayerHealth(sf::RenderWindow* window)
 
 void UI::GameOver(sf::RenderWindow* window)
 {
-
-	if (Player::player->lifeP < 0)
-	{
-		//DrawGameOver();
-	}
+	sf::Text gameOver;
+	gameOver.setFont(policeUI);
+	gameOver.setString("GAME OVER");
+	gameOver.setPosition(window->getSize().x /2 - ((gameOver.getCharacterSize() * gameOver.getString().getSize()) / 2), window->getSize().y / 2);
+	window->draw(gameOver);
 }
-
-void UI::GameStart(sf::RenderWindow* window)
-{
-
-}
-
 void UI::Score(sf::RenderWindow* window)
 {
 	sf::Text textScore;

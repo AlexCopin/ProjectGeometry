@@ -12,9 +12,11 @@ Player::Player(std::string id, int life, int posX, int posY)
 	posPlayer = sf::Vector2f(posX, posY);
 	playerShape.setPosition(posPlayer);
 	playerShape.setRadius(50.0f);
-	playerShape.setFillColor(sf::Color::White);
+	playerShape.setFillColor(sf::Color(192, 192, 192));
 	playerShape.setOrigin(50, 50);
 	playerShape.setPointCount(10);
+	playerShape.setOutlineColor(sf::Color(90, 90, 90));
+	playerShape.setOutlineThickness(3);
 	shipsShape.setPosition(playerShape.getPosition());
 	shipsShape.setRadius(70.0f);
 	shipsShape.setPointCount(0);
@@ -93,7 +95,7 @@ void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
-	sf::Vector2f playerCenter = sf::Vector2f(posPlayer.x + playerShape.getRadius() / 4, posPlayer.y + playerShape.getRadius() / 4);
+	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius()/4, playerShape.getPosition().y + playerShape.getRadius()/4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		isMouseButtonDown = true;

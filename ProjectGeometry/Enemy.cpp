@@ -21,9 +21,11 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		speed = 200;
 		// Appearance
 		shape.setPointCount(3);
+		shape.setOutlineColor(sf::Color(96, 96, 96));
+		shape.setOutlineThickness(2);
 		shape.setScale(.8, 1);
-		color = sf::Color::Red;
-		radius = 15;
+		color = sf::Color(255, 255, 0);
+		radius = 20;
 	}
 	break;
 	case Type::Square:
@@ -33,7 +35,9 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		speed = 100;
 		// Appearance
 		shape.setPointCount(4);
-		color = sf::Color::Blue;
+		shape.setOutlineColor(sf::Color(96, 96, 96));
+		color = sf::Color(255, 180, 0);
+		shape.setOutlineThickness(2);
 		radius = 30;
 		// Target
 		srand(time(0));
@@ -51,7 +55,9 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		damage = 30;
 		speed = 60;
 		// Appearance
-		color = sf::Color::Yellow;
+		shape.setOutlineColor(sf::Color(96, 96, 96));
+		color = sf::Color(205, 51, 51);
+		shape.setOutlineThickness(2);
 		radius = 30;
 		// Target
 		srand(time(0));
@@ -67,7 +73,9 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		speed = 20;
 		// Appearance
 		shape.setPointCount(8);
-		color = sf::Color::Green;
+		shape.setOutlineColor(sf::Color(96, 96, 96));
+		shape.setOutlineThickness(2);
+		color = sf::Color(102, 0, 0);
 		radius = 100;
 	}
 	break;

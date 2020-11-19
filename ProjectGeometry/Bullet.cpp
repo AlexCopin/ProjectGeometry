@@ -44,6 +44,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setScale(scaleB, 1.0f);
 	float aimingAngle = atan2f(direction.y, direction.x);
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
+
 	player = Player::player;
 }
 void Bullet::Update(sf::RenderWindow *window, float deltaTime)

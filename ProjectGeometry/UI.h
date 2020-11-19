@@ -9,10 +9,10 @@ class UI : Object
 public:
 
 	sf::Font policeUI;
+	bool loser = false;
 	UI(std::string id, sf::RenderWindow* window,sf::Font font);
 	void Update(sf::RenderWindow* window, float deltaTime);
 	void DrawPlayerHealth(sf::RenderWindow* window);
 	void GameOver(sf::RenderWindow* window);
-	void GameStart(sf::RenderWindow* window);
 	void Score(sf::RenderWindow* window);
 };
