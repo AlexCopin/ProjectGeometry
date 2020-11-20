@@ -9,7 +9,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	if (Player::player->typeB == Player::TYPEBULLET::BASE)
 	{
 		count = 3;
-		color = sf::Color::Red;
+		color = sf::Color::Red;	
 		Player::player->shootTimerValue = 0.5f;
 		Player::player->shootTimerShipValue = 0.5f;
 	}

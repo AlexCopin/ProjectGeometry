@@ -50,14 +50,10 @@ void Player::Update(sf::RenderWindow *window, float deltaTime)
 	bonusDuration -= deltaTime;
 	if(bonusDuration > 0)
 	{
-		bonused = true;
-	}else
-	{
-		bonused = false;
-	}
-	if(bonused)
-	{
 		typeB = TYPEBULLET::BONUS;
+	}else if(typeB == TYPEBULLET::BONUS && bonusDuration <= 0)
+	{
+		typeB = TYPEBULLET::BASE;
 	}
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
