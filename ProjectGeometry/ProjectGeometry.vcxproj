@@ -197,6 +197,7 @@
     <None Include="Debug\Assets\Sounds\Mitraillette3.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillette4.ogg" />
     <None Include="Debug\Assets\Sounds\Mitraillette_End.ogg" />
+    <None Include="Debug\Assets\Sounds\Musique Entiere.ogg" />
     <None Include="Debug\Assets\Sounds\pompe1.ogg" />
     <None Include="Debug\Assets\Sounds\pompe2.ogg" />
     <None Include="Debug\Assets\Sounds\pompe3.ogg" />
@@ -224,6 +225,7 @@
     <None Include="Release\Assets\Sounds\Mitraillette3.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillette4.ogg" />
     <None Include="Release\Assets\Sounds\Mitraillette_End.ogg" />
+    <None Include="Release\Assets\Sounds\Musique Entiere.ogg" />
     <None Include="Release\Assets\Sounds\pompe1.ogg" />
     <None Include="Release\Assets\Sounds\pompe2.ogg" />
     <None Include="Release\Assets\Sounds\pompe3.ogg" />
