@@ -52,7 +52,6 @@ public:
 	sf::SoundBuffer buffer_crazy;
 	//BONUS
 	float bonusDuration = 0.0f;
-	bool bonused = false;
 	// on charge quelque chose dans le buffer...
 	sf::Sound sound;
 	sf::Music music1;
