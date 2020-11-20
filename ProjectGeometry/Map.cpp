@@ -5,16 +5,16 @@ Map *Map::mape = nullptr;
 Map::Map(std::string id, sf::RenderWindow *window)
 {
 	this->id = "Map";
-	limitUP.setFillColor(sf::Color::Yellow);
+	limitUP.setFillColor(sf::Color::Black);
 	limitUP.setSize(sf::Vector2f(window->getSize().x, 100));
 	limitUP.setPosition(sf::Vector2f(0, -90));
-	limitDOWN.setFillColor(sf::Color::Yellow);
+	limitDOWN.setFillColor(sf::Color::Black);
 	limitDOWN.setSize(sf::Vector2f(window->getSize().x, 100));
 	limitDOWN.setPosition(sf::Vector2f(0, window->getSize().y - 10));
-	limitRIGHT.setFillColor(sf::Color::Yellow);
+	limitRIGHT.setFillColor(sf::Color::Black);
 	limitRIGHT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitRIGHT.setPosition(sf::Vector2f(-90, 0));
-	limitLEFT.setFillColor(sf::Color::Yellow);
+	limitLEFT.setFillColor(sf::Color::Black);
 	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitLEFT.setPosition(sf::Vector2f(window->getSize().x - 10, 0));
 	player = new Player("Player", 5000, 50, 50);
