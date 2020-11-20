@@ -1,6 +1,5 @@
 #include "Player.h"
 Player *Player::player = nullptr;
-std::list<Ship *> ships;
 std::list<Bullet *> bullets;
 std::list<Bullet *> &getBullets() { return bullets; }
 Player::Player(std::string id, int life, int posX, int posY)
@@ -37,6 +36,7 @@ Player::Player(std::string id, int life, int posX, int posY)
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	shieldFactor = ((int)ships.size() / 3);
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
@@ -95,11 +95,10 @@ void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
-	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius()/4, playerShape.getPosition().y + playerShape.getRadius()/4);
+	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius() / 4, playerShape.getPosition().y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		isMouseButtonDown = true;
-
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
 			if (typeB == TYPEBULLET::SHOTGUN)
@@ -187,10 +186,13 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 		}
 	}
-	else {
-		if (isMouseButtonDown) {
+	else
+	{
+		if (isMouseButtonDown)
+		{
 			isMouseButtonDown = false;
-			if (typeB == TYPEBULLET::MITRAILLETTE) {
+			if (typeB == TYPEBULLET::MITRAILLETTE)
+			{
 				sound.setBuffer(buffer_rifleEnd);
 				sound.play();
 			}

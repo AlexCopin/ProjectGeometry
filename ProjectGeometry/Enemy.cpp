@@ -295,6 +295,7 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 		Map::mape->compteurEnemy--;
 		player->lifeP -= damage * 2;
 		health = 0;
+		// player->ships.pop_back();
 	}
 	// Score
 	score = damage * 10;

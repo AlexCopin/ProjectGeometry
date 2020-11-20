@@ -8,6 +8,8 @@ std::list<Bullet *> &getBullets();
 class Player : Object
 {
 public:
+	std::list<Ship *> ships;
+	float shieldFactor;
 	enum class TYPEBULLET
 	{
 		BASE,

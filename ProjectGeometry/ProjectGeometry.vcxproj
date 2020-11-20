@@ -175,7 +175,6 @@
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Debug\Bullet.obj" />
     <Object Include="Debug\Main.obj" />
     <Object Include="Debug\Map.obj" />
     <Object Include="Debug\MathUtils.obj" />
