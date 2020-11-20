@@ -37,6 +37,18 @@ Player::Player(std::string id, int life, int posX, int posY)
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	bonusDuration -= deltaTime;
+	if(bonusDuration > 0)
+	{
+		bonused = true;
+	}else
+	{
+		bonused = false;
+	}
+	if(bonused)
+	{
+		typeB = TYPEBULLET::BONUS;
+	}
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
@@ -130,25 +142,21 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 				{
 					sound.setBuffer(buffer_rifle1);
 					sound.play();
-					LOG(1);
 				}
 				else if (i == 2)
 				{
 					sound.setBuffer(buffer_rifle2);
 					sound.play();
-					LOG(2);
 				}
 				else if (i == 3)
 				{
 					sound.setBuffer(buffer_rifle3);
 					sound.play();
-					LOG(3);
 				}
 				else if (i == 4)
 				{
 					sound.setBuffer(buffer_rifle4);
 					sound.play();
-					LOG(4);
 				}
 				Bullet *bullet = new Bullet(damageP, GetTraj(window, playerCenter), Bullet::Type::Player);
 				bullet->shapeB.setPosition(playerCenter);
@@ -255,6 +263,7 @@ void Player::ShipShootBullet(sf::RenderWindow *window, float deltaTime)
 					bullet->shapeB.setRadius(bullet->shapeB.getRadius() / 2);
 					bullet->shapeB.setFillColor(sf::Color::Cyan);
 					bullets.push_back(bullet);
+					shootTimerShip = 0;
 				}
 				else
 				{
@@ -371,7 +380,6 @@ sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
 }
 void Player::ChangeWeapon()
 {
-	LOG("Change weapon");
 	int newType = (int)typeB + 1;
 	if (newType == (int)TYPEBULLET::SIZE || (newType == (int)TYPEBULLET::BONUS && bonusDuration <= 0))
 	{

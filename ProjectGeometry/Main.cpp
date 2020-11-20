@@ -1,5 +1,5 @@
 #include "Main.h"
-#include "Map.h";
+#include "Map.h"
 #include "Background.h"
 #include "UI.h"
 #include "Enemy.h"
@@ -143,7 +143,6 @@ int main()
     }
     if (menu->gameLaunched && !allCreated)
     {
-        LOG("Create all");
         map = new Map("Map", &window);
         Map::mape = map;
         ui = new UI("UI", &window, police);

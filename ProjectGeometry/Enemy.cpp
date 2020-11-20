@@ -8,7 +8,7 @@
 Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 {
 	srand(time(0));
-	loot = rand() % 2;
+	loot = rand() % 100;
 	getEnemies().push_back(this);
 	map = (Map *)FindObject("Map");
 	this->id = id;
@@ -301,11 +301,16 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	// Health
 	if (health <= 0)
 	{
+		Map::mape->compteurEnemy--;
 		player->score += score;
 		getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
 		DestroyObject(this);
-		if (loot)
+		if (loot <= 75)
 			new Ship(shape.getPosition(), "enemyLoot");
+		else if (loot > 75 && loot <= 95)
+			new Bonus(shape.getPosition(), Bonus::TypeBonus::HEALTH, "Bonus");
+		else if(loot > 95)
+			new Bonus(shape.getPosition(), Bonus::TypeBonus::NUKE, "Bonus");
 	}
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
@@ -316,9 +321,21 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		auto bul = new Bullet(damage, dir, Bullet::Type::Enemy);
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
-		bul->shapeB.setScale(.5, .5);
-		bul->shapeB.setFillColor(color);
+		bul->shapeB.setScale(.6, .6);
+		bul->shapeB.setFillColor(sf::Color::Red);
 		bul->count = bulCount;
+		switch(type)
+		{
+		case Type::Octagon :
+			bul->speedB = speedOctagon;
+				break;
+		case Type::Circle:
+			bul->speedB = speedCircle;
+					break;
+		case Type::Square:
+			bul->speedB = speedSquare;
+						break;
+		}
 		timerBul = cadence;
 	}
 }

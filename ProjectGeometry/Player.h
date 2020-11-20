@@ -1,6 +1,7 @@
 #pragma once
 #include "Main.h"
 #include "Ship.h"
+#include "Bonus.h"
 #include "Bullet.h"
 #include <list>
 #include "SFML/Audio.hpp"
@@ -27,8 +28,6 @@ public:
 	float actualSpeed = 0;
 	sf::Mouse mouse;
 	bool isMouseButtonDown = false;
-	float bonusDuration = 0.0f;
-	float bonusDurationValue = 1.5f;
 	sf::CircleShape playerShape;
 	sf::Vector2f posPlayer;
 	//ALEXBULLET
@@ -48,6 +47,9 @@ public:
 	sf::SoundBuffer buffer_rifleEnd;
 	sf::SoundBuffer buffer_shotgun;
 	sf::SoundBuffer buffer_crazy;
+	//BONUS
+	float bonusDuration = 0.0f;
+	bool bonused = false;
 	// on charge quelque chose dans le buffer...
 	sf::Sound sound;
 	void ShootBullet(sf::RenderWindow *window, float deltaTime);

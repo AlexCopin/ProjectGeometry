@@ -20,10 +20,10 @@ public:
 
 	float countdown = 15.0f;
 	float countdownV = 10.0f;
-	float difficulty = 0.7f;
+	float difficulty = 0.9f;
 
-	int compteurEnemy = 8;
-	int compteurEnemyValue = 8;
+	float compteurEnemy = 8.0f;
+	float compteurEnemyValue = 8.0f;
 
 	static Map* mape;
 	Map(std::string id, sf::RenderWindow *window);
