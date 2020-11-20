@@ -332,7 +332,7 @@ void Player::MovementShipsShape(float deltaTime)
 		if (distance > 0.1f)
 		{
 			direction2 = direction2 / distance;
-			(*it)->posShip = (*it)->posShip + direction2 * (float)(i + 3) * distance * deltaTime;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i%3 + 3) * distance * deltaTime;
 		}
 		it++;
 		i++;
