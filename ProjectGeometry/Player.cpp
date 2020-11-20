@@ -32,7 +32,7 @@ Player::Player(std::string id, int life, int posX, int posY)
 	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette4.ogg");
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
 	buffer_crazy.loadFromFile(getAssetsPath() + "Sounds\\crazy.ogg");
-	music1.openFromFile(getAssetsPath() + "Sounds\\MusicPart1.ogg");
+	music1.openFromFile(getAssetsPath() + "Sounds\\Musique Entiere.ogg");
 	
 	music2.openFromFile(getAssetsPath() + "Sounds\\MusicPart2.ogg");
 	player = this;
