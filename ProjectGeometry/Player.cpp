@@ -346,7 +346,7 @@ void Player::GetShip(Ship *ship)
 }
 void Player::TakeDamage(int damages)
 {
-	lifeP -= damages / shieldFactor > 0 ? shieldFactor : 1;
+	lifeP -= damages / (shieldFactor > 0 ? shieldFactor : 1);
 	if (ships.size() > 0)
 	{
 		delete ships.back();
