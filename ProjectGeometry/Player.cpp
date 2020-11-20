@@ -120,6 +120,7 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius() / 4, playerShape.getPosition().y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
+
 		isMouseButtonDown = true;
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
@@ -350,14 +351,12 @@ void Player::GetShip(Ship *ship)
 void Player::TakeDamage(int damages)
 {
 	lifeP -= damages;
-	for (int i = 0; i < damages; i++)
+	if (ships.size() > 0)
 	{
-		if (ships.size() > 0)
-		{
-			delete ships.back();
-			ships.pop_back();
-		}
+		delete ships.back();
+		ships.pop_back();
 	}
+
 	if (lifeP <= 0)
 	{
 		PlayerDeath();
