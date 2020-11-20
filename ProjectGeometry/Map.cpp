@@ -41,6 +41,23 @@ void Map::Update(sf::RenderWindow *window, float deltaTime)
 {
 
 	CollisionPlayer(deltaTime);
+	if(countdown <= 0)
+	{
+		if(spawnEnemy01Value >= 2.0f)
+			spawnEnemy01Value * difficulty;
+		if (spawnEnemy02Value >= 3.0f)
+			spawnEnemy02Value * difficulty;
+		if (spawnEnemy03Value >= 3.0f)
+			spawnEnemy03Value * difficulty; 
+		if (compteurEnemyValue >= 4)
+			compteurEnemyValue * difficulty;
+
+		countdown = countdownV;
+	}
+	if(countdown > 0)
+	{
+		countdown -= deltaTime;
+	}
 	
 	window->draw(limitUP);
 	window->draw(limitDOWN);

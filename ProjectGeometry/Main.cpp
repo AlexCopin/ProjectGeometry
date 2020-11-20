@@ -126,7 +126,10 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+            {
+                menu->gameLaunched = true;
                 window.close();
+            }
 
             menu->OnEventMenu(&window, event, deltaTime);
         }
