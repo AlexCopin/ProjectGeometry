@@ -32,10 +32,20 @@ Player::Player(std::string id, int life, int posX, int posY)
 	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette4.ogg");
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
 	buffer_crazy.loadFromFile(getAssetsPath() + "Sounds\\crazy.ogg");
+	music1.openFromFile(getAssetsPath() + "Sounds\\MusicPart1.ogg");
+	
+	music2.openFromFile(getAssetsPath() + "Sounds\\MusicPart2.ogg");
 	player = this;
+	music1.play();
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	if (!sf::SoundSource::Playing) {
+		music2.play();
+		music2.setLoop(true);
+		LOG("Music Change");
+	}
+
 	shieldFactor = ((int)ships.size() / 3);
 	bool isOneKeyPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))

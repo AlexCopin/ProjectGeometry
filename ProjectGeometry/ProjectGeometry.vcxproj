@@ -203,6 +203,7 @@
     <None Include="Debug\ProjectGeometry.exe.recipe" />
     <None Include="Debug\ProjectGeometry.ilk" />
     <None Include="Debug\ProjectGeometry.pdb" />
+    <None Include="Debug\sfml-audio-d-2.dll" />
     <None Include="Debug\sfml-graphics-d-2.dll" />
     <None Include="Debug\sfml-system-d-2.dll" />
     <None Include="Debug\sfml-window-d-2.dll" />
