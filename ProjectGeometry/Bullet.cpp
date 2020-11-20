@@ -66,16 +66,19 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 		{
 			DestroyObject2(this);
 		}
-		for (auto enemy : getEnemies())
-		{
-			sf::Vector2f dir = enemy->shape.getPosition() - shapeB.getPosition();
-			float mag = sqrt(powf(dir.x, 2) + powf(dir.y, 2));
-			if (mag < shapeB.getRadius() + enemy->shape.getRadius())
+		else {
+			for (auto enemy : getEnemies())
 			{
-				enemy->health -= damageB;
-				DestroyObject2(this);
+				sf::Vector2f dir = enemy->shape.getPosition() - shapeB.getPosition();
+				float mag = sqrt(powf(dir.x, 2) + powf(dir.y, 2));
+				if (mag < shapeB.getRadius() + enemy->shape.getRadius())
+				{
+					enemy->health -= damageB;
+					DestroyObject2(this);
+				}
+
+
 			}
-			
 		}
 	}
 	// Enemy
