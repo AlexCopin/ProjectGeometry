@@ -192,7 +192,7 @@ int main()
             for (auto i : toDestroy)
                 delete i;
             for (auto i : toDestroy2)
-                 i->~Object2();
+                delete i;
             toDestroy.clear();
             toDestroy2.clear();
         }
