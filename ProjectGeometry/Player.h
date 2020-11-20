@@ -66,7 +66,6 @@ public:
 	float GetTime();
 	void TakeDamage(int damages);
 	void PlayerDeath();
-	void DestroyBullet();
 	void ChangeWeapon();
 	void GetShip(Ship *ship);
 	void ShipShootBullet(sf::RenderWindow *window, float deltaTime);

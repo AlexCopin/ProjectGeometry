@@ -36,7 +36,7 @@ Object2::Object2()
 }
 Object2::~Object2()
 {
-    Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
+   Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
 }
 Object *FindObject(std::string id)
 {
@@ -192,7 +192,7 @@ int main()
             for (auto i : toDestroy)
                 delete i;
             for (auto i : toDestroy2)
-                delete i;
+                 i->~Object2();
             toDestroy.clear();
             toDestroy2.clear();
         }

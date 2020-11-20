@@ -4,6 +4,7 @@
 Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 {
 	this->type = type;
+	damageB = damage;
 	sf::Color color;
 	if (Player::player->typeB == Player::TYPEBULLET::BASE)
 	{
@@ -21,8 +22,9 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	}
 	else if (Player::player->typeB == Player::TYPEBULLET::MITRAILLETTE)
 	{
-		Player::player->shootTimerValue = 0.1f;
+		Player::player->shootTimerValue = 0.15f;
 		Player::player->shootTimerShipValue = 0.3f;
+		damageB = damage / 3;
 		color = sf::Color::Blue;
 		scaleB = 0.5f;
 		count = 5;
@@ -43,7 +45,6 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 		scaleB = 1.0f;
 		count = 5;
 	}
-	damageB = damage;
 	trajectoire = direction;
 	shapeB.setFillColor(color);
 	shapeB.setRadius(radiusB);
@@ -61,7 +62,7 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 	// Player
 	if (type == Type::Player)
 	{
-		if (shapeB.getPosition().y < 0 || shapeB.getPosition().x < 0 || shapeB.getPosition().y > 1500 || shapeB.getPosition().x > 2500)
+		if (shapeB.getPosition().y < 0 || shapeB.getPosition().x < 0 || shapeB.getPosition().y > window->getSize().y || shapeB.getPosition().x > window->getSize().x)
 		{
 			DestroyObject2(this);
 		}

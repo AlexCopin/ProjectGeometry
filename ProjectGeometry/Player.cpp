@@ -367,22 +367,6 @@ void Player::PlayerDeath()
 {
 	DestroyObject(this);
 }
-void Player::DestroyBullet()
-{
-	std::list<Bullet *>::iterator ite = bullets.begin();
-	while (ite != bullets.end())
-	{
-		if ((*ite)->shapeB.getPosition().y < 0 || (*ite)->shapeB.getPosition().x < 0 || (*ite)->shapeB.getPosition().y > 1500 || (*ite)->shapeB.getPosition().x > 2500)
-		{
-			DestroyObject2(*ite);
-			ite = bullets.erase(ite);
-		}
-		else
-		{
-			ite++;
-		}
-	}
-}
 sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
 {
 	sf::Vector2i mousePosInt = mouse.getPosition(*window);
