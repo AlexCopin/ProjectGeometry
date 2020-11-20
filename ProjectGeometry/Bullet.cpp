@@ -35,6 +35,14 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 		scaleB = 0.8f;
 		count = 6;
 	}
+	else if (Player::player->typeB == Player::TYPEBULLET::BONUS)
+	{
+		Player::player->shootTimerValue = 0.1f;
+		Player::player->shootTimerShipValue = 0.1f;
+		color = sf::Color::Yellow;
+		scaleB = 1.0f;
+		count = 5;
+	}
 	damageB = damage;
 	trajectoire = direction;
 	shapeB.setFillColor(color);
@@ -44,18 +52,19 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 	player = Player::player;
 }
-void Bullet::Update(sf::RenderWindow *window, float deltaTime)
+void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {
 	playerShips = player->ships.size();
 	shapeB.setPointCount(count);
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);
-	// Destroy
-	if (shapeB.getPosition().y < 0 || shapeB.getPosition().x < 0 || shapeB.getPosition().y > 1500 || shapeB.getPosition().x > 2500)
-		DestroyObject2(this);
 	// Player
 	if (type == Type::Player)
 	{
+		if (shapeB.getPosition().y < 0 || shapeB.getPosition().x < 0 || shapeB.getPosition().y > 1500 || shapeB.getPosition().x > 2500)
+		{
+			DestroyObject2(this);
+		}
 		for (auto enemy : getEnemies())
 		{
 			sf::Vector2f dir = enemy->shape.getPosition() - shapeB.getPosition();
@@ -65,11 +74,16 @@ void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 				enemy->health -= damageB;
 				DestroyObject2(this);
 			}
+			
 		}
 	}
 	// Enemy
 	else if (type == Type::Enemy)
 	{
+		if (shapeB.getPosition().y < 0 || shapeB.getPosition().x < 0 || shapeB.getPosition().y > 1500 || shapeB.getPosition().x > 2500)
+		{
+			DestroyObject2(this);
+		}
 		sf::Vector2f dirPlay = player->playerShape.getPosition() - shapeB.getPosition();
 		float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 		if (magPlay < shapeB.getRadius() + player->playerShape.getRadius())

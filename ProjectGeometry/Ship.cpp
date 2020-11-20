@@ -43,7 +43,7 @@ void Ship::GetDistanceWithPlayer()
 	if (!isWithPlayer)
 	{
 		sf::Vector2f shipToPlayer = player->posPlayer - shipShape.getPosition();
-		;
+		
 		float distance = sqrt(powf(shipToPlayer.x, 2) + powf(shipToPlayer.y, 2));
 		if (distance < player->playerShape.getRadius() + (shipShape.getRadius()))
 		{

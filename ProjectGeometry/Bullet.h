@@ -18,7 +18,7 @@ public:
 	float radiusB = 10.0f;
 	float speedB = 1000;
 	sf::CircleShape shapeB;
-	short count;
+	short count = 3;
 	sf::Vector2f trajectoire;
 	Bullet(float damage, sf::Vector2f direction, Type type);
 	void Update(sf::RenderWindow *window, float deltaTime);

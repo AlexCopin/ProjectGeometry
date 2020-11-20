@@ -1,10 +1,11 @@
 #include "Main.h"
+#include "Bonus.h"
 class Map;
 class Player;
 class Enemy : Object
 {
 public:
-	bool loot;
+	int loot;
 	// Map
 	Map *map;
 	// Player
@@ -38,6 +39,10 @@ public:
 	float cadence;
 	float timerBul = cadence;
 	short bulCount;
+	float speedSquare = 500.0f;
+	float speedOctagon = 500.0f;
+	float speedCircle = 500.0f;
+
 	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	~Enemy();

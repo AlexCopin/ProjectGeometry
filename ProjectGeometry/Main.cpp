@@ -1,5 +1,5 @@
 #include "Main.h"
-#include "Map.h";
+#include "Map.h"
 #include "Background.h"
 #include "UI.h"
 #include "Enemy.h"
@@ -143,7 +143,6 @@ int main()
     }
     if (menu->gameLaunched && !allCreated)
     {
-        LOG("Create all");
         map = new Map("Map", &window);
         Map::mape = map;
         ui = new UI("UI", &window, police);
@@ -161,7 +160,7 @@ int main()
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
-                if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P || event.key.code == sf::Keyboard::Escape))
+                if (event.type == sf::Event::KeyPressed && (event.key.code == sf::Keyboard::P || event.key.code == sf::Keyboard::Escape))
                     menu->isPaused = true;
                 for (auto i : Objects)
                     if (i->isActive)
