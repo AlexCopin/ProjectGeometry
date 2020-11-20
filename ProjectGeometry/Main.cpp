@@ -4,9 +4,9 @@
 #include "UI.h"
 #include "Enemy.h"
 #include "Menu.h"
-Background* background;
-Map* map;
-UI* ui;
+Background *background;
+Map *map;
+UI *ui;
 std::string getAppPath()
 {
     char cAppPath[MAX_PATH];
@@ -21,6 +21,7 @@ std::string getAssetsPath()
 }
 // Julien: API
 std::vector<Object *> Objects;
+std::vector<Object2 *> Objects2;
 Object::Object()
 {
     Objects.push_back(this);
@@ -29,14 +30,6 @@ Object::~Object()
 {
     Objects.erase(std::find(Objects.begin(), Objects.end(), this));
 }
-Object *FindObject(std::string id)
-{
-    for (auto i : Objects)
-        if (i->id == id)
-            return i;
-    return 0;
-}
-std::vector<Object2 *> Objects2;
 Object2::Object2()
 {
     Objects2.push_back(this);
@@ -44,6 +37,13 @@ Object2::Object2()
 Object2::~Object2()
 {
     Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
+}
+Object *FindObject(std::string id)
+{
+    for (auto i : Objects)
+        if (i->id == id)
+            return i;
+    return 0;
 }
 bool SetActive(void *object, bool isActive)
 {
@@ -55,11 +55,15 @@ bool SetActive(void *object, bool isActive)
     else
         return 0;
 }
+std::vector<Object *> toDestroy;
+std::vector<Object2 *> toDestroy2;
 bool DestroyObject(void *object)
 {
-    if (object)
+    auto o = (Object *)object;
+    auto i = std::find(Objects.begin(), Objects.end(), o);
+    if (i != Objects.end())
     {
-        ((Object *)object)->~Object();
+        toDestroy.push_back(o);
         return 1;
     }
     else
@@ -67,13 +71,12 @@ bool DestroyObject(void *object)
 }
 bool DestroyObject2(void *object2)
 {
-    if (object2)
+    auto o = (Object2 *)object2;
+    auto i = std::find(Objects2.begin(), Objects2.end(), o);
+    if (i != Objects2.end())
     {
-        if (std::find(Objects2.begin(), Objects2.end(), (Object2 *)object2) != Objects2.end())
-        {
-            ((Object2 *)object2)->~Object2();
-            return 1;
-        }
+        toDestroy2.push_back(o);
+        return 1;
     }
     else
         return 0;
@@ -86,9 +89,8 @@ bool MouseButtonUp(bool boule)
 {
     return boule;
 }
-void BeginGame(sf::RenderWindow& window, sf::Font police)
+void BeginGame(sf::RenderWindow &window, sf::Font police)
 {
-    
 }
 std::vector<Enemy *> enemiesM;
 std::vector<Enemy *> &getEnemies() { return enemiesM; }
@@ -107,11 +109,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Default, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
-
     auto menu = new Menu(window);
     bool allCreated = false;
     background = new Background("background", &window);
-
     background->CreateStars(window);
     //background->CreateStars(window);
     //UIFonts
@@ -127,7 +127,6 @@ int main()
         {
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-
             menu->OnEventMenu(&window, event, deltaTime);
         }
         window.clear();
@@ -138,7 +137,6 @@ int main()
         menu->drawMenu(window);
         window.display();
     }
-
     if (menu->gameLaunched && !allCreated)
     {
         LOG("Create all");
@@ -155,7 +153,7 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if(!menu->isPaused)
+            if (!menu->isPaused)
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
@@ -164,11 +162,11 @@ int main()
                 for (auto i : Objects)
                     if (i->isActive)
                         i->OnEvent(&window, event, deltaTime);
-            }else 
+            }
+            else
             {
                 menu->OnEventMenu(&window, event, deltaTime);
             }
-            
         }
         //Entities
         background->SpawnEntities(window, deltaTime);
@@ -188,12 +186,18 @@ int main()
                 if (i->isActive)
                     i->Update(&window, deltaTime);
             map->SpawnEnemies(&window, deltaTime);
+            for (auto i : toDestroy)
+                delete i;
+            for (auto i : toDestroy2)
+                delete i;
+            toDestroy.clear();
+            toDestroy2.clear();
         }
-        if(menu->isPaused)
+        if (menu->isPaused)
         {
             menu->drawMenu(window);
         }
-        if(ui->loser)
+        if (ui->loser)
             ui->GameOver(&window);
         window.draw(aimShape);
         window.display();
