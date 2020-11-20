@@ -161,7 +161,7 @@ int main()
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
-                if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P || event.key.code == sf::Keyboard::Escape))
+                if (event.type == sf::Event::KeyPressed && (event.key.code == sf::Keyboard::P || event.key.code == sf::Keyboard::Escape))
                     menu->isPaused = true;
                 for (auto i : Objects)
                     if (i->isActive)
