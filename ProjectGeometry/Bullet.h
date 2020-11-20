@@ -7,7 +7,7 @@ public:
 	int playerShips;
 	float shieldFactor;
 	// Player
-	Player *player;
+	//Player *player;
 	enum class Type
 	{
 		Player,

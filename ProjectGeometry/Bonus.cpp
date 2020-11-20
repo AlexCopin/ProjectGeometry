@@ -28,6 +28,10 @@ void Bonus::Update(sf::RenderWindow* window, float deltaTime)
 	if (magPlay < (form.getRadius() + Player::player->playerShape.getRadius()) && type == TypeBonus::HEALTH)
 	{
 		Player::player->lifeP += amount;
+		if(Player::player->lifeP > Player::player->lifeMax)
+		{
+			Player::player->lifeP = Player::player->lifeMax;
+		}
 		DestroyObject2(this);
 	}else if (magPlay < (form.getRadius() + Player::player->playerShape.getRadius()) && type == TypeBonus::NUKE)
 	{
