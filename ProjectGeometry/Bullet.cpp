@@ -50,11 +50,11 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setScale(scaleB, 1.0f);
 	float aimingAngle = atan2f(direction.y, direction.x);
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
-
 	player = Player::player;
 }
 void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 {
+	playerShips = player->ships.size();
 	shapeB.setPointCount(count);
 	MoveBullet(speedB * deltaTime);
 	window->draw(shapeB);
@@ -88,7 +88,7 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 		float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 		if (magPlay < shapeB.getRadius() + player->playerShape.getRadius())
 		{
-			player->lifeP -= damageB;
+			player->lifeP -= damageB / player->shieldFactor > 0 ? player->shieldFactor : 1;
 			DestroyObject2(this);
 		}
 	}

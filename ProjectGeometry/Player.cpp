@@ -1,6 +1,5 @@
 #include "Player.h"
 Player *Player::player = nullptr;
-std::list<Ship *> ships;
 std::list<Bullet *> bullets;
 std::list<Bullet *> &getBullets() { return bullets; }
 Player::Player(std::string id, int life, int posX, int posY)
@@ -33,10 +32,21 @@ Player::Player(std::string id, int life, int posX, int posY)
 	buffer_rifle4.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette4.ogg");
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
 	buffer_crazy.loadFromFile(getAssetsPath() + "Sounds\\crazy.ogg");
+	music1.openFromFile(getAssetsPath() + "Sounds\\Musique Entiere.ogg");
+	
+	music2.openFromFile(getAssetsPath() + "Sounds\\MusicPart2.ogg");
 	player = this;
+	music1.play();
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	if (!sf::SoundSource::Playing) {
+		music2.play();
+		music2.setLoop(true);
+		LOG("Music Change");
+	}
+
+	shieldFactor = ((int)ships.size() / 3);
 	bonusDuration -= deltaTime;
 	if(bonusDuration > 0)
 	{
@@ -107,11 +117,10 @@ void Player::OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime)
 void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 {
 	//BULLET ALEX
-	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius()/4, playerShape.getPosition().y + playerShape.getRadius()/4);
+	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius() / 4, playerShape.getPosition().y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		isMouseButtonDown = true;
-
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
 			if (typeB == TYPEBULLET::SHOTGUN)
@@ -195,10 +204,13 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 			}
 		}
 	}
-	else {
-		if (isMouseButtonDown) {
+	else
+	{
+		if (isMouseButtonDown)
+		{
 			isMouseButtonDown = false;
-			if (typeB == TYPEBULLET::MITRAILLETTE) {
+			if (typeB == TYPEBULLET::MITRAILLETTE)
+			{
 				sound.setBuffer(buffer_rifleEnd);
 				sound.play();
 			}

@@ -5,10 +5,13 @@
 #include "Bullet.h"
 #include <list>
 #include "SFML/Audio.hpp"
+
 std::list<Bullet *> &getBullets();
 class Player : Object
 {
 public:
+	std::list<Ship *> ships;
+	float shieldFactor;
 	enum class TYPEBULLET
 	{
 		BASE,
@@ -52,6 +55,9 @@ public:
 	bool bonused = false;
 	// on charge quelque chose dans le buffer...
 	sf::Sound sound;
+	sf::Music music1;
+	sf::Music music2;
+
 	void ShootBullet(sf::RenderWindow *window, float deltaTime);
 	sf::CircleShape shipsShape;
 	float shipsShapeAngle = 0;
