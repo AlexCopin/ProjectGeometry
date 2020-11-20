@@ -106,7 +106,7 @@ int main()
     aimShape.setOutlineThickness(2.0f);
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
-    sf::RenderWindow window(sf::VideoMode(1600, 950), "ProjectGeometry", sf::Style::Fullscreen, settings);
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "ProjectGeometry", sf::Style::Fullscreen, settings);
     window.setMouseCursorVisible(false);
     sf::Clock(clock);
     auto menu = new Menu(window);
