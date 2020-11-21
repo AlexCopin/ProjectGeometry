@@ -91,7 +91,7 @@ void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 		float magPlay = sqrt(powf(dirPlay.x, 2) + powf(dirPlay.y, 2));
 		if (magPlay < shapeB.getRadius() + Player::player->playerShape.getRadius())
 		{
-			Player::player->lifeP -= damageB / Player::player->shieldFactor > 0 ? Player::player->shieldFactor : 1;
+			Player::player->lifeP -= damageB / ((Player::player->shieldFactor > 0) ? Player::player->shieldFactor : 1);
 			DestroyObject2(this);
 		}
 	}

@@ -19,7 +19,7 @@ public:
 		Octagon
 	} type;
 	sf::Vector2f position;
-	int16_t health, damage, score;
+	int health, damage, score;
 	float speed, speedX, speedY;
 	sf::Clock clock;
 	// Appearance
