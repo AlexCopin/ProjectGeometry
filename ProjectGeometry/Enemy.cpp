@@ -310,7 +310,7 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 			new Ship(shape.getPosition(), "enemyLoot");
 		else if (loot > 75 && loot <= 95)
 			new Bonus(shape.getPosition(), Bonus::TypeBonus::HEALTH, "Bonus");
-		else if(loot > 95)
+		else if (loot > 95)
 			new Bonus(shape.getPosition(), Bonus::TypeBonus::NUKE, "Bonus");
 	}
 }
@@ -325,17 +325,17 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		bul->shapeB.setScale(.6, .6);
 		bul->shapeB.setFillColor(color);
 		bul->count = bulCount;
-		switch(type)
+		switch (type)
 		{
-		case Type::Octagon :
+		case Type::Octagon:
 			bul->speedB = speedOctagon;
-				break;
+			break;
 		case Type::Circle:
 			bul->speedB = speedCircle;
-					break;
+			break;
 		case Type::Square:
 			bul->speedB = speedSquare;
-						break;
+			break;
 		}
 		timerBul = cadence;
 	}

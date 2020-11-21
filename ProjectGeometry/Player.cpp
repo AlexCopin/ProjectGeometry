@@ -33,25 +33,25 @@ Player::Player(std::string id, int life, int posX, int posY)
 	buffer_rifleEnd.loadFromFile(getAssetsPath() + "Sounds\\Mitraillette_End.ogg");
 	buffer_crazy.loadFromFile(getAssetsPath() + "Sounds\\crazy.ogg");
 	music1.openFromFile(getAssetsPath() + "Sounds\\Musique Entiere.ogg");
-	
 	music2.openFromFile(getAssetsPath() + "Sounds\\MusicPart2.ogg");
 	player = this;
 	music1.play();
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
-	if (!sf::SoundSource::Playing) {
+	if (!sf::SoundSource::Playing)
+	{
 		music2.play();
 		music2.setLoop(true);
 		LOG("Music Change");
 	}
-
 	shieldFactor = ((int)ships.size() / 3);
 	bonusDuration -= deltaTime;
-	if(bonusDuration > 0)
+	if (bonusDuration > 0)
 	{
 		typeB = TYPEBULLET::BONUS;
-	}else if(typeB == TYPEBULLET::BONUS && bonusDuration <= 0)
+	}
+	else if (typeB == TYPEBULLET::BONUS && bonusDuration <= 0)
 	{
 		typeB = TYPEBULLET::BASE;
 	}
@@ -116,7 +116,6 @@ void Player::ShootBullet(sf::RenderWindow *window, float deltaTime)
 	sf::Vector2f playerCenter = sf::Vector2f(playerShape.getPosition().x + playerShape.getRadius() / 4, playerShape.getPosition().y + playerShape.getRadius() / 4);
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-
 		isMouseButtonDown = true;
 		if (shootTimer >= shootTimerValue) //Shoot
 		{
@@ -329,7 +328,7 @@ void Player::MovementShipsShape(float deltaTime)
 		if (distance > 0.1f)
 		{
 			direction2 = direction2 / distance;
-			(*it)->posShip = (*it)->posShip + direction2 * (float)(i%3 + 3) * distance * deltaTime;
+			(*it)->posShip = (*it)->posShip + direction2 * (float)(i % 3 + 3) * distance * deltaTime;
 		}
 		it++;
 		i++;
@@ -349,11 +348,10 @@ void Player::TakeDamage(int damages)
 	lifeP -= damages / (shieldFactor > 0 ? shieldFactor : 1);
 	if (ships.size() > 0)
 	{
-		delete ships.back();
-		ships.pop_back();
 		shipsShape.setPointCount(shipsShape.getPointCount() - 1);
+		DestroyObject2(ships.back());
+		ships.pop_back();
 	}
-
 	if (lifeP <= 0)
 	{
 		PlayerDeath();
@@ -361,7 +359,7 @@ void Player::TakeDamage(int damages)
 }
 void Player::PlayerDeath()
 {
-	DestroyObject(this);
+	// DestroyObject(this);
 }
 sf::Vector2f Player::GetTraj(sf::RenderWindow *window, sf::Vector2f pos)
 {

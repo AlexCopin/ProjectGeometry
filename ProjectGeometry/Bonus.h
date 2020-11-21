@@ -13,5 +13,5 @@ public:
 	float duration = 5.0f;
 	int amount = 100;
 	Bonus(sf::Vector2f pos, TypeBonus type, std::string id);
-	void Update(sf::RenderWindow* window, float deltaTime);
+	void Update(sf::RenderWindow *window, float deltaTime);
 };

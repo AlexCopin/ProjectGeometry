@@ -5,7 +5,6 @@
 #include "Bullet.h"
 #include <list>
 #include "SFML/Audio.hpp"
-
 std::list<Bullet *> &getBullets();
 class Player : Object
 {
@@ -57,7 +56,6 @@ public:
 	sf::Sound sound;
 	sf::Music music1;
 	sf::Music music2;
-
 	void ShootBullet(sf::RenderWindow *window, float deltaTime);
 	sf::CircleShape shipsShape;
 	float shipsShapeAngle = 0;

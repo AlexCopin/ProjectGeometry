@@ -36,7 +36,7 @@ Object2::Object2()
 }
 Object2::~Object2()
 {
-   Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
+    Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
 }
 Object *FindObject(std::string id)
 {
@@ -130,7 +130,6 @@ int main()
                 menu->gameLaunched = true;
                 window.close();
             }
-
             menu->OnEventMenu(&window, event, deltaTime);
         }
         window.clear();
@@ -182,25 +181,25 @@ int main()
         // Julien: Update Function
         if (!ui->loser && !menu->isPaused)
         {
-            for (auto i : Objects)
-                if (i->isActive)
-                    i->Update(&window, deltaTime);
             for (auto i : Objects2)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
+            for (auto i : Objects)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
             map->SpawnEnemies(&window, deltaTime);
-            for (auto i : toDestroy)
-                delete i;
             for (auto i : toDestroy2)
+                delete i;
+            for (auto i : toDestroy)
                 delete i;
             toDestroy.clear();
             toDestroy2.clear();
         }
-        if (menu->isPaused)
+        else if (menu->isPaused)
         {
             menu->drawMenu(window);
         }
-        if (ui->loser)
+        else if (ui->loser)
             ui->GameOver(&window);
         window.draw(aimShape);
         window.display();

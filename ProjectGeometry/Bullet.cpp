@@ -9,7 +9,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	if (Player::player->typeB == Player::TYPEBULLET::BASE)
 	{
 		count = 3;
-		color = sf::Color::Red;	
+		color = sf::Color::Red;
 		Player::player->shootTimerValue = 0.5f;
 		Player::player->shootTimerShipValue = 0.5f;
 	}
@@ -53,7 +53,7 @@ Bullet::Bullet(float damage, sf::Vector2f direction, Type type) : type(type)
 	shapeB.setRotation(ConvertRadToDeg(aimingAngle + IIM_PI / 2.0f));
 	//player = Player::player;
 }
-void Bullet::Update(sf::RenderWindow* window, float deltaTime)
+void Bullet::Update(sf::RenderWindow *window, float deltaTime)
 {
 	playerShips = Player::player->ships.size();
 	shapeB.setPointCount(count);
@@ -66,7 +66,8 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 		{
 			DestroyObject2(this);
 		}
-		else {
+		else
+		{
 			for (auto enemy : getEnemies())
 			{
 				sf::Vector2f dir = enemy->shape.getPosition() - shapeB.getPosition();
@@ -76,8 +77,6 @@ void Bullet::Update(sf::RenderWindow* window, float deltaTime)
 					enemy->health -= damageB;
 					DestroyObject2(this);
 				}
-
-
 			}
 		}
 	}

@@ -2,7 +2,6 @@
 #include "SFML/Graphics.hpp"
 #include <math.h>
 extern const float IIM_PI;
-
 float ConvertRadToDeg(float radian);
 float ConvertDegToRad(float degree);
 float GetMax(float a, float b);

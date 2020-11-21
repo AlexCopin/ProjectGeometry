@@ -18,7 +18,6 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitLEFT.setPosition(sf::Vector2f(window->getSize().x - 10, 0));
 	player = new Player("Player", 5000, 50, 50);
-
 	// Julien: testEnemy
 	auto testEnemy0 = new Enemy("testEnemy0", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Triangle);
 	auto testEnemy1 = new Enemy("testEnemy1", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);
@@ -30,15 +29,14 @@ void Map::Update(sf::RenderWindow *window, float deltaTime)
 	CollisionPlayer(deltaTime);
 	if (countdown <= 0)
 	{
-		if(spawnEnemy01Value >= 2.0f)
+		if (spawnEnemy01Value >= 2.0f)
 			spawnEnemy01Value *= difficulty;
 		if (spawnEnemy02Value >= 3.0f)
 			spawnEnemy02Value *= difficulty;
 		if (spawnEnemy03Value >= 3.0f)
-			spawnEnemy03Value *= difficulty; 
+			spawnEnemy03Value *= difficulty;
 		if (compteurEnemyValue >= 4.0f)
 			compteurEnemyValue *= difficulty;
-
 		countdown = countdownV;
 	}
 	if (countdown > 0)
@@ -100,7 +98,7 @@ void Map::SpawnEnemies(sf::RenderWindow *window, float deltaTime)
 		{
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
-			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			float distance = Magnitude(player->playerShape.getPosition(), {randomX, randomY});
 			isValid = distance < 900;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Square);
@@ -120,7 +118,7 @@ void Map::SpawnEnemies(sf::RenderWindow *window, float deltaTime)
 		{
 			randomX = rand() * window->getSize().x / (float)RAND_MAX;
 			randomY = rand() * window->getSize().y / (float)RAND_MAX;
-			float distance = Magnitude(player->playerShape.getPosition(), { randomX,randomY });
+			float distance = Magnitude(player->playerShape.getPosition(), {randomX, randomY});
 			isValid = distance < 900;
 		}
 		auto testEnemy = new Enemy("Enemy", sf::Vector2f(randomX, randomY), Enemy::Type::Circle);
@@ -133,7 +131,6 @@ void Map::SpawnEnemies(sf::RenderWindow *window, float deltaTime)
 	}
 	if (compteurEnemy <= 0)
 	{
-
 		bool isValid = false;
 		float randomX;
 		float randomY;
