@@ -23,7 +23,7 @@ struct Object
 };
 struct Object2
 {
-    std::string id;
+    // std::string id;
     bool isActive = 1;
     Object2();
     ~Object2();

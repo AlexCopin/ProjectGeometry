@@ -1,7 +1,7 @@
 #include "Bonus.h"
 Bonus::Bonus(sf::Vector2f pos, TypeBonus type, std::string id)
 {
-	this->id = id;
+	// this->id = id;
 	form.setPointCount(5);
 	form.setRadius(15.0f);
 	form.setPosition(pos);

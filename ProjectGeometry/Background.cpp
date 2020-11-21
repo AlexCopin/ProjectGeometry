@@ -15,7 +15,7 @@ std::list<Entity *> entities;
 std::list<Star *> stars;
 Background::Background(std::string id, sf::RenderWindow *window)
 {
-	this->id = id;
+	// this->id = id;
 }
 void Background::Update(sf::RenderWindow *window, float deltaTime)
 {

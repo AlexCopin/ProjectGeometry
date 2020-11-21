@@ -37,6 +37,7 @@ Object2::Object2()
 Object2::~Object2()
 {
     Objects2.erase(std::find(Objects2.begin(), Objects2.end(), this));
+    Objects2.shrink_to_fit();
 }
 Object *FindObject(std::string id)
 {

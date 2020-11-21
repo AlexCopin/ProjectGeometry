@@ -2,7 +2,7 @@
 #include "Player.h"
 Ship::Ship(sf::Vector2f position, std::string id)
 {
-	this->id = id;
+	// this->id = id;
 	shipShape.setPointCount(3);
 	shipShape.setFillColor(sf::Color::Cyan);
 	shipShape.setRadius(10);
