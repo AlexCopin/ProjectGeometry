@@ -181,19 +181,19 @@ int main()
         // Julien: Update Function
         if (!ui->loser && !menu->isPaused)
         {
-            for (auto i : Objects2)
-                if (i->isActive)
-                    i->Update(&window, deltaTime);
             for (auto i : Objects)
                 if (i->isActive)
                     i->Update(&window, deltaTime);
-            map->SpawnEnemies(&window, deltaTime);
+            for (auto i : Objects2)
+                if (i->isActive)
+                    i->Update(&window, deltaTime);
             for (auto i : toDestroy2)
                 delete i;
             for (auto i : toDestroy)
                 delete i;
             toDestroy.clear();
             toDestroy2.clear();
+            map->SpawnEnemies(&window, deltaTime);
         }
         else if (menu->isPaused)
         {
