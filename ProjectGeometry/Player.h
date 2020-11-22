@@ -4,7 +4,7 @@
 #include "Bonus.h"
 #include "Bullet.h"
 #include <list>
-#include "SFML/Audio.hpp"
+
 std::list<Bullet *> &getBullets();
 class Player : Object
 {

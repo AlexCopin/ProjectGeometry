@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <math.h>
 #include "MathUtils.h"
+#include "SFML/Audio.hpp"
 // Julien: LOG MACRO
 #define LOG(X) std::cout << X << std::endl;
 // Julien: Utils

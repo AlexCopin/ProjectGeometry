@@ -42,6 +42,10 @@ public:
 	float speedSquare = 500.0f;
 	float speedOctagon = 500.0f;
 	float speedCircle = 500.0f;
+
+	sf::SoundBuffer buffer_death;
+	sf::Sound sound;
+
 	void ShootBul(float deltaTime, sf::Vector2f dir, float angle);
 	Enemy(std::string id, sf::Vector2f position, Type type);
 	~Enemy();

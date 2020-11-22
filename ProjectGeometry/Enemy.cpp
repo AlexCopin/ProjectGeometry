@@ -28,6 +28,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		shape.setScale(.8, 1);
 		color = sf::Color(255, 255, 0);
 		radius = 20;
+		buffer_death.loadFromFile(getAssetsPath() + "Sounds\\monstre1.ogg");
 	}
 	break;
 	case Type::Square:
@@ -52,6 +53,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		// Bullet
 		cadence = 1;
 		bulCount = 4;
+		buffer_death.loadFromFile(getAssetsPath() + "Sounds\\monstre2.ogg");
 	}
 	break;
 	case Type::Circle:
@@ -71,6 +73,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		// Bullet
 		cadence = .5;
 		bulCount = 32;
+		buffer_death.loadFromFile(getAssetsPath() + "Sounds\\monstre3.ogg");
 	}
 	break;
 	case Type::Octagon:
@@ -91,6 +94,8 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 		// Bullet
 		cadence = .5;
 		bulCount = 8;
+
+		buffer_death.loadFromFile(getAssetsPath() + "Sounds\\monstre4.ogg");
 	}
 	break;
 	}
@@ -99,6 +104,7 @@ Enemy::Enemy(std::string id, sf::Vector2f position, Type type)
 	shape.setFillColor(color);
 	shape.setRadius(radius);
 	shape.setOrigin(radius, radius);
+	sound.setBuffer(buffer_death);
 	// Player
 	player = (Player *)FindObject("Player");
 }
@@ -302,16 +308,22 @@ void Enemy::Update(sf::RenderWindow *window, float deltaTime)
 	// Health
 	if (health <= 0)
 	{
+		sound.play();
 		Map::mape->compteurEnemy--;
 		player->score += score;
-		getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
-		DestroyObject(this);
 		if (loot <= 75)
 			new Ship(shape.getPosition(), "enemyLoot");
 		else if (loot > 75 && loot <= 95)
 			new Bonus(shape.getPosition(), Bonus::TypeBonus::HEALTH, "Bonus");
 		else if (loot > 95)
 			new Bonus(shape.getPosition(), Bonus::TypeBonus::NUKE, "Bonus");
+
+		
+
+		
+			getEnemies().erase(std::find(getEnemies().begin(), getEnemies().end(), this));
+			DestroyObject(this);
+		
 	}
 }
 void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
