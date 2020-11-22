@@ -29,6 +29,7 @@ Object::Object()
 Object::~Object()
 {
     Objects.erase(std::find(Objects.begin(), Objects.end(), this));
+    Objects2.shrink_to_fit();
 }
 Object2::Object2()
 {
@@ -118,7 +119,7 @@ int main()
     //UIFonts
     sf::Font police;
     police.loadFromFile(getAssetsPath() + "\\spaceAge.ttf");
-    //MENUUUUUUUUUUUUUUUUUUUU
+    //MENU
     while (!menu->gameLaunched)
     {
         float deltaTime = clock.getElapsedTime().asSeconds();
@@ -190,10 +191,10 @@ int main()
                     i->Update(&window, deltaTime);
             for (auto i : toDestroy2)
                 delete i;
+            toDestroy2.clear();
             for (auto i : toDestroy)
                 delete i;
             toDestroy.clear();
-            toDestroy2.clear();
             map->SpawnEnemies(&window, deltaTime);
         }
         else if (menu->isPaused)
