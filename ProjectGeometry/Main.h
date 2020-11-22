@@ -29,7 +29,6 @@ struct Object2
     ~Object2();
     virtual void Start(sf::RenderWindow *window){};
     virtual void Update(sf::RenderWindow *window, float deltaTime){};
-    virtual void OnEvent(sf::RenderWindow *window, sf::Event event, float deltaTime){};
 };
 Object *FindObject(std::string id);
 bool SetActive(void *object, bool isActive);

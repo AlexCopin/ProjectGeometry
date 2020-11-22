@@ -13,7 +13,7 @@ struct Star
 	Star(float x, float y, sf::Color color, float size);
 	void DrawStars(sf::RenderWindow *window);
 };
-class Background : Object2
+class Background : Object
 {
 public:
 	//ENTITY

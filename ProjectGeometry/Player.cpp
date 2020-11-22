@@ -39,13 +39,15 @@ Player::Player(std::string id, int life, int posX, int posY)
 }
 void Player::Update(sf::RenderWindow *window, float deltaTime)
 {
+	shieldFactor = int((int)ships.size() / 3);
+	if (shieldFactor >= 50)
+		shieldFactor = 50;
 	if (!sf::SoundSource::Playing)
 	{
 		music2.play();
 		music2.setLoop(true);
 		LOG("Music Change");
 	}
-	shieldFactor = ((int)ships.size() / 3);
 	bonusDuration -= deltaTime;
 	if (bonusDuration > 0)
 	{

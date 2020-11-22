@@ -10,7 +10,7 @@ class Player : Object
 {
 public:
 	std::list<Ship *> ships;
-	float shieldFactor;
+	long shieldFactor{};
 	enum class TYPEBULLET
 	{
 		BASE,

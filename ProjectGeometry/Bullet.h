@@ -4,7 +4,7 @@ class Player;
 class Bullet : Object2
 {
 public:
-	int playerShips;
+	long playerShips;
 	float shieldFactor;
 	enum class Type
 	{
