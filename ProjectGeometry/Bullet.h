@@ -6,8 +6,6 @@ class Bullet : Object2
 public:
 	int playerShips;
 	float shieldFactor;
-	// Player
-	//Player *player;
 	enum class Type
 	{
 		Player,

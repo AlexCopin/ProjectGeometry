@@ -323,18 +323,20 @@ void Enemy::ShootBul(float deltaTime, sf::Vector2f dir, float angle)
 		bul->shapeB.setPosition(shape.getPosition());
 		bul->shapeB.setRotation(ConvertRadToDeg(angle + IIM_PI / 2));
 		bul->shapeB.setScale(.6, .6);
-		bul->shapeB.setFillColor(color);
 		bul->count = bulCount;
 		switch (type)
 		{
 		case Type::Octagon:
 			bul->speedB = speedOctagon;
+			bul->shapeB.setFillColor(sf::Color::Red);
 			break;
 		case Type::Circle:
 			bul->speedB = speedCircle;
+			bul->shapeB.setFillColor(sf::Color(255,255,0));
 			break;
 		case Type::Square:
 			bul->speedB = speedSquare;
+			bul->shapeB.setFillColor(sf::Color(255, 120, 0));
 			break;
 		}
 		timerBul = cadence;
