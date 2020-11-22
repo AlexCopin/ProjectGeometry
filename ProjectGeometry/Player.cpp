@@ -336,8 +336,6 @@ void Player::MovementShipsShape(float deltaTime)
 }
 void Player::GetShip(Ship *ship)
 {
-	lifeP++;
-	//int shipPositions = ships.size() > 3 ? ships.size() : 3;
 	sf::Transform matrix = shipsShape.getTransform();
 	shipsShape.setPointCount(shipsShape.getPointCount() + 1);
 	ship->posShip = matrix.transformPoint(shipsShape.getPoint(shipsShape.getPointCount() - 1));
