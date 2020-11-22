@@ -17,7 +17,7 @@ Map::Map(std::string id, sf::RenderWindow *window)
 	limitLEFT.setFillColor(sf::Color::Black);
 	limitLEFT.setSize(sf::Vector2f(100, window->getSize().y));
 	limitLEFT.setPosition(sf::Vector2f(window->getSize().x - 10, 0));
-	player = new Player("Player", 5000, 50, 50);
+	player = new Player("Player", 1000, 50, 50);
 	// Julien: testEnemy
 	auto testEnemy0 = new Enemy("testEnemy0", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Triangle);
 	auto testEnemy1 = new Enemy("testEnemy1", sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2), Enemy::Type::Square);

@@ -20,8 +20,8 @@ public:
 		BONUS,
 		SIZE
 	} typeB;
-	long lifeP = 200;
-	long lifeMax = 200;
+	long lifeP = 1000;
+	long lifeMax = 1000;
 	// Julien: Score
 	int score;
 	float Movx = 0;
